@@ -1,0 +1,15 @@
+SUMMARY STATEMENT EXCERPT (synthetic, style-matched to real NIH Summary Statements)
+
+Overall Impact: This application proposes to test the role of NMDA-dependent synaptic plasticity in auditory perceptual learning. The central hypothesis is clearly stated and the aims are largely independent. The investigative team is strong and the environment is excellent. Major concerns center on the lack of preliminary data for the key causal manipulation and the ambitious scope relative to the proposed timeline.
+
+Significance: The problem of how cortical circuits support perceptual learning is important. The gap is well articulated. Impact statements would benefit from more quantitative predictions.
+
+Investigators: Multi-disciplinary team with complementary expertise; track record is strong.
+
+Innovation: Conceptual innovation is moderate; methodological approaches are largely established.
+
+Approach: Aim 1 is well designed with appropriate controls. Aim 2 would be strengthened by power analysis and explicit discussion of what null results would mean. Potential pitfalls are mentioned but alternatives are thin.
+
+Environment: Outstanding.
+
+Resume: Address the absence of preliminary data supporting the causal claim in Aim 1 and tighten the timeline/milestones.

@@ -1,0 +1,11 @@
+OPENING
+Hearing is important and many people have hearing problems. We will study the auditory cortex to better understand how the brain processes sound. We hope to learn new things about learning and memory in the brain.
+
+AIM 1: Characterize neural activity in auditory cortex during learning.
+We will record from neurons while animals perform tasks and look for interesting patterns.
+
+AIM 2: Investigate molecular pathways that may be involved.
+Building on Aim 1 we will examine gene expression changes that occur after successful learning in Aim 1.
+
+CLOSING
+This work will advance the field of auditory neuroscience and may one day help patients.

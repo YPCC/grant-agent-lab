@@ -1,0 +1,63 @@
+# NIH SF424 + grant-proposal-assistant skill compliance rules
+
+rules:
+  - id: SPECIFIC_AIMS_LENGTH
+    source: NIH SF424
+    description: Specific Aims should fit on a single page (approx. <= 4500 characters).
+    severity: warning
+    check: length_le
+    field: specific_aims.content
+    threshold: 4500
+
+  - id: HYPOTHESIS_REQUIRED
+    source: grant-proposal-assistant / Institutional
+    description: A clear, testable central hypothesis must be present before institutional review.
+    severity: blocker
+    check: non_empty
+    field: central_hypothesis
+    min_length: 20
+
+  - id: AIMS_INDEPENDENCE
+    source: grant-proposal-assistant
+    description: Aims should be independent (project survives if one aim fails). Explicit language preferred.
+    severity: major
+    check: contains_any
+    field: specific_aims.content
+    keywords: ["independent", "independently", "does not depend", "can proceed if"]
+
+  - id: MECHANISM_DECLARED
+    source: NIH Application Guide
+    description: Grant mechanism (R01, R21, K, etc.) must be declared.
+    severity: blocker
+    check: non_empty
+    field: mechanism
+
+  - id: FATAL_CRITIQUE_OPEN
+    source: Study Section
+    description: Any unaddressed fatal critique blocks institutional submission.
+    severity: blocker
+    check: no_open_fatal_critiques
+
+  - id: BUDGET_JUSTIFICATION_PRESENT
+    source: grant-proposal-assistant
+    description: Budget justification must be present and non-empty before packaging.
+    severity: blocker
+    check: budget_justification_present
+
+  - id: BUDGET_ALIGNED_TO_AIMS
+    source: grant-proposal-assistant
+    description: Budget lines should reference aims (linked_aim). Orphan budget without aim linkage is a warning.
+    severity: warning
+    check: budget_linked_to_aims
+
+  - id: BUDGET_SCOPE_REASONABLE
+    source: grant-proposal-assistant / Reviewer Best Practice
+    description: Scope vs budget - total direct costs should be within typical mechanism ranges (R01 modular <= $250k/yr; R21 typically lower).
+    severity: major
+    check: budget_scope_reasonable
+
+  - id: PI_EFFORT_DECLARED
+    source: NIH / Institutional
+    description: PI effort (person-months or %) should be declared in budget.effort_by_role.
+    severity: warning
+    check: pi_effort_declared

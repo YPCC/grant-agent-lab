@@ -1,0 +1,11 @@
+OPENING
+The long-term goal of this research is to elucidate the synaptic mechanisms that enable perceptual learning in the auditory system. The central hypothesis is that NMDA-dependent long-term potentiation in primary auditory cortex is required for improved frequency discrimination after behavioral training. This hypothesis is based on preliminary extracellular and whole-cell recordings showing training-induced changes in synaptic weights that are blocked by NMDA antagonists.
+
+AIM 1: Determine whether NMDA receptor activity in A1 is necessary for perceptual learning.
+We will combine behavioral frequency-discrimination training with local pharmacological blockade. Expected outcome: animals receiving NMDA blockade will fail to improve discrimination thresholds relative to vehicle controls. This aim is independent of Aim 2.
+
+AIM 2: Test whether training-induced synaptic potentiation occurs at thalamocortical synapses.
+Using ex-vivo slice physiology after training we will quantify thalamocortical EPSPs. Expected outcome: trained animals will show larger thalamocortical EPSPs that occlude further LTP. This aim does not depend on the success of Aim 1.
+
+CLOSING
+Successful completion will provide causal evidence linking a specific synaptic mechanism to auditory perceptual learning and will open avenues for targeted interventions in hearing loss and auditory processing disorders.

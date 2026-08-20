@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+.env
+.env.*
+
+# Lab outputs
+output/
+*.jsonl
+.audit/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+*.swp
+
+# Test / coverage
+.coverage
+htmlcov/
+.pytest_cache/
+.ruff_cache/
+
+# Secrets
+*.pem
+secrets/

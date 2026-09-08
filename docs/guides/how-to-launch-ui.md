@@ -14,6 +14,8 @@ python3 ui-copilotkit/serve_workbench.py
 
 Open [http://127.0.0.1:8765](http://127.0.0.1:8765).
 
+Recorded walkthrough: [docs/demo/e2e-workbench-demo.mp4](../demo/e2e-workbench-demo.mp4) (43s). Notes: [demo README](../demo/README.md).
+
 | Action | What happens |
 |--------|----------------|
 | Review sample DOCX | Loads `data/samples/r01-aims-draft-for-review.docx`, runs reviewer + checklist |

@@ -2,84 +2,79 @@
 
 **Multi-agent system for drafting, reviewing, compliance-checking, budget-validating, and packaging NIH (and related) grant proposals until they are ready for institutional review and submission.**
 
+Start here: **[configure](docs/guides/how-to-configure.md)** · **[launch UI](docs/guides/how-to-launch-ui.md)** · **[architecture (Mermaid)](docs/architecture.md)** · **[docs index](docs/README.md)**
+
+## Architecture
+
+```mermaid
+flowchart TD
+  PI[PI / Navigator] --> UI[Workbench / CopilotKit]
+  OSPA[OSPA / AOR] --> UI
+  UI --> CP[Control plane<br/>guard · audit · kill-switch]
+  CP --> ORCH[Path A ADK / B LangGraph / C hybrid]
+  ORCH --> WR[Writer]
+  WR --> RV[Reviewer]
+  RV --> CC[Compliance]
+  CC --> BS[Budget scrutinizer]
+  BS --> ME[Missing Essentials]
+  ME --> HITL{HITL freeze}
+  HITL -->|revise| WR
+  HITL -->|approve + complete| PK[Package Creator]
+  PK --> READY[Ready for institution]
+  READY -.->|AOR present only| ASSIST[ASSIST / Grants.gov]
 ```
-PI / RA Request
-      │
-      ▼
-┌──────────────────────────────────────────────────────────────┐
-│              AGENT CONTROL PLANE (AGT-style)                 │
-│  Policy · Identity · Privilege rings · Kill-switch · Audit   │
-│  Observability (Langfuse / OpenTelemetry hooks)              │
-└────────────────────────────┬─────────────────────────────────┘
-                             │
-                             ▼
-                    Orchestration layer
-                             │
-    ┌────────────┬───────────┼───────────┬────────────┬──────────────┐
-    ▼            ▼           ▼           ▼            ▼              ▼
- Knowledge   Grant       Grant      Compliance   Budget         Package
- Updater     Writer      Reviewer   Checker      Scrutinizer    Creator
- (RePORTER)  (skill)     (skill +   (SF424 +     (NIH modular   (versioned
-              grant-      scientific institutional  / effort       submission
-              proposal-   review)    policies)     norms)         packet)
-              assistant)
-                             │
-                             ▼
-                      Human-in-the-Loop
-                        (PI / RA)
-                             │
-                             ▼
-                 Institutional package ready
-```
+
+Full diagrams (system context, paths, RBAC): [docs/architecture.md](docs/architecture.md).
 
 ## What this lab does
 
-1. **Drafts** Specific Aims (and related sections) using the [grant-proposal-assistant](https://github.com/YPCC/grok-custom-skills/tree/main/skills/grant-proposal-assistant) skill frameworks.
-2. **Reviews** from a mock study-section + [scientific-strategic-review-board](https://github.com/YPCC/grok-custom-skills) perspective.
+1. **Drafts** Specific Aims using [grant-proposal-assistant](https://github.com/YPCC/grok-custom-skills/tree/main/skills/grant-proposal-assistant) frameworks.
+2. **Reviews** from a mock study-section + [scientific-strategic-review-board](https://github.com/YPCC/grok-custom-skills) lens.
 3. **Checks compliance** against NIH SF424-style rules and institutional policies.
 4. **Scrutinizes the budget** against NIH modular/detailed norms (does **not** invent a budget).
-5. **Pauses for human approval** (HITL).
-6. **Packages** the approved proposal into a versioned submission directory with evidence for institutional audit.
+5. **Scores Missing Essentials** (required R01 package items) and **pauses for HITL**.
+6. **Packages** an approved proposal for institutional review. Official NIH submit stays with **OSPA / AOR**.
 
-Three parallel implementations are provided so teams can choose the right trade-off:
+Three parallel implementations:
 
 | Path | Stack | Best when |
 |------|--------|-----------|
-| **Part A** | Pure Google ADK 2.0 + Graph Workflow | Institutional GCP / Vertex AI Agent Engine, IAM, A2A |
-| **Part B** | Pure LangGraph + MemorySaver checkpointer | Maximum state control, time-travel, cloud-agnostic |
-| **Part C (primary)** | **Hybrid**: ADK outer + LangGraph inner | Production surface of ADK + precision of LangGraph |
+| **Part A** | Pure Google ADK 2.0 + Graph Workflow | Vertex AI Agent Engine, IAM, A2A |
+| **Part B** (config default) | Pure LangGraph + MemorySaver / `GrantGraph` | Typed state, revision loops, HITL interrupt |
+| **Part C** | **Hybrid**: ADK outer + LangGraph inner | Production ADK + deterministic inner loop |
 
-### Decision matrix (runtime path)
+Switch path in [`config/runtime.yaml`](config/runtime.yaml) (`path: part_a_adk | part_b_langgraph | part_c_hybrid`). Details: [how to configure](docs/guides/how-to-configure.md).
 
-| If you need… | Choose |
-|--------------|--------|
-| Vertex AI Agent Engine, native IAM / A2A, little custom looping | **Part A** — Pure ADK 2.0 |
-| Typed state, revision loops, checkpoint / time-travel, cloud-agnostic | **Part B** — Pure LangGraph |
-| ADK production surface **and** deterministic write→review→compliance→HITL loops | **Part C — Hybrid (default for MCC / OSPA)** |
+## Quick start — UI
 
-Full matrices (runtime, data stores, Cloud Run FE vs BE, when LangGraph sits inside ADK): [docs/architecture-considerations/README.md](docs/architecture-considerations/README.md#decision-matrix).
-
-## Quick start (Hybrid – Part C)
+No npm and no model key:
 
 ```bash
+git clone https://github.com/YPCC/grant-agent-lab.git
 cd grant-agent-lab
+pip install python-docx
+python3 ui-copilotkit/serve_workbench.py
+```
+
+Open [http://127.0.0.1:8765](http://127.0.0.1:8765). Review the sample R01 Aims `.docx`, inspect the checklist, try HITL revise/approve, switch role to OSPA to see Submit enable (demo only).
+
+CopilotKit Next.js (optional chat):
+
+```bash
+cd ui-copilotkit && npm install && npm run dev
+```
+
+See [how to launch the UI](docs/guides/how-to-launch-ui.md).
+
+## Quick start — agents / tests
+
+```bash
 python -m venv .venv && source .venv/bin/activate
-pip install -e .
-# Optional LLM keys: GOOGLE_API_KEY / OPENAI_API_KEY / XAI_API_KEY
-PYTHONPATH=. python -m src.part_c_hybrid.demo
-```
-
-Pure LangGraph demo (with checkpoint resume):
-
-```bash
-PYTHONPATH=. python -m src.part_b_langgraph.demo
-```
-
-Tests:
-
-```bash
+pip install -e ".[dev]"
 PYTHONPATH=. python -m pytest tests/ -q
 ```
+
+Optional LLM keys (gitignored `.env`): `GOOGLE_API_KEY`, `OPENAI_API_KEY`, `XAI_API_KEY`.
 
 ## Repository layout
 
@@ -87,51 +82,53 @@ PYTHONPATH=. python -m pytest tests/ -q
 grant-agent-lab/
 ├── README.md
 ├── docs/
-│   ├── architecture-considerations/  # EA notes + all .drawio diagrams
-│   ├── guides/                # how-to-use, how-to-add-agent
-│   ├── budget-and-package-agent.md
-│   ├── control-plane-integration.md
-│   ├── datasets-and-validation.md
-│   └── end-to-end-workflow.md
+│   ├── README.md                 # docs index
+│   ├── architecture.md           # Mermaid diagrams
+│   ├── guides/
+│   │   ├── how-to-configure.md
+│   │   └── how-to-launch-ui.md
+│   └── architecture-considerations/  # EA notes + draw.io
 ├── config/
-│   └── policies/              # declarative NIH + skill rules
+│   ├── runtime.yaml              # path, HITL, agents
+│   ├── checklists/r01_essentials.yaml
+│   └── policies/
 ├── src/
-│   ├── shared/                # ProposalState, RePORTER client, LLM helper
-│   ├── control_plane/         # AGT-style guard, audit, kill-switch
-│   ├── part_a_adk/            # Pure ADK 2.0
-│   ├── part_b_langgraph/      # Pure LangGraph + checkpointer
-│   └── part_c_hybrid/         # Hybrid (recommended showcase)
-├── data/samples/              # public / synthetic Aims + Summary Statement excerpts
-├── tests/
-└── output/packages/           # versioned submission packages
+│   ├── shared/checklist.py
+│   ├── control_plane/
+│   ├── part_a_adk/
+│   ├── part_b_langgraph/
+│   └── part_c_hybrid/
+├── ui-copilotkit/                # workbench + CopilotKit
+├── data/samples/
+└── tests/
 ```
 
 ## Diagram color legend
 
-Used consistently in the `.drawio` diagrams under `docs/architecture-considerations/`:
+Used in [draw.io](docs/architecture-considerations/) files:
 
 | Color | Meaning |
 |-------|---------|
-| Blue (`#dae8fc` / stroke `#6c8ebf`) | ADK / outer orchestration / deployment |
-| Green (`#d5e8d4` / stroke `#82b366`) | LangGraph nodes / deterministic scientific loop |
-| Yellow (`#fff2cc` / stroke `#d6b656`) | Knowledge / guideline freshness |
-| Red / rose (`#f8cecc` / stroke `#b85450`) | Human-in-the-loop |
-| Purple (`#e1d5e7` / stroke `#9673a6`) | Shared state / memory |
+| Blue (`#dae8fc` / `#6c8ebf`) | ADK / UI / deployment |
+| Green (`#d5e8d4` / `#82b366`) | LangGraph nodes |
+| Yellow (`#fff2cc` / `#d6b656`) | Knowledge / FOA freshness |
+| Rose (`#f8cecc` / `#b85450`) | Human-in-the-loop |
+| Purple (`#e1d5e7` / `#9673a6`) | Shared state |
 
 ## Documentation
 
 | Guide | Description |
 |-------|-------------|
-| [Architecture considerations](docs/architecture-considerations/README.md) | EA answers, stack, Cloud SQL, integration, system context + diagrams |
-| [Component selection framework](docs/architecture-considerations/architecture-selection-framework.md) | Gates, scoring rubric, CSP services, token/TCO/maintenance cost |
-| [Discovery questions](docs/architecture-considerations/architecture-discovery-questions.md) | Function, UX, security, compliance, audit, control plane, governance |
-| [How to use](docs/guides/how-to-use.md) | Running demos, interpreting packages |
-| [How to add a new agent](docs/guides/how-to-add-agent.md) | Step-by-step extension pattern |
-| [Budget & package](docs/budget-and-package-agent.md) | Budget Scrutinizer + Package Creator |
-| [Control plane](docs/control-plane-integration.md) | AGT / agent-control-lab mapping |
-| [Datasets](docs/datasets-and-validation.md) | Public NIH samples & RePORTER |
-| [CopilotKit / DOCX review UI](ui-copilotkit/README.md) | Workbench + agent rail + R01 Aims `.docx` review |
-| [Part B LangGraph + HITL](docs/part-b-langgraph-hitl.md) | Pure LangGraph config, Missing Essentials checklist, interrupt-before-freeze |
+| [Docs index](docs/README.md) | All guides |
+| [How to configure](docs/guides/how-to-configure.md) | `runtime.yaml`, agents, HITL, env |
+| [How to launch UI](docs/guides/how-to-launch-ui.md) | Workbench and CopilotKit |
+| [Architecture (Mermaid)](docs/architecture.md) | System context, graph, RBAC |
+| [Architecture considerations](docs/architecture-considerations/README.md) | EA packet, Cloud SQL, Cloud Run |
+| [Part B LangGraph + HITL](docs/part-b-langgraph-hitl.md) | Interrupt-before-freeze |
+| [Budget & package](docs/budget-and-package-agent.md) | Scrutinizer + package creator |
+| [Control plane](docs/control-plane-integration.md) | AGT / agent-control-lab |
+| [Datasets](docs/datasets-and-validation.md) | NIH samples & RePORTER |
+| [CopilotKit UI](ui-copilotkit/README.md) | DOCX review showcase |
 
 ## How to cite this package
 
@@ -151,43 +148,19 @@ Used consistently in the `.drawio` diagrams under `docs/architecture-considerati
 
 > …using Grant Agent Lab (https://github.com/YPCC/grant-agent-lab), a multi-agent system for NIH proposal drafting through institutional packaging.
 
-When discussing the control-plane pattern, also cite:
-
-> Agent Control Lab (https://github.com/YPCC/agent-control-lab) and Microsoft’s Agent Governance Toolkit (AGT).
-
-When using skill frameworks, cite the upstream skills (see References).
+When discussing the control-plane pattern, also cite [Agent Control Lab](https://github.com/YPCC/agent-control-lab) and Microsoft’s Agent Governance Toolkit (AGT).
 
 ## References
 
-1. **grant-proposal-assistant skill** — Specific Aims, Significance, Innovation, Approach frameworks; reviewer mindset; budget-justification-aligned-to-aims.  
-   https://github.com/YPCC/grok-custom-skills/tree/main/skills/grant-proposal-assistant
-
-2. **scientific-strategic-review-board skill** — Independent scientific/strategic critique patterns.  
-   https://github.com/YPCC/grok-custom-skills (scientific-strategic-review-board)
-
-3. **Agent Control Lab** — Spec-driven LangGraph multi-agent control plane under Microsoft AGT concepts.  
-   https://github.com/YPCC/agent-control-lab
-
-4. **Microsoft Agent Governance Toolkit (AGT)** — Seven-layer governance model for agent runtime security.  
-   https://opensource.microsoft.com/blog/2026/04/02/introducing-the-agent-governance-toolkit-open-source-runtime-security-for-ai-agents/
-
-5. **NIH RePORTER API v2** — Live project search used by the Knowledge Updater.  
-   https://api.reporter.nih.gov/
-
-6. **NIH SF424 / Modular Budget guidance** — Modular ceiling ($250,000 direct/year), $25,000 modules, personnel justification in person-months.  
-   - https://grants.nih.gov/grants/how-to-apply-application-guide/forms-i/general/g.320-phs-398-modular-budget-form.htm  
-   - https://grants.nih.gov/grants-process/write-application/advice-on-application-sections/develop-your-budget  
-   - https://www.niaid.nih.gov/grants-contracts/create-budget
-
-7. **NIAID / NIDCD sample applications** — Public funded applications and Summary Statements used for evaluation fixtures.  
-   - https://www.niaid.nih.gov/grants-contracts/sample-applications  
-   - https://www.nidcd.nih.gov/funding/sample-grant-applications
-
-8. **LangGraph** — Stateful multi-actor application framework (StateGraph, checkpointers).  
-   https://github.com/langchain-ai/langgraph
-
-9. **Google Agent Development Kit (ADK) 2.0** — Graph workflows, LlmAgent, Vertex AI Agent Engine.  
-   https://google.github.io/adk-docs/ (documentation)
+1. **grant-proposal-assistant skill** — https://github.com/YPCC/grok-custom-skills/tree/main/skills/grant-proposal-assistant
+2. **scientific-strategic-review-board skill** — https://github.com/YPCC/grok-custom-skills
+3. **Agent Control Lab** — https://github.com/YPCC/agent-control-lab
+4. **Microsoft AGT** — https://opensource.microsoft.com/blog/2026/04/02/introducing-the-agent-governance-toolkit-open-source-runtime-security-for-ai-agents/
+5. **NIH RePORTER API v2** — https://api.reporter.nih.gov/
+6. **NIH SF424 / Modular Budget** — https://grants.nih.gov/grants-process/write-application/advice-on-application-sections/develop-your-budget
+7. **NIAID / NIDCD sample applications** — https://www.niaid.nih.gov/grants-contracts/sample-applications
+8. **LangGraph** — https://github.com/langchain-ai/langgraph
+9. **Google ADK 2.0** — https://google.github.io/adk-docs/
 
 ## License
 

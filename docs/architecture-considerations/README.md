@@ -12,6 +12,8 @@ Questions to ask before choosing (function, UX, security, compliance, audit, con
 
 PI-facing product (R01 workbench, multi-doc, RBAC, staged submit): [PI R01 workflow UI](pi-r01-workflow-ui.md).
 
+Rendered Mermaid (system context, agent graph, paths): [Architecture (Mermaid)](../architecture.md). Configure: [how-to-configure](../guides/how-to-configure.md). Launch UI: [how-to-launch-ui](../guides/how-to-launch-ui.md).
+
 ---
 
 ## Diagrams in this folder

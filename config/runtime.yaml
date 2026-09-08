@@ -1,0 +1,31 @@
+# Pure LangGraph runtime (Part B) — switch path without code changes.
+# Paths: part_a_adk | part_b_langgraph | part_c_hybrid
+
+path: part_b_langgraph
+
+hitl:
+  enabled: true
+  interrupt_before: freeze_package
+  resume_roles: [PI, OSPA, Admin]
+  decisions: [approve, revise, waive]
+
+agents:
+  knowledge_updater: {enabled: true}
+  writer: {enabled: true}
+  reviewer: {enabled: true}
+  compliance: {enabled: true}
+  budget_scrutinizer: {enabled: true}
+  missing_essentials: {enabled: true}
+  package_creator: {enabled: true}
+  submission_assistant: {enabled: false}
+
+checklist:
+  catalog: config/checklists/r01_essentials.yaml
+  mechanism: R01
+
+observability:
+  audit_log: output/audit_log.jsonl
+
+control_plane:
+  guard: true
+  pi_cannot_submit: true

@@ -1,0 +1,87 @@
+# Essential items for an NIH R01 package before OSPA freeze.
+# status is computed by the Missing Essentials agent (present | missing | unknown).
+
+mechanism: R01
+title: NIH R01 essential package checklist
+
+items:
+  - id: MECHANISM_FOA
+    label: Mechanism and FOA declared
+    required: true
+    group: Intake
+    detect: [r01, foa, pa-, par-, rfa-]
+  - id: HYPOTHESIS
+    label: Testable central hypothesis
+    required: true
+    group: Science
+    detect: [hypothesis, we hypothesize, we test whether]
+  - id: SPECIFIC_AIMS
+    label: Specific Aims (one page)
+    required: true
+    group: Science
+    detect: [specific aim, aim 1]
+  - id: AIMS_INDEPENDENT
+    label: Aims are independent
+    required: true
+    group: Science
+    detect: [independent, does not depend, alternative if aim]
+  - id: SIGNIFICANCE
+    label: Significance section
+    required: true
+    group: Science
+    detect: [significance]
+  - id: INNOVATION
+    label: Innovation section
+    required: true
+    group: Science
+    detect: [innovation]
+  - id: APPROACH
+    label: Approach section
+    required: true
+    group: Science
+    detect: [approach, experimental design]
+  - id: BIBLIOGRAPHY
+    label: Bibliography / references
+    required: true
+    group: Science
+    detect: [bibliography, references cited]
+  - id: PI_EFFORT
+    label: PD/PI effort in person-months
+    required: true
+    group: Budget
+    detect: [person-month, person months, calendar months]
+  - id: BUDGET_JUSTIFICATION
+    label: Budget justification
+    required: true
+    group: Budget
+    detect: [budget justification, modular budget]
+  - id: BIOSKETCH_PI
+    label: PI biosketch (Common Form)
+    required: true
+    group: Personnel
+    detect: [biosketch, biographical sketch]
+  - id: OTHER_SUPPORT
+    label: Other Support / Current and Pending
+    required: true
+    group: Personnel
+    detect: [other support, current and pending]
+  - id: FACILITIES
+    label: Facilities and other resources
+    required: true
+    group: Environment
+    detect: [facilities, other resources]
+  - id: DMS_PLAN
+    label: Data Management and Sharing plan
+    required: true
+    group: Compliance
+    detect: [data management and sharing, dms plan]
+  - id: HS_VA_DETERMINATION
+    label: Human subjects / vertebrate animals determination
+    required: true
+    group: Compliance
+    detect: [human subjects, vertebrate animals, not applicable]
+  - id: AUTH_KEY_BIO
+    label: Authentication of key biological resources (if used)
+    required: false
+    group: Compliance
+    detect: [authentication of key biological]

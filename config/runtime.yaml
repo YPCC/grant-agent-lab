@@ -15,9 +15,9 @@ agents:
   reviewer: {enabled: true}
   compliance: {enabled: true}
   budget_scrutinizer: {enabled: true}
-  missing_essentials: {enabled: true}
+  missing_essentials: {enabled: true}   # checklist agent
   package_creator: {enabled: true}
-  submission_assistant: {enabled: false}
+  submission_assistant: {enabled: false}  # OSPA-only; never autonomous
 
 checklist:
   catalog: config/checklists/r01_essentials.yaml

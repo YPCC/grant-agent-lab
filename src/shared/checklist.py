@@ -14,6 +14,7 @@ DEFAULT_CATALOG = ROOT / "config" / "checklists" / "r01_essentials.yaml"
 
 
 def _parse_simple_yaml(text: str) -> dict[str, Any]:
+    """Minimal YAML subset so the agent runs without PyYAML."""
     items: list[dict[str, Any]] = []
     cur: dict[str, Any] | None = None
     mechanism, title = "R01", "checklist"

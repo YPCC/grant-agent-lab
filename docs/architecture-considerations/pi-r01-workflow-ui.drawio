@@ -1,0 +1,70 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="pi-r01-ui" name="PI R01 workbench journey">
+    <mxGraphModel dx="1400" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="640" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="t" value="NIH R01 — PI workbench journey (UI before implementation)" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontSize=14;fillColor=#ffffff;strokeColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="380" y="20" width="760" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1" value="1 Workbench&#xa;Multiple proposals&#xa;You are PI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="40" y="90" width="160" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2" value="2 New R01&#xa;FOA · NIH date&#xa;OSPA internal date" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="240" y="90" width="160" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3" value="3 Proposal room&#xa;Doc tree + editor&#xa;+ agent rail" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="440" y="90" width="160" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4" value="4 Compliance&#xa;Blockers cited to rules" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="640" y="90" width="160" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5" value="5 Package&#xa;PI Freeze + version tag" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="840" y="90" width="160" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="s6" value="6 OSPA queue&#xa;Approve to transmit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="90" width="160" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="s7" value="7 Submission assistant&#xa;AOR present + MFA&#xa;tracking #" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="90" width="180" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="s1" target="s2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e23" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="s2" target="s3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e34" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="s3" target="s4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e45" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="s4" target="s5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e56" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="s5" target="s6"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e67" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="s6" target="s7"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="a1" value="Knowledge Updater" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="360" y="210" width="130" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="a2" value="Writer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="500" y="210" width="90" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="a3" value="Reviewer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="600" y="210" width="90" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="a4" value="Compliance + Budget scrutinizer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="700" y="210" width="180" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="r1" value="PI: edit + run agents + Freeze. Submit disabled." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="40" y="290" width="280" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="r2" value="RA/Navigator: edit if granted; run review/compliance." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="340" y="290" width="300" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="r3" value="OSPA/AOR: waive, approve transmit, official submit." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="660" y="290" width="320" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="r4" value="Admin: kill-switch, roles, full audit." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="290" width="260" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="n1" value="Do not store eRA passwords or submit without an identified AOR action." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="40" y="370" width="620" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="n2" value="One Proposal → many Documents (Aims, Strategy, Biosketch, Budget, DMS), each with version, owner, status, agent runs." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="680" y="370" width="580" height="40" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

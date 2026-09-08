@@ -1,5 +1,11 @@
 import { NextRequest } from "next/server";
 
+/**
+ * CopilotKit runtime endpoint.
+ * If OPENAI_API_KEY (or compatible) is set, uses the official adapter.
+ * Otherwise returns a short JSON hint — the workbench review rail still works
+ * via /api/review and the reviewGrantDocx frontend action after a key is added.
+ */
 export async function POST(req: NextRequest) {
   const key = process.env.OPENAI_API_KEY || process.env.GOOGLE_API_KEY;
   if (!key) {

@@ -1,0 +1,116 @@
+<?xml version="1.0" ?>
+<mxfile host="drawio" version="26.0.0">
+  <diagram name="EA System Context – OSPA Grant Platform">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="2" value="MCC OSPA Grant Submission Platform — System Context&amp;#xa;Information flows between actors, platform, data stores, and external systems" style="fillColor=#ffffff;strokeColor=#333333;rounded=1;fontStyle=1;fontSize=14;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="400" y="20" width="800" height="50" as_="geometry"/>
+        </mxCell>
+        <mxCell id="3" value="PI / Researcher&amp;#xa;Upload drafts · Check readiness&amp;#xa;Approve / revise" style="fillColor=#fff2cc;strokeColor=#d6b656;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="120" width="180" height="80" as_="geometry"/>
+        </mxCell>
+        <mxCell id="4" value="Navigator&amp;#xa;Guidance · Q&amp;amp;A&amp;#xa;Readiness insights" style="fillColor=#fff2cc;strokeColor=#d6b656;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="230" width="180" height="70" as_="geometry"/>
+        </mxCell>
+        <mxCell id="5" value="OSPA Reviewer&amp;#xa;Compliance review&amp;#xa;Overrides · Sign-off" style="fillColor=#fff2cc;strokeColor=#d6b656;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="330" width="180" height="70" as_="geometry"/>
+        </mxCell>
+        <mxCell id="6" value="Admin / Ops&amp;#xa;Rules · Users&amp;#xa;Monitoring" style="fillColor=#fff2cc;strokeColor=#d6b656;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="430" width="180" height="70" as_="geometry"/>
+        </mxCell>
+        <mxCell id="7" value="MCC Platform&amp;#xa;(Agent Orchestration + Portals + Control Plane)" style="fillColor=#d5e8d4;strokeColor=#82b366;rounded=1;fontStyle=1;opacity=30;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="280" y="150" width="520" height="320" as_="geometry"/>
+        </mxCell>
+        <mxCell id="8" value="Agent Orchestrator&amp;#xa;ADK + LangGraph&amp;#xa;Control Plane" style="fillColor=#d5e8d4;strokeColor=#82b366;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="320" y="180" width="200" height="70" as_="geometry"/>
+        </mxCell>
+        <mxCell id="9" value="Specialist Agents&amp;#xa;Doc · Compliance · Budget&amp;#xa;Readiness · Package" style="fillColor=#d5e8d4;strokeColor=#82b366;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="540" y="180" width="220" height="70" as_="geometry"/>
+        </mxCell>
+        <mxCell id="10" value="Web Portals (Cloud Run FE)&amp;#xa;Intake · Reviewer · Navigator · Admin" style="fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="320" y="280" width="440" height="60" as_="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="Human-in-the-Loop Gate" style="fillColor=#f8cecc;strokeColor=#b85450;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="320" y="370" width="440" height="50" as_="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="Cloud SQL&amp;#xa;Users · Projects · Workflow&amp;#xa;Package manifests · Audit ptrs" style="fillColor=#e1d5e7;strokeColor=#9673a6;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="880" y="120" width="220" height="80" as_="geometry"/>
+        </mxCell>
+        <mxCell id="13" value="Memorystore&amp;#xa;Session · LangGraph&amp;#xa;checkpoints" style="fillColor=#e1d5e7;strokeColor=#9673a6;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="880" y="220" width="220" height="70" as_="geometry"/>
+        </mxCell>
+        <mxCell id="14" value="Cloud Storage&amp;#xa;Documents · Packages&amp;#xa;Versioned artifacts" style="fillColor=#e1d5e7;strokeColor=#9673a6;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="880" y="310" width="220" height="70" as_="geometry"/>
+        </mxCell>
+        <mxCell id="15" value="BigQuery&amp;#xa;Metrics · Score trends&amp;#xa;Operational analytics" style="fillColor=#e1d5e7;strokeColor=#9673a6;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="880" y="400" width="220" height="70" as_="geometry"/>
+        </mxCell>
+        <mxCell id="16" value="Vertex Vector Search&amp;#xa;FOA · Guidelines · Similar grants" style="fillColor=#e1d5e7;strokeColor=#9673a6;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="880" y="490" width="220" height="70" as_="geometry"/>
+        </mxCell>
+        <mxCell id="17" value="NIH RePORTER API&amp;#xa;Abstracts · Activity codes" style="fillColor=#f5f5f5;strokeColor=#666666;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="120" width="200" height="70" as_="geometry"/>
+        </mxCell>
+        <mxCell id="18" value="eRA / ASSIST&amp;#xa;Grants.gov" style="fillColor=#f5f5f5;strokeColor=#666666;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="220" width="200" height="70" as_="geometry"/>
+        </mxCell>
+        <mxCell id="19" value="MIRIS (OSPA)&amp;#xa;Institutional budget &amp;amp;&amp;#xa;routing" style="fillColor=#f5f5f5;strokeColor=#666666;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="320" width="200" height="70" as_="geometry"/>
+        </mxCell>
+        <mxCell id="20" value="Institutional SSO&amp;#xa;IAP / Identity" style="fillColor=#f5f5f5;strokeColor=#666666;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="420" width="200" height="70" as_="geometry"/>
+        </mxCell>
+        <mxCell id="21" value="drafts · decisions" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;entryX=0;entryY=0.3;html=1;whiteSpace=wrap;" edge="1" parent="1" source="3" target="10">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="22" value="guidance requests" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;entryX=0;entryY=0.5;html=1;whiteSpace=wrap;" edge="1" parent="1" source="4" target="10">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="23" value="review · overrides" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;entryX=0;entryY=0.7;html=1;whiteSpace=wrap;" edge="1" parent="1" source="5" target="10">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="24" value="config" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;entryX=0;entryY=0.9;html=1;whiteSpace=wrap;" edge="1" parent="1" source="6" target="10">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="25" value="API calls" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=0;entryX=0.5;entryY=1;html=1;whiteSpace=wrap;" edge="1" parent="1" source="10" target="8">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="26" value="delegate" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;entryX=0;entryY=0.5;html=1;whiteSpace=wrap;" edge="1" parent="1" source="8" target="9">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="27" value="findings" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;entryX=0.5;entryY=0;html=1;whiteSpace=wrap;" edge="1" parent="1" source="9" target="11">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="28" value="read/write" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.3;entryX=0;entryY=0.5;html=1;whiteSpace=wrap;" edge="1" parent="1" source="8" target="12">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="29" value="state" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.7;entryX=0;entryY=0.5;html=1;whiteSpace=wrap;" edge="1" parent="1" source="8" target="13">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="30" value="artifacts" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;entryX=0;entryY=0.5;html=1;whiteSpace=wrap;" edge="1" parent="1" source="9" target="14">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="31" value="metrics" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=1;entryX=0;entryY=0.3;html=1;whiteSpace=wrap;" edge="1" parent="1" source="8" target="15">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="32" value="search FOA/grants" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.2;entryX=0;entryY=0.5;html=1;whiteSpace=wrap;" edge="1" parent="1" source="9" target="17">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="33" value="package handoff" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;entryX=0;entryY=0.5;html=1;whiteSpace=wrap;" edge="1" parent="1" source="11" target="19">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="34" value="status (post-OSPA)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.8;entryX=0;entryY=0.5;html=1;whiteSpace=wrap;" edge="1" parent="1" source="9" target="18">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="35" value="auth" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;entryX=0;entryY=0.5;html=1;whiteSpace=wrap;" edge="1" parent="1" source="10" target="20">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="36" value="Legend&amp;#xa;Yellow = Actors · Blue = Front ends · Green = Platform/Agents&amp;#xa;Purple = Data stores · Gray = External · Rose = HITL" style="fillColor=#ffffff;strokeColor=#999999;rounded=1;fontSize=11;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="40" y="540" width="400" height="70" as_="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

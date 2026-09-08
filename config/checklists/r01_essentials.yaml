@@ -16,7 +16,7 @@ items:
     group: Science
     detect: [hypothesis, we hypothesize, we test whether]
   - id: SPECIFIC_AIMS
-    label: Specific Aims (one page)
+    label: Specific Aims (≤1 page)
     required: true
     group: Science
     detect: [specific aim, aim 1]
@@ -61,7 +61,7 @@ items:
     group: Personnel
     detect: [biosketch, biographical sketch]
   - id: OTHER_SUPPORT
-    label: Other Support / Current and Pending
+    label: Other Support / Current & Pending
     required: true
     group: Personnel
     detect: [other support, current and pending]

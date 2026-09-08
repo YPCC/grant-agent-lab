@@ -1,4 +1,4 @@
-from src.part_b_langgraph.graph import GrantGraph
+from src.part_b_langgraph.graph import GrantGraph, missing_essentials_node
 from src.shared.checklist import evaluate_checklist, load_catalog
 
 

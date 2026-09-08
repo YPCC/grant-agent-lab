@@ -5,7 +5,7 @@ Config: config/runtime.yaml  path: part_b_langgraph
 """
 from __future__ import annotations
 
-from typing import TypedDict
+from typing import Any, Callable, TypedDict
 
 from src.shared.checklist import evaluate_checklist
 
@@ -37,6 +37,7 @@ def reviewer_node(state: ProposalState) -> ProposalState:
 
 
 def hitl_interrupt_node(state: ProposalState) -> ProposalState:
+    """Pause before freeze. Real LangGraph: interrupt(). Fallback: set awaiting_human."""
     pending = {
         "type": "pi_review",
         "prompt": "Approve freeze for OSPA, request revision, or waive a finding?",
@@ -76,6 +77,7 @@ def route_after_hitl(state: ProposalState) -> str:
 
 
 def build_graph():
+    """Return a compiled LangGraph if available, else GrantGraph."""
     try:
         from langgraph.checkpoint.memory import MemorySaver
         from langgraph.graph import END, StateGraph
@@ -100,6 +102,8 @@ def build_graph():
 
 
 class GrantGraph:
+    """Deterministic stand-in: same nodes, HITL pause/resume, thread checkpoint."""
+
     def __init__(self):
         self.threads: dict[str, ProposalState] = {}
 

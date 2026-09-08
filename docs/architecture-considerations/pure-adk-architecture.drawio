@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<mxfile host="drawio" version="26.0.0">
+  <diagram name="Grant Multi-Agent System - Pure ADK 2.0">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="950" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="2" value="Root Orchestrator&amp;#xa;(ADK LlmAgent or Workflow)&amp;#xa;Routes + maintains progress" style="fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;fontStyle=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="550" y="40" width="280" height="90" as_="geometry"/>
+        </mxCell>
+        <mxCell id="3" value="Grant Writer&amp;#xa;(ADK LlmAgent)&amp;#xa;Task / Single-turn mode&amp;#xa;grant-proposal-assistant" style="fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="80" y="200" width="240" height="100" as_="geometry"/>
+        </mxCell>
+        <mxCell id="4" value="Grant Reviewer&amp;#xa;(ADK LlmAgent)&amp;#xa;Mock study section +&amp;#xa;scientific-strategic-review" style="fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="380" y="200" width="240" height="100" as_="geometry"/>
+        </mxCell>
+        <mxCell id="5" value="Compliance Checker&amp;#xa;(ADK Custom / Function Node)&amp;#xa;Org policies + NIH rules" style="fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="680" y="200" width="240" height="100" as_="geometry"/>
+        </mxCell>
+        <mxCell id="6" value="Knowledge Updater&amp;#xa;(ADK Agent + Tools)&amp;#xa;Fetches NIH Guide / FOA" style="fillColor=#fff2cc;strokeColor=#d6b656;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="980" y="200" width="240" height="100" as_="geometry"/>
+        </mxCell>
+        <mxCell id="7" value="ADK 2.0 Graph Workflow&amp;#xa;(edges for Write → Review → Compliance → HITL loop)&amp;#xa;Deterministic routing + Dynamic nodes" style="fillColor=#d5e8d4;strokeColor=#82b366;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="350" y="380" width="500" height="80" as_="geometry"/>
+        </mxCell>
+        <mxCell id="8" value="Shared Session State&amp;#xa;+ Memorystore / Vertex Vector Search" style="fillColor=#e1d5e7;strokeColor=#9673a6;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="80" y="520" width="280" height="80" as_="geometry"/>
+        </mxCell>
+        <mxCell id="9" value="Human-in-the-Loop&amp;#xa;(PI / RA Approval)" style="fillColor=#f8cecc;strokeColor=#b85450;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="450" y="520" width="220" height="80" as_="geometry"/>
+        </mxCell>
+        <mxCell id="10" value="Vertex AI Agent Engine&amp;#xa;Cloud Run + IAM + Observability" style="fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="780" y="520" width="280" height="80" as_="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="delegate" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.2;exitY=1;entryX=0.5;entryY=0;html=1;whiteSpace=wrap;" edge="1" parent="1" source="2" target="3">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="delegate" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.4;exitY=1;entryX=0.5;entryY=0;html=1;whiteSpace=wrap;" edge="1" parent="1" source="2" target="4">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="13" value="delegate" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.6;exitY=1;entryX=0.5;entryY=0;html=1;whiteSpace=wrap;" edge="1" parent="1" source="2" target="5">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="14" value="delegate" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.8;exitY=1;entryX=0.5;entryY=0;html=1;whiteSpace=wrap;" edge="1" parent="1" source="2" target="6">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;entryX=0.2;entryY=0;html=1;whiteSpace=wrap;" edge="1" parent="1" source="3" target="7">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;entryX=0.4;entryY=0;html=1;whiteSpace=wrap;" edge="1" parent="1" source="4" target="7">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;entryX=0.6;entryY=0;html=1;whiteSpace=wrap;" edge="1" parent="1" source="5" target="7">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;entryX=0.8;entryY=0;html=1;whiteSpace=wrap;" edge="1" parent="1" source="6" target="7">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="19" value="read/write" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.3;exitY=1;entryX=0.5;entryY=0;html=1;whiteSpace=wrap;" edge="1" parent="1" source="7" target="8">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="20" value="pause for PI" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;entryX=0.5;entryY=0;html=1;whiteSpace=wrap;" edge="1" parent="1" source="7" target="9">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="21" value="runs on" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=0.7;exitY=1;entryX=0.5;entryY=0;html=1;whiteSpace=wrap;" edge="1" parent="1" source="7" target="10">
+          <mxGeometry relative="1" as_="geometry"/>
+        </mxCell>
+        <mxCell id="22" value="Pure ADK 2.0 Path&amp;#xa;All agents are native ADK.&amp;#xa;Graph Workflow provides deterministic control.&amp;#xa;Best for GCP / institutional deployment." style="fillColor=#ffffff;strokeColor=#999999;rounded=1;fontSize=12;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1100" y="380" width="280" height="140" as_="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

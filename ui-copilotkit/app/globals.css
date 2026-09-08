@@ -1,0 +1,43 @@
+:root {
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --ink: #122033;
+  --muted: #5b6b7c;
+  --line: #d7dee8;
+  --blue: #1b4f8a;
+  --blue-soft: #dae8fc;
+  --green: #2d6a4f;
+  --green-soft: #d5e8d4;
+  --rose: #9b2c2c;
+  --rose-soft: #f8cecc;
+  --gold: #8a6d1b;
+  --gold-soft: #fff2cc;
+  --purple-soft: #e1d5e7;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: "Segoe UI", ui-sans-serif, system-ui, sans-serif; }
+button { font: inherit; cursor: pointer; }
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 20px; background: #0e2a4a; color: #fff;
+}
+.topbar h1 { font-size: 16px; margin: 0; font-weight: 650; }
+.chip { display: inline-block; padding: 4px 10px; border-radius: 999px;
+  background: var(--gold-soft); color: #3d3208; font-size: 12px; font-weight: 650; }
+.layout { display: grid; grid-template-columns: 280px 1fr 360px; gap: 12px; padding: 12px; min-height: calc(100vh - 52px); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+.card h2 { margin: 0 0 10px; font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.doc { white-space: pre-wrap; font-size: 13.5px; line-height: 1.45; max-height: 52vh; overflow: auto; }
+.finding { border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; margin-bottom: 8px; }
+.finding.fatal, .finding.blocker { background: var(--rose-soft); }
+.finding.major { background: var(--gold-soft); }
+.finding.warning { background: var(--blue-soft); }
+.finding b { font-size: 12px; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
+.btn { border: 1px solid var(--line); background: #fff; padding: 7px 12px; border-radius: 7px; }
+.btn.primary { background: var(--blue); color: #fff; border-color: var(--blue); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.meta { font-size: 12px; color: var(--muted); }
+.score { font-size: 28px; font-weight: 700; color: var(--blue); }
+.hint { font-size: 12px; color: var(--muted); margin-top: 8px; }

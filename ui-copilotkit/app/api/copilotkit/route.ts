@@ -1,38 +1,17 @@
 import { NextRequest } from "next/server";
 
 /**
- * CopilotKit runtime endpoint.
- * If OPENAI_API_KEY (or compatible) is set, uses the official adapter.
- * Otherwise returns a short JSON hint — the workbench review rail still works
- * via /api/review and the reviewGrantDocx frontend action after a key is added.
+ * Lightweight CopilotKit endpoint for demos without @copilotkit/runtime.
+ * Structured DOCX review uses /api/review. Free-form LLM chat needs a model key
+ * and the official runtime package.
  */
-export async function POST(req: NextRequest) {
-  const key = process.env.OPENAI_API_KEY || process.env.GOOGLE_API_KEY;
-  if (!key) {
-    return Response.json(
-      {
-        error:
-          "CopilotKit runtime needs OPENAI_API_KEY (or GOOGLE_API_KEY) for free-form chat. Use Review sample DOCX in the workbench — that path does not need a model key.",
-      },
-      { status: 200 }
-    );
-  }
+export async function POST(_req: NextRequest) {
+  return Response.json({
+    error:
+      "CopilotKit chat runtime is not configured in this demo. Use Review sample DOCX or the reviewGrantDocx action. Free-form chat needs OPENAI_API_KEY and @copilotkit/runtime.",
+  });
+}
 
-  try {
-    const { CopilotRuntime, OpenAIAdapter, copilotRuntimeNextJSAppRouterEndpoint } =
-      await import("@copilotkit/runtime");
-    const runtime = new CopilotRuntime();
-    const serviceAdapter = new OpenAIAdapter({} as any);
-    const { handleRequest } = copilotRuntimeNextJSAppRouterEndpoint({
-      runtime,
-      serviceAdapter,
-      endpoint: "/api/copilotkit",
-    });
-    return handleRequest(req);
-  } catch (err: any) {
-    return Response.json(
-      { error: "CopilotKit runtime failed to load", detail: String(err?.message || err) },
-      { status: 500 }
-    );
-  }
+export async function GET() {
+  return Response.json({ status: "copilotkit-stub", chat: false, review: "/api/review" });
 }

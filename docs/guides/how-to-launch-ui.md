@@ -14,7 +14,12 @@ python3 ui-copilotkit/serve_workbench.py
 
 Open [http://127.0.0.1:8765](http://127.0.0.1:8765).
 
-Recorded walkthrough: [docs/demo/e2e-workbench-demo.mp4](../demo/e2e-workbench-demo.mp4) (43s). Notes: [demo README](../demo/README.md).
+Recorded walkthroughs:
+
+- CopilotKit Next.js: [docs/demo/e2e-copilotkit-demo.mp4](../demo/e2e-copilotkit-demo.mp4) (32s)
+- Python workbench: [docs/demo/e2e-workbench-demo.mp4](../demo/e2e-workbench-demo.mp4) (43s)
+
+Notes: [demo README](../demo/README.md).
 
 | Action | What happens |
 |--------|----------------|

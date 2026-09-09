@@ -4,7 +4,7 @@
 |-----|----------|
 | [How to configure](guides/how-to-configure.md) | `runtime.yaml`, agents, HITL, checklist, env vars |
 | [How to launch the UI](guides/how-to-launch-ui.md) | Workbench on :8765 and CopilotKit Next.js |
-| [Demo video](demo/README.md) | Recorded E2E workbench walkthrough (MP4) |
+| [Demo videos](demo/README.md) | CopilotKit UI + Python workbench walkthroughs (MP4) |
 | [Architecture (Mermaid)](architecture.md) | System context, agent graph, paths, RBAC |
 | [Part B LangGraph + HITL](part-b-langgraph-hitl.md) | Interrupt-before-freeze |
 | [End-to-end workflow](end-to-end-workflow.md) | Intake → institutional package |

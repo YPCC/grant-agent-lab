@@ -21,7 +21,7 @@ Sources are under `app/` (`CopilotKit` provider, `CopilotSidebar`, `useCopilotAc
 
 ```bash
 cd grant-agent-lab/ui-copilotkit
-npm install
+npm install --legacy-peer-deps
 npm run dev
 ```
 

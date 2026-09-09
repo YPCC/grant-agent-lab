@@ -58,7 +58,7 @@ python3 ui-copilotkit/serve_workbench.py
 
 Open [http://127.0.0.1:8765](http://127.0.0.1:8765). Review the sample R01 Aims `.docx`, inspect the checklist, try HITL revise/approve, switch role to Office of Research Aid to see Submit enable (demo only).
 
-Recorded demo: [docs/demo/e2e-workbench-demo.mp4](docs/demo/e2e-workbench-demo.mp4) (43s).
+Recorded demos: [CopilotKit UI](docs/demo/e2e-copilotkit-demo.mp4) (32s) · [Python workbench](docs/demo/e2e-workbench-demo.mp4) (43s).
 
 CopilotKit Next.js (optional chat):
 
@@ -125,7 +125,7 @@ Used in [draw.io](docs/architecture-considerations/) files:
 | [Docs index](docs/README.md) | All guides |
 | [How to configure](docs/guides/how-to-configure.md) | `runtime.yaml`, agents, HITL, env |
 | [How to launch UI](docs/guides/how-to-launch-ui.md) | Workbench and CopilotKit |
-| [Demo video](docs/demo/README.md) | Recorded E2E workbench walkthrough |
+| [Demo videos](docs/demo/README.md) | CopilotKit UI + Python workbench walkthroughs |
 | [Architecture (Mermaid)](docs/architecture.md) | System context, graph, RBAC |
 | [Architecture considerations](docs/architecture-considerations/README.md) | EA packet, Cloud SQL, Cloud Run |
 | [Part B LangGraph + HITL](docs/part-b-langgraph-hitl.md) | Interrupt-before-freeze |

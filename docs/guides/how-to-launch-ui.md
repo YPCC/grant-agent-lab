@@ -21,7 +21,7 @@ Recorded walkthrough: [docs/demo/e2e-workbench-demo.mp4](../demo/e2e-workbench-d
 | Review sample DOCX | Loads `data/samples/r01-aims-draft-for-review.docx`, runs reviewer + checklist |
 | Upload `.docx` | Same pipeline on your file |
 | HITL: revise / approve freeze | Resumes Part B graph (`GrantGraph.resume`) |
-| Role chip PI → OSPA | Enables **Submit to NIH** (demo only; no eRA login) |
+| Role chip PI → Office of Research Aid | Enables **Submit to NIH** (demo only; no eRA login) |
 | Download review report | Writes `review-report.docx` |
 
 The workbench calls:

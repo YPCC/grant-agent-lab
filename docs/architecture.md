@@ -4,14 +4,14 @@ GitHub renders these diagrams on the repo. Editable draw.io files live in [archi
 
 ## System context
 
-Who talks to the lab. Official NIH submit stays with OSPA / AOR.
+Who talks to the lab. Official NIH submit stays with Office of Research Aid / AOR.
 
 ```mermaid
 flowchart LR
   subgraph People
     PI[PI]
     RA[Navigator / RA]
-    OSPA[OSPA / AOR]
+    ORA["Office of Research Aid / AOR"]
     ADM[Platform admin]
   end
 
@@ -34,7 +34,7 @@ flowchart LR
 
   PI --> UI
   RA --> UI
-  OSPA --> UI
+  ORA --> UI
   ADM --> CP
   UI --> CP
   CP --> ORCH
@@ -42,7 +42,7 @@ flowchart LR
   ORCH --> BQ
   ORCH --> GCS
   ORCH --> NIH
-  OSPA -.->|human SSO / MFA| ASSIST
+  ORA -.->|human SSO / MFA| ASSIST
 ```
 
 ## Agent graph (Part B default)
@@ -57,7 +57,7 @@ flowchart TD
   RV --> CC[Compliance Checker]
   CC --> BS[Budget Scrutinizer]
   BS --> ME[Missing Essentials checklist]
-  ME --> HITL{HITL interrupt<br/>PI / OSPA}
+  ME --> HITL{HITL interrupt<br/>PI / Office of Research Aid}
 
   HITL -->|revise| WR
   HITL -->|waive optional| HITL
@@ -65,7 +65,7 @@ flowchart TD
   HITL -->|approve but required missing| WR
 
   PK --> READY[Institutional package ready]
-  READY -.->|OSPA only| SA[Submission assistant<br/>AOR present]
+  READY -.->|Office of Research Aid only| SA[Submission assistant<br/>AOR present]
   SA -.-> ASSIST[ASSIST tracking #]
 
   CP[Control plane] -.-> RV
@@ -109,8 +109,8 @@ flowchart LR
 
   PI[Role PI] -->|edit / run agents / freeze| ROOM
   PI -.->|Submit disabled| X[No official NIH submit]
-  OSPA[Role OSPA] -->|waive / approve transmit| ROOM
-  OSPA -->|Submit enabled demo| SA[Submission assistant]
+  ORA["Role Office of Research Aid"] -->|waive / approve transmit| ROOM
+  ORA -->|Submit enabled demo| SA[Submission assistant]
 ```
 
 ## Shared state (conceptual)

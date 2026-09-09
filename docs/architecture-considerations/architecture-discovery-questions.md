@@ -6,10 +6,10 @@ How to use:
 
 - Ask in this order: mission → users/UX → agents → data → NFR → security/compliance → audit → control plane/governance → cost/ops.
 - Mark each answer as **constraint** (must), **preference**, or **unknown**.
-- Any **unknown** on a gate topic (security, compliance, audit, OSPA authority) blocks a production decision.
+- Any **unknown** on a gate topic (security, compliance, audit, Office of Research Aid authority) blocks a production decision.
 - Record answers next to the component decision record in the selection framework.
 
-Context for *this* lab: MCC / GCP, OSPA-mediated grants, HITL, Cloud SQL + BigQuery already present. The list is written so it also works for other multi-agent platforms.
+Context for *this* lab: MCC / GCP, Office of Research Aid–mediated grants, HITL, Cloud SQL + BigQuery already present. The list is written so it also works for other multi-agent platforms.
 
 ---
 
@@ -17,7 +17,7 @@ Context for *this* lab: MCC / GCP, OSPA-mediated grants, HITL, Cloud SQL + BigQu
 
 1. What job must the system finish that a single chatbot cannot (e.g. draft → review → compliance → HITL → package)?
 2. What is explicitly **out of scope** for v1 (e.g. official eRA submission, budget *planning*, clinical PHI)?
-3. Who is the institutional authority that must remain in the loop (OSPA, IRB, sponsored programs)?
+3. Who is the institutional authority that must remain in the loop (Office of Research Aid, IRB, sponsored programs)?
 4. What does “done” mean (readiness score only vs versioned package ready for institutional review)?
 5. Which funding mechanisms and sponsors are in scope (R01, R21, K, NSF, foundations)?
 6. Is this a pilot, limited production, or enterprise service—and what changes at each stage?
@@ -27,16 +27,16 @@ Context for *this* lab: MCC / GCP, OSPA-mediated grants, HITL, Cloud SQL + BigQu
 
 ## 1. Users, journeys, and UI/UX
 
-8. Who are the actors (PI, RA/Navigator, OSPA reviewer, Admin, auditor) and what is each allowed to *see* vs *do*?
+8. Who are the actors (PI, RA/Navigator, Office of Research Aid reviewer, Admin, auditor) and what is each allowed to *see* vs *do*?
 9. What is the primary surface: web portal, chat, both, API-only for some roles?
 10. How many distinct UIs are justified (Intake, Reviewer, Navigator, Admin) vs one app with role views?
 11. Where must a human stop the agent (approve aims, waive a finding, approve package)?
 12. What does the user need on screen to trust a finding (rule citation, excerpt, severity, suggested fix)?
 13. How should competing agent outputs be shown (single merged report vs per-agent panels)?
 14. What is the expected time-to-first-result vs time-to-final-package?
-15. Do we need accessibility, offline drafts, or mobile review for OSPA?
+15. Do we need accessibility, offline drafts, or mobile review for Office of Research Aid?
 16. How are errors and “agent uncertain” states presented so users do not treat drafts as submitted truth?
-17. Who owns UX copy when the agent is wrong—product, OSPA, or scientific lead?
+17. Who owns UX copy when the agent is wrong—product, Office of Research Aid, or scientific lead?
 
 ---
 
@@ -81,7 +81,7 @@ Context for *this* lab: MCC / GCP, OSPA-mediated grants, HITL, Cloud SQL + BigQu
 44. Do we need a semantic index (FOA, guidelines, similar grants) in v1?
 45. Which external APIs are required (RePORTER, eRA, SSO, email, MIRIS)?
 46. What is the integration style (sync API, Pub/Sub, batch file drop)?
-47. How do we version a package so OSPA can see “what was approved”?
+47. How do we version a package so Office of Research Aid can see “what was approved”?
 48. Can we reconstruct a run from state + artifacts alone (time-travel)?
 
 ---
@@ -104,7 +104,7 @@ Context for *this* lab: MCC / GCP, OSPA-mediated grants, HITL, Cloud SQL + BigQu
 57. What is the data classification of proposal text, biosketches, Other Support, and budgets?
 58. Is any PHI or other regulated clinical data in scope? If yes, stop and re-scope.
 59. Which identity system is mandatory (institutional SSO / IAP)?
-60. How are roles mapped to IAM (PI vs Navigator vs OSPA vs Admin vs auditor)?
+60. How are roles mapped to IAM (PI vs Navigator vs Office of Research Aid vs Admin vs auditor)?
 61. Service-to-service identity: workload identity or long-lived keys?
 62. Where do model and API secrets live (Secret Manager only)?
 63. Network: VPC, private SQL/Redis, restricted egress allow-list?
@@ -121,7 +121,7 @@ Context for *this* lab: MCC / GCP, OSPA-mediated grants, HITL, Cloud SQL + BigQu
 69. Which frameworks apply (HIPAA pathway, HITRUST, institutional research-admin policy, NIH GPS)?
 70. Is a BAA (or equivalent) required for every vendor that sees prompt text?
 71. Data residency: which region / org is allowed? Cross-region training use forbidden?
-72. Must we honor OSPA **internal** deadlines as the hard stop (not the NIH due date)?
+72. Must we honor Office of Research Aid **internal** deadlines as the hard stop (not the NIH due date)?
 73. Which NIH rules must be machine-checkable in v1 (page limits, modular ceiling, PI effort, DMS plan present)?
 74. How do we update rules when NOT-OD notices change without a code freeze?
 75. COI / Other Support / Common Forms: generate, validate, or only remind?
@@ -159,8 +159,8 @@ Context for *this* lab: MCC / GCP, OSPA-mediated grants, HITL, Cloud SQL + BigQu
 97. Is A2A / agent mesh in scope, and what trust model applies between agents?
 98. How are new agents onboarded (review, fingerprint, least privilege, test suite)?
 99. How are skills/prompts versioned and rolled back if quality or a policy regresses?
-100. Who is accountable when an agent output is used in an official submission packet—the PI, OSPA, or the platform owner?
-101. What is the incident response path for a bad agent action (revoke package tag, notify OSPA, freeze skill)?
+100. Who is accountable when an agent output is used in an official submission packet—the PI, Office of Research Aid, or the platform owner?
+101. What is the incident response path for a bad agent action (revoke package tag, notify Office of Research Aid, freeze skill)?
 102. Do we need separation of duties (the person who edits rules cannot approve production rollout alone)?
 
 ---
@@ -170,7 +170,7 @@ Context for *this* lab: MCC / GCP, OSPA-mediated grants, HITL, Cloud SQL + BigQu
 103. What traces must exist per node (Langfuse / Cloud Trace / both)?
 104. How do we evaluate Writer vs Reviewer vs Compliance separately?
 105. What golden set (public Aims, Summary Statements) gates a release?
-106. Who signs off that a new prompt is fit for OSPA-facing use?
+106. Who signs off that a new prompt is fit for Office of Research Aid-facing use?
 107. How is model drift detected after a Vertex model upgrade?
 108. Are eval datasets allowed to contain real proposals?
 

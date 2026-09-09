@@ -13,7 +13,7 @@ Open http://127.0.0.1:8765
 
 - Review sample DOCX or upload your own `.docx`
 - Download `review-report.docx`
-- Switch role to **OSPA** to enable Submit (still a demo — no eRA login)
+- Switch role to **Office of Research Aid** to enable Submit (still a demo — no eRA login)
 
 ## Official CopilotKit React app
 
@@ -38,4 +38,4 @@ http://localhost:3000 — set `OPENAI_API_KEY` for free-form chat. Structured DO
 |-----|----|
 | CopilotKit-pattern rail + optional official `@copilotkit/react-ui` | Embedding inside Microsoft Word |
 | Review of `.docx` via `python-docx` | Storing eRA passwords / autonomous NIH submit |
-| Role chip: PI / Navigator / OSPA / Admin | Production SSO |
+| Role chip: PI / Navigator / Office of Research Aid / Admin | Production SSO |

@@ -66,7 +66,7 @@ h1{font-size:15px;margin:0}h2{font-size:12px;text-transform:uppercase;letter-spa
   <div>
     <span class="chip" id="rolechip">You are PI</span>
     <select id="role" onchange="onRole()">
-      <option>PI</option><option>Navigator</option><option>OSPA</option><option>Admin</option>
+      <option>PI</option><option>Navigator</option><option>Office of Research Aid</option><option>Admin</option>
     </select>
   </div>
 </header>
@@ -80,10 +80,10 @@ h1{font-size:15px;margin:0}h2{font-size:12px;text-transform:uppercase;letter-spa
       <button class="btn" onclick="review()">Review sample DOCX</button>
     </div>
     <div class="row">
-      <button class="btn primary" id="freeze">Freeze for OSPA</button>
-      <button class="btn" id="submit" disabled title="OSPA AOR submits after institutional approval">Submit to NIH</button>
+      <button class="btn primary" id="freeze">Freeze for Office of Research Aid</button>
+      <button class="btn" id="submit" disabled title="Office of Research Aid AOR submits after institutional approval">Submit to NIH</button>
     </div>
-    <p class="hint" id="rbac">Submit stays off for PI. Switch role to OSPA to enable.</p>
+    <p class="hint" id="rbac">Submit stays off for PI. Switch role to Office of Research Aid to enable.</p>
     <p class="hint">Full CopilotKit React sidebar: <code>cd ui-copilotkit && npm i && npm run dev</code></p>
   </aside>
   <main class="card">
@@ -120,10 +120,10 @@ let last = null;
 function onRole(){
   const r = document.getElementById('role').value;
   document.getElementById('rolechip').textContent = 'You are ' + r;
-  document.getElementById('submit').disabled = !(r==='OSPA' || r==='Admin');
-  document.getElementById('rbac').textContent = (r==='OSPA'||r==='Admin')
+  document.getElementById('submit').disabled = !(r==='Office of Research Aid' || r==='Admin');
+  document.getElementById('rbac').textContent = (r==='Office of Research Aid'||r==='Admin')
     ? 'AOR may run the submission assistant (demo). No eRA passwords stored.'
-    : 'Submit stays off for role “'+r+'”. Switch to OSPA to enable.';
+    : 'Submit stays off for role “'+r+'”. Switch to Office of Research Aid to enable.';
 }
 async function review(file){
   const fd = new FormData();
@@ -175,11 +175,11 @@ function chat(e){
   if(ql.includes('review')){
     review().then(()=> add((last&&last.summary)||'Review complete. See the findings rail.', false));
   } else if(ql.includes('submit')){
-    add('Official NIH submit is an OSPA/AOR action after Freeze. PI cannot click Submit. This assistant does not store eRA passwords.', false);
+    add('Official NIH submit is an Office of Research Aid / AOR action after Freeze. PI cannot click Submit. This assistant does not store eRA passwords.', false);
   } else if(last && last.findings && last.findings.length){
     add(last.findings.map(f=>`<b>${f.rule_id}</b> — ${f.comment}`).join('<br/>'), false);
   } else {
-    add('Try “Review this grant DOCX” or switch role to OSPA to inspect submit RBAC.', false);
+    add('Try “Review this grant DOCX” or switch role to Office of Research Aid to inspect submit RBAC.', false);
   }
   return false;
 }

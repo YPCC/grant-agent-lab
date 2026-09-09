@@ -7,7 +7,7 @@ path: part_b_langgraph
 hitl:
   enabled: true
   interrupt_before: freeze_package
-  resume_roles: [PI, OSPA, Admin]
+  resume_roles: [PI, "Office of Research Aid", Admin]
 agents:
   missing_essentials: {enabled: true}
 ```
@@ -17,7 +17,7 @@ agents:
 `reviewer → missing_essentials → hitl (interrupt) → freeze | revise`
 
 - **Missing Essentials** scores the draft against `config/checklists/r01_essentials.yaml`.
-- **HITL** pauses before package freeze. PI/OSPA choose `approve` / `revise` / `waive`.
+- **HITL** pauses before package freeze. PI/Office of Research Aid choose `approve` / `revise` / `waive`.
 - Official NIH submit is still **not** in this graph (`submission_assistant.enabled: false`).
 
 If the `langgraph` package is installed, `build_graph()` compiles a real `StateGraph` + `MemorySaver`. If not, `GrantGraph` uses the same nodes and a thread checkpoint.

@@ -156,7 +156,7 @@ def write_review_docx(result: dict, out_path: str | Path) -> None:
     meta.add_run(result.get("summary", ""))
 
     doc.add_paragraph(
-        "RBAC: PI can run review and freeze science. Official submit stays with OSPA / AOR. "
+        "RBAC: PI can run review and freeze science. Official submit stays with Office of Research Aid / AOR. "
         "This report is evidence for institutional routing, not an eRA submission."
     )
 

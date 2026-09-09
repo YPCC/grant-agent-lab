@@ -40,7 +40,7 @@ def hitl_interrupt_node(state: ProposalState) -> ProposalState:
     """Pause before freeze. Real LangGraph: interrupt(). Fallback: set awaiting_human."""
     pending = {
         "type": "pi_review",
-        "prompt": "Approve freeze for OSPA, request revision, or waive a finding?",
+        "prompt": "Approve freeze for Office of Research Aid, request revision, or waive a finding?",
         "checklist_summary": (state.get("checklist") or {}).get("summary"),
         "can_freeze": (state.get("checklist") or {}).get("can_freeze"),
     }

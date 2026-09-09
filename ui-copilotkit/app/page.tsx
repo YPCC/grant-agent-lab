@@ -25,7 +25,7 @@ type Review = {
   review_docx_url?: string;
 };
 
-const ROLES = ["PI", "Navigator", "OSPA", "Admin"] as const;
+const ROLES = ["PI", "Navigator", "Office of Research Aid", "Admin"] as const;
 type Role = (typeof ROLES)[number];
 
 export default function Page() {
@@ -41,7 +41,7 @@ export default function Page() {
     value: text.slice(0, 6000),
   });
   useCopilotReadable({
-    description: "Current user role for RBAC. PI cannot officially submit. OSPA/AOR can approve transmit.",
+    description: "Current user role for RBAC. PI cannot officially submit. Office of Research Aid / AOR can approve transmit.",
     value: role,
   });
   useCopilotReadable({
@@ -84,8 +84,8 @@ export default function Page() {
     runReview();
   }, [runReview]);
 
-  const canFreeze = role === "PI" || role === "OSPA" || role === "Admin";
-  const canSubmit = role === "OSPA" || role === "Admin";
+  const canFreeze = role === "PI" || role === "Office of Research Aid" || role === "Admin";
+  const canSubmit = role === "Office of Research Aid" || role === "Admin";
 
   return (
     <>
@@ -134,18 +134,18 @@ export default function Page() {
           </p>
           <div className="row">
             <button className="btn primary" disabled={!canFreeze || !review}>
-              Freeze for OSPA
+              Freeze for Office of Research Aid
             </button>
             <button
               className="btn"
               disabled={!canSubmit}
-              title={canSubmit ? "AOR transmit (demo)" : "OSPA AOR submits after institutional approval"}
+              title={canSubmit ? "AOR transmit (demo)" : "Office of Research Aid AOR submits after institutional approval"}
             >
               Submit to NIH
             </button>
           </div>
           {!canSubmit && (
-            <p className="hint">Submit stays off for role “{role}”. Switch to OSPA to see it enable.</p>
+            <p className="hint">Submit stays off for role “{role}”. Switch to Office of Research Aid to see it enable.</p>
           )}
         </aside>
 

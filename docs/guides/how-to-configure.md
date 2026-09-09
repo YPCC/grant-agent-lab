@@ -24,7 +24,7 @@ Current default in this repo is **Part B** so HITL and the Missing Essentials ch
 hitl:
   enabled: true
   interrupt_before: freeze_package
-  resume_roles: [PI, OSPA, Admin]
+  resume_roles: [PI, "Office of Research Aid", Admin]
   decisions: [approve, revise, waive]
 ```
 
@@ -44,7 +44,7 @@ agents:
   budget_scrutinizer: {enabled: true}
   missing_essentials: {enabled: true}
   package_creator: {enabled: true}
-  submission_assistant: {enabled: false}  # OSPA / AOR only; never autonomous
+  submission_assistant: {enabled: false}  # Office of Research Aid / AOR only; never autonomous
 ```
 
 Keep `submission_assistant.enabled: false` unless you are building the AOR-present assistant. Never store eRA passwords.

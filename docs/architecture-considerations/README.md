@@ -1,6 +1,6 @@
 # Architecture Considerations
 
-Enterprise-architecture notes for the **MCC (Mayo Clinic Cloud Platform) OSPA Grant Submission Platform** and the **Grant Agent Lab** multi-agent implementation.
+Enterprise-architecture notes for the **MCC (Mayo Clinic Cloud Platform) Office of Research Aid Grant Submission Platform** and the **Grant Agent Lab** multi-agent implementation.
 
 This folder holds the written considerations (this document) and the generated **draw.io** diagrams. Open `.drawio` files in [app.diagrams.net](https://app.diagrams.net) or draw.io desktop.
 
@@ -26,9 +26,9 @@ Rendered Mermaid (system context, agent graph, paths): [Architecture (Mermaid)](
 | [hybrid-architecture.drawio](hybrid-architecture.drawio) | Agent runtime (recommended) | ADK outer + LangGraph inner |
 | [pure-adk-architecture.drawio](pure-adk-architecture.drawio) | Agent runtime path A | Pure Google ADK 2.0 Graph Workflow |
 | [pure-langgraph-architecture.drawio](pure-langgraph-architecture.drawio) | Agent runtime path B | Pure LangGraph + checkpointer |
-| [mcc-ospa-c4-source.jpg](mcc-ospa-c4-source.jpg) | Source reference | Original MCC C4 / GCP deployment sketch |
-| [pi-r01-workflow-ui.drawio](pi-r01-workflow-ui.drawio) | PI product UX | R01 workbench → room → OSPA → staged submit |
-| [mcc-ospa-gcp-reference-architecture.drawio](mcc-ospa-gcp-reference-architecture.drawio) | Full GCP reference (3 pages) | Deployment view + C4 containers + ADK/LangGraph/MCP orchestration with official draw.io GCP2 icons |
+| [mcc-office-of-research-aid-c4-source.jpg](mcc-office-of-research-aid-c4-source.jpg) | Source reference | Original MCC C4 / GCP deployment sketch |
+| [pi-r01-workflow-ui.drawio](pi-r01-workflow-ui.drawio) | PI product UX | R01 workbench → room → Office of Research Aid → staged submit |
+| [mcc-office-of-research-aid-gcp-reference-architecture.drawio](mcc-office-of-research-aid-gcp-reference-architecture.drawio) | Full GCP reference (3 pages) | Deployment view + C4 containers + ADK/LangGraph/MCP orchestration with official draw.io GCP2 icons |
 
 ### Color legend (used consistently)
 
@@ -48,12 +48,12 @@ Rendered Mermaid (system context, agent graph, paths): [Architecture (Mermaid)](
 | Container / logical service | Role | Stack |
 |----------------------------|------|--------|
 | Intake Web App | PI upload, package start | Cloud Run · React/Next (or equivalent) · Apigee + IAP/SSO |
-| Reviewer Web App | OSPA / reviewer UI | Cloud Run · same FE stack · role-gated APIs |
+| Reviewer Web App | Office of Research Aid / reviewer UI | Cloud Run · same FE stack · role-gated APIs |
 | Navigator App | PI-support guidance | Cloud Run · assistant UI · agent APIs |
 | Admin Console | Rules, users, monitoring | Cloud Run · admin UI · config APIs |
 | Agent Orchestrator | Route goals across agents | Cloud Run · Google ADK 2.0 · LangGraph · Vertex AI (Gemini) |
 | Document Intelligence | OCR, parse, extract | Cloud Run · Document AI |
-| Compliance Agent | NIH / FOA / OSPA rules | Cloud Run · rules engine + LLM · policy YAML / Firestore |
+| Compliance Agent | NIH / FOA / Office of Research Aid rules | Cloud Run · rules engine + LLM · policy YAML / Firestore |
 | Budget Scrutinizer | NIH modular / effort norms | Cloud Run · validator only (does not invent budgets) |
 | Readiness / Missing-Component | Gap detection, score | Cloud Run · same agent runtime |
 | Knowledge Updater | FOA / SF424 / RePORTER refresh | Cloud Run or Scheduler job |
@@ -92,7 +92,7 @@ Use this when choosing **Part A (pure ADK)**, **Part B (pure LangGraph)**, or **
 | **Cost / complexity** | Medium (platform-managed) | Medium (you own runtime) | Higher (two runtimes) — justified for production MCC |
 | **Lab status** | Scaffold | Working graph + checkpointer | Primary working showcase |
 
-**Default for MCC / OSPA production:** Part C.
+**Default for MCC / Office of Research Aid production:** Part C.
 
 **Default for local science-loop experiments:** Part B.
 
@@ -153,7 +153,7 @@ Front ends are thin, authenticated UIs. They call back-end Cloud Run services (t
 **Yes — one shared persistent relational store, not one database per UI.**
 
 - **Cloud SQL (PostgreSQL)** holds durable data used by *all* web apps and agents:
-  - users / roles (PI, Navigator, OSPA reviewer, admin)
+  - users / roles (PI, Navigator, Office of Research Aid reviewer, admin)
   - proposals / projects / versions
   - workflow status, HITL decisions, audit pointers
   - rule/version metadata, package manifests
@@ -167,7 +167,7 @@ Front ends are thin, authenticated UIs. They call back-end Cloud Run services (t
 ## 4. How components are integrated (infrastructure)
 
 ```
-[PI / RA / Navigator / OSPA Reviewer]
+[PI / RA / Navigator / Office of Research Aid Reviewer]
         │  HTTPS + SSO (IAP / Apigee)
         ▼
 ┌─────────────────── Front-end Cloud Runs ───────────────────┐
@@ -189,7 +189,7 @@ Front ends are thin, authenticated UIs. They call back-end Cloud Run services (t
 └────────────────────────────────────────────────────────────┘
              │
              ▼
-    External: NIH RePORTER · eRA/ASSIST · MIRIS (OSPA) · SSO
+    External: NIH RePORTER · eRA/ASSIST · MIRIS (Office of Research Aid) · SSO
 ```
 
 ### Output → input chain
@@ -202,8 +202,8 @@ Front ends are thin, authenticated UIs. They call back-end Cloud Run services (t
 | Grant Writer | Specific Aims / section drafts | Reviewer |
 | Grant Reviewer | Critiques (fatal / major / minor) | Compliance, Writer (revision) |
 | Compliance + Budget Scrutinizer | Issues (blocker / warning) | HITL + Readiness |
-| HITL (PI / OSPA) | Approve / revise | Writer (loop) or Package Creator |
-| Package Creator | Versioned package + evidence | Submission Agent / OSPA handoff |
+| HITL (PI / Office of Research Aid) | Approve / revise | Writer (loop) or Package Creator |
+| Package Creator | Versioned package + evidence | Submission Agent / Office of Research Aid handoff |
 | Submission | Status + audit events | Cloud SQL, BigQuery, notifications |
 
 Integration mechanisms: HTTPS APIs, Pub/Sub for async jobs, shared Cloud SQL + Memorystore, GCS object paths, and typed **`ProposalState`** as the contract between agents.
@@ -219,7 +219,7 @@ See [ea-integration-flows.drawio](ea-integration-flows.drawio) and [ea-container
 - Research idea, hypothesis, mechanism (R01 / R21 / …), FOA, internal deadline
 - Uploaded drafts (Aims, Research Strategy, budget narrative, biosketches, Other Support)
 - HITL decisions (approve, revise, override)
-- Role identity via SSO (PI, Navigator, OSPA, Admin)
+- Role identity via SSO (PI, Navigator, Office of Research Aid, Admin)
 
 ### Inside the platform
 
@@ -242,14 +242,14 @@ See [ea-integration-flows.drawio](ea-integration-flows.drawio) and [ea-container
 ### Platform → external
 
 - **NIH RePORTER:** search criteria → abstracts / activity codes / PIs
-- **OSPA / MIRIS:** package ready for institutional review (does not bypass OSPA)
+- **Office of Research Aid / MIRIS:** package ready for institutional review (does not bypass Office of Research Aid)
 - **eRA / ASSIST / Grants.gov:** only after institutional approval, if policy allows
 - **Email / notifications:** readiness alerts, HITL requests, submission status
 
 ### Security / compliance context
 
 - HIPAA / HITRUST-aligned controls (VPC, CMEK, IAM, audit logs).
-- OSPA remains the institutional gate. The platform prepares and scores packages; it does not replace official submission authority.
+- Office of Research Aid remains the institutional gate. The platform prepares and scores packages; it does not replace official submission authority.
 
 See [ea-system-context.drawio](ea-system-context.drawio).
 
@@ -261,7 +261,7 @@ See [ea-system-context.drawio](ea-system-context.drawio).
 2. **Cloud Run split** — Yes: four front-end portals + multiple back-end agent/API services.
 3. **Cloud SQL** — Yes: one shared persistent relational store for web apps and backends (not per-app databases).
 4. **Integration** — Front ends → Apigee → Orchestrator → specialist agents; shared SQL / Redis / GCS; stage outputs feed the next stage (table above).
-5. **Information flow** — Documents, critiques, compliance/budget findings, readiness scores, HITL decisions, packages, and audit events circulate among actors, agents, Cloud SQL / BigQuery / GCS, and external NIH / OSPA systems.
+5. **Information flow** — Documents, critiques, compliance/budget findings, readiness scores, HITL decisions, packages, and audit events circulate among actors, agents, Cloud SQL / BigQuery / GCS, and external NIH / Office of Research Aid systems.
 
 ---
 

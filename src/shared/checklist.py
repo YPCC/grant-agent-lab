@@ -89,6 +89,6 @@ def evaluate_checklist(text: str, documents: list[str] | None = None, catalog: d
         "can_freeze": len(missing_required) == 0,
         "summary": (
             f"{present_req}/{total_req} required items present. "
-            + ("Ready to freeze for OSPA." if not missing_required else f"Missing: {', '.join(m['id'] for m in missing_required)}.")
+            + ("Ready to freeze for Office of Research Aid." if not missing_required else f"Missing: {', '.join(m['id'] for m in missing_required)}.")
         ),
     }

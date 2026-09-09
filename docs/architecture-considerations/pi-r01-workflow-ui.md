@@ -13,16 +13,16 @@ An NIH R01 is not “open a chat and generate a grant.” In practice the PI mov
 | Stage | What happens on the ground | Who is in the room | What the product should show |
 |-------|----------------------------|--------------------|------------------------------|
 | **0. Signal** | Idea, preliminary data, FOA/NOSI, talk to colleagues / PO | PI | New proposal from FOA # + mechanism R01 |
-| **1. Notify institution** | PI tells OSPA / SPS; gets **internal deadline** (earlier than NIH due date) | PI, OSPA | Internal deadline as the hard date; OSPA assigned |
+| **1. Notify institution** | PI tells Office of Research Aid / SPS; gets **internal deadline** (earlier than NIH due date) | PI, Office of Research Aid | Internal deadline as the hard date; Office of Research Aid assigned |
 | **2. Aims first** | Circulate a 1-page Specific Aims; iterate before writing 12 pages | PI, mentors, RA | Aims document + Writer + Reviewer agents |
 | **3. Team & compliance early** | Co-Is, effort, COI, human subjects / animals flags | PI, dept admin | Checklist, not buried in chat |
 | **4. Science draft** | Significance, Innovation, Approach; figures, pitfalls | PI, RA | Multi-doc workspace; section status |
-| **5. Budget (parallel)** | Modular vs detailed; personnel months; justification tied to aims | PI + OSPA/admin | Budget **scrutinizer** (validate), not a silent planner |
-| **6. Forms pack** | Biosketches, Other Support, Facilities, Resource Sharing, DMS | PI, RA, OSPA | Required-docs grid with missing flags |
+| **5. Budget (parallel)** | Modular vs detailed; personnel months; justification tied to aims | PI + Office of Research Aid/admin | Budget **scrutinizer** (validate), not a silent planner |
+| **6. Forms pack** | Biosketches, Other Support, Facilities, Resource Sharing, DMS | PI, RA, Office of Research Aid | Required-docs grid with missing flags |
 | **7. Internal review** | Lab / department / mock study section | Reviewer role | Agent critique + human comments side by side |
-| **8. Institutional routing** | OSPA package review, F&A, signatures | OSPA | Reviewer portal; PI cannot “submit NIH” yet |
-| **9. Official submission** | **AOR / OSPA** submits via ASSIST / Grants.gov | OSPA (AOR) | Staged submit; human authenticates |
-| **10. After** | Validations, JIT, summary statement, resubmission | PI, OSPA | Status timeline; new version of same proposal |
+| **8. Institutional routing** | Office of Research Aid package review, F&A, signatures | Office of Research Aid | Reviewer portal; PI cannot “submit NIH” yet |
+| **9. Official submission** | **AOR / Office of Research Aid** submits via ASSIST / Grants.gov | Office of Research Aid (AOR) | Staged submit; human authenticates |
+| **10. After** | Validations, JIT, summary statement, resubmission | PI, Office of Research Aid | Status timeline; new version of same proposal |
 
 The UI should feel like a **proposal workbench with a live agency layer**, not a chatbot that owns the grant.
 
@@ -36,7 +36,7 @@ The UI should feel like a **proposal workbench with a live agency layer**, not a
 |------|----------------|-----|
 | **Workbench** | Everyone | List of proposals I can see |
 | **Proposal room** | PI / RA | Documents + agents + readiness |
-| **Review queue** | Internal reviewer / OSPA | Findings, overrides, sign-off |
+| **Review queue** | Internal reviewer / Office of Research Aid | Findings, overrides, sign-off |
 | **Admin / control plane** | Platform admin | Roles, kill-switch, audit |
 
 Chat is a **pane inside the proposal room**, not the home screen. Grounding (“what FOA, what due date, what we know”) lives in a header the PI always sees.
@@ -48,7 +48,7 @@ Chat is a **pane inside the proposal room**, not the home screen. Grounding (“
 ### 3.1 Workbench (home)
 
 - Cards/rows: **multiple proposals** (e.g. “R01 auditory learning — Feb cycle”, “R21 pilot — June”).
-- Each card: mechanism, FOA, NIH due date, **internal OSPA date**, readiness %, blockers, last agent run, my role.
+- Each card: mechanism, FOA, NIH due date, **internal Office of Research Aid date**, readiness %, blockers, last agent run, my role.
 - Actions: New proposal · Clone as resubmission · Open room.
 - Filters: Mine / Shared with me / Awaiting my approval.
 
@@ -61,10 +61,10 @@ Short form, not a blank chat:
 - Mechanism = R01  
 - FOA / NOSI number  
 - Institute/Center (if known)  
-- NIH due date + **OSPA internal deadline**  
+- NIH due date + **Office of Research Aid internal deadline**  
 - Working title + 3–5 sentence idea  
 - Central hypothesis (optional at start)  
-- Assign Navigator / OSPA specialist if known  
+- Assign Navigator / Office of Research Aid specialist if known  
 
 On save: Knowledge Updater pulls FOA summary + recent RePORTER context into a **Briefing** panel so the PI starts from ground truth.
 
@@ -106,7 +106,7 @@ Each row: owner, version, status (`draft | agent-running | needs-PI | approved`)
 - Now running: Reviewer (Approach)  
 - Queue: Compliance · Budget scrutinizer  
 - Last output: 1 major, 3 warnings  
-- Buttons (RBAC-gated): Run review · Run compliance · Freeze for OSPA
+- Buttons (RBAC-gated): Run review · Run compliance · Freeze for Office of Research Aid
 
 **Bottom or tab: activity**
 
@@ -118,11 +118,11 @@ Each row: owner, version, status (`draft | agent-running | needs-PI | approved`)
 Not a wall of logs. A scorecard:
 
 - Blockers (cannot package)  
-- Majors (OSPA will bounce)  
+- Majors (Office of Research Aid will bounce)  
 - Warnings  
 - Each row cites **rule source** (SF424, modular budget, institutional SOP)
 
-PI can request a waiver; only OSPA (or Admin policy) can grant it.
+PI can request a waiver; only Office of Research Aid (or Admin policy) can grant it.
 
 ### 3.5 Budget tab
 
@@ -136,13 +136,13 @@ States the PI sees:
 
 1. **Drafting** — agents may run  
 2. **Ready for PI freeze** — PI locks science  
-3. **Ready for OSPA** — package built (version tag)  
+3. **Ready for Office of Research Aid** — package built (version tag)  
 4. **In institutional review**  
 5. **Approved to transmit**  
 6. **Submitted** (ASSIST / Grants.gov tracking #)  
 7. **Post-submit** (errors / JIT)
 
-The “submit” button is **not** a single red button for the PI on an R01 in an OSPA institution.
+The “submit” button is **not** a single red button for the PI on an R01 in an Office of Research Aid institution.
 
 ---
 
@@ -150,7 +150,7 @@ The “submit” button is **not** a single red button for the PI on an R01 in a
 
 Showcase RBAC by making it **visible in the chrome** (“You are PI”) and by disabling actions, not by hiding the whole app.
 
-| Action | PI | RA / Navigator | Co-I | Internal reviewer | OSPA / AOR | Admin |
+| Action | PI | RA / Navigator | Co-I | Internal reviewer | Office of Research Aid / AOR | Admin |
 |--------|----|----------------|------|-------------------|------------|-------|
 | Create proposal | Yes | If delegated | No | No | Yes | Yes |
 | Edit science docs | Yes | Yes (if granted) | Own biosketch only | Comment only | Comment / request change | Break-glass |
@@ -164,13 +164,13 @@ Showcase RBAC by making it **visible in the chrome** (“You are PI”) and by d
 | Kill-switch / disable an agent | No | No | No | No | No | **Yes** |
 | Manage roles on a proposal | Yes (invite) | No | No | No | Yes | Yes |
 
-\*Some institutions allow PI-as-AOR in rare setups. Default for MCC/OSPA: **No**.
+\*Some institutions allow PI-as-AOR in rare setups. Default for MCC/Office of Research Aid: **No**.
 
 **UI patterns that make RBAC real:**
 
 - Role chip in the header.  
-- Disabled Submit with tooltip: “OSPA AOR submits after institutional approval.”  
-- Share dialog: add person + role (PI, Co-I, Navigator, Reviewer, OSPA).  
+- Disabled Submit with tooltip: “Office of Research Aid AOR submits after institutional approval.”  
+- Share dialog: add person + role (PI, Co-I, Navigator, Reviewer, Office of Research Aid).  
 - “Why can’t I click this?” always answers with role + policy, not a blank control.
 
 ---
@@ -182,10 +182,10 @@ Showcase RBAC by making it **visible in the chrome** (“You are PI”) and by d
 | Knowledge Updater | Briefing panel on open / refresh | Read FOA + similar funded work; not auto-rewrite science |
 | Writer | “Draft / revise this section” | Accept, edit, or reject hunks |
 | Reviewer | After a section is stable | Treat like a mock study section; decide what to fix |
-| Compliance | Continuous + on Freeze | Fix blockers before bothering OSPA |
+| Compliance | Continuous + on Freeze | Fix blockers before bothering Office of Research Aid |
 | Budget Scrutinizer | Budget tab | Fix effort / modular / aim linkage |
 | Package Creator | After PI freeze + no blockers | Produces versioned packet + evidence |
-| Submission assistant | Only after OSPA approval | See section 6 |
+| Submission assistant | Only after Office of Research Aid approval | See section 6 |
 
 Agent runs should be **jobs on a document**, with progress and a diff—not a hidden background rewrite of the only copy.
 
@@ -202,7 +202,7 @@ Reasons: AOR authority, credential policy, MFA, audit, and irreversible sponsor 
 ```
 Package Creator
     → versioned packet in GCS + Cloud SQL manifest
-    → OSPA reviews in Review queue
+    → Office of Research Aid reviews in Review queue
     → AOR authenticates to ASSIST / Grants.gov (human SSO / MFA)
     → Submission assistant pre-fills forms and attachments
     → AOR confirms a Submit checklist
@@ -223,7 +223,7 @@ What it must not do in v1:
 
 - Store NIH/eRA passwords  
 - Submit without an identified AOR action in the audit log  
-- Bypass OSPA because the PI is in a hurry  
+- Bypass Office of Research Aid because the PI is in a hurry  
 
 If a demo needs theater: show a **simulated ASSIST** screen in the lab with a fake tracking number, labeled **demo only**, and the same RBAC rules.
 
@@ -250,15 +250,15 @@ The workbench lists proposals. The room lists documents. That matches how PIs ju
 ## 8. Minimal click-path to demo “real R01 life”
 
 1. PI creates “R01 — synaptic basis of auditory learning.”  
-2. Sets NIH date and earlier OSPA date.  
-3. Invites RA (Navigator) and OSPA specialist.  
+2. Sets NIH date and earlier Office of Research Aid date.  
+3. Invites RA (Navigator) and Office of Research Aid specialist.  
 4. Pastes idea; Knowledge Updater fills Briefing.  
 5. Writer drafts Aims; PI edits.  
 6. Reviewer returns one major (aims not independent). PI accepts a revise.  
 7. PI uploads a budget justification; Scrutinizer flags missing PI person-months.  
 8. Compliance still open: DMS plan missing. RA adds a stub; flag clears.  
-9. PI clicks **Freeze for OSPA**. Package v1 appears. Submit stays disabled for PI.  
-10. OSPA role logs in, sees Review queue, waives nothing, **Approves to transmit**.  
+9. PI clicks **Freeze for Office of Research Aid**. Package v1 appears. Submit stays disabled for PI.  
+10. Office of Research Aid role logs in, sees Review queue, waives nothing, **Approves to transmit**.  
 11. AOR starts Submission assistant → checklist → (demo) tracking #.  
 12. Activity log shows every agent + the AOR submit event.
 

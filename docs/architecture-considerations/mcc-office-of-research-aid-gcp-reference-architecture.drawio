@@ -5,10 +5,10 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="2" value="&lt;b&gt;1  MCC (Mayo Clinic Cloud Platform) — OSPA Grant Submission Platform&lt;/b&gt;   ·   GCP Reference Architecture (Deployment View)" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontSize=18;fontColor=#ffffff;fillColor=#1a365d;strokeColor=#1a365d;align=left;spacingLeft=16;" vertex="1" parent="1">
+        <mxCell id="2" value="&lt;b&gt;1  MCC (Mayo Clinic Cloud Platform) — Office of Research Aid Grant Submission Platform&lt;/b&gt;   ·   GCP Reference Architecture (Deployment View)" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontSize=18;fontColor=#ffffff;fillColor=#1a365d;strokeColor=#1a365d;align=left;spacingLeft=16;" vertex="1" parent="1">
           <mxGeometry x="20" y="16" width="2360" height="44" as="geometry" />
         </mxCell>
-        <mxCell id="3" value="Secure · Scalable · HIPAA / HITRUST aligned   ·   Cloud Run split FE vs BE   ·   Shared Cloud SQL + BigQuery   ·   ADK + LangGraph hybrid   ·   HITL before OSPA handoff" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#4a5568;" vertex="1" parent="1">
+        <mxCell id="3" value="Secure · Scalable · HIPAA / HITRUST aligned   ·   Cloud Run split FE vs BE   ·   Shared Cloud SQL + BigQuery   ·   ADK + LangGraph hybrid   ·   HITL before Office of Research Aid handoff" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#4a5568;" vertex="1" parent="1">
           <mxGeometry x="20" y="62" width="2360" height="26" as="geometry" />
         </mxCell>
         <mxCell id="4" value="Users &amp; Actors" style="swimlane;startSize=32;rounded=1;arcSize=6;whiteSpace=wrap;html=1;fontStyle=1;fontSize=13;fontColor=#1a1a1a;fillColor=#E2E8F0;strokeColor=#4A5568;swimlaneFillColor=#F7FAFC;" vertex="1" parent="1">
@@ -17,7 +17,7 @@
         <mxCell id="5" value="PI / Researchers" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#2b6cb0;strokeColor=#1a365d;fontSize=11;fontStyle=1;fontColor=#1a365d;" vertex="1" parent="1">
           <mxGeometry x="110" y="130" width="40" height="48" as="geometry" />
         </mxCell>
-        <mxCell id="6" value="OSPA Reviewers" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#2b6cb0;strokeColor=#1a365d;fontSize=11;fontStyle=1;fontColor=#1a365d;" vertex="1" parent="1">
+        <mxCell id="6" value="Office of Research Aid Reviewers" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#2b6cb0;strokeColor=#1a365d;fontSize=11;fontStyle=1;fontColor=#1a365d;" vertex="1" parent="1">
           <mxGeometry x="110" y="185" width="40" height="48" as="geometry" />
         </mxCell>
         <mxCell id="7" value="Mayo IT / Admins" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#2b6cb0;strokeColor=#1a365d;fontSize=11;fontStyle=1;fontColor=#1a365d;" vertex="1" parent="1">
@@ -173,7 +173,7 @@
         <mxCell id="57" value="" style="shape=mxgraph.gcp2.cloud_run;fillColor=#FBBC04;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;aspect=fixed;" vertex="1" parent="1">
           <mxGeometry x="840" y="492" width="32" height="32" as="geometry" />
         </mxCell>
-        <mxCell id="58" value="&lt;b&gt;3. Compliance Agent&lt;/b&gt;&#10;NIH / FOA / OSPA · institutional rules" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#FFF3E0;strokeColor=#FB8C00;fontColor=#1a1a1a;fontSize=10;spacing=4;" vertex="1" parent="1">
+        <mxCell id="58" value="&lt;b&gt;3. Compliance Agent&lt;/b&gt;&#10;NIH / FOA / Office of Research Aid · institutional rules" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#FFF3E0;strokeColor=#FB8C00;fontColor=#1a1a1a;fontSize=10;spacing=4;" vertex="1" parent="1">
           <mxGeometry x="770" y="530" width="220" height="70" as="geometry" />
         </mxCell>
         <mxCell id="59" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.4;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="55" target="58">
@@ -233,7 +233,7 @@
         <mxCell id="77" value="Gemini 2.5 (Vertex AI)&#10;Planning · Summary · Re-rank" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=10;fontStyle=1;fontColor=#1a202c;" vertex="1" parent="1">
           <mxGeometry x="1044" y="662" width="212" height="46" as="geometry" />
         </mxCell>
-        <mxCell id="78" value="&lt;b&gt;ADK outer + LangGraph inner&lt;/b&gt;&#10;HITL interrupt before OSPA handoff" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F3E8FD;strokeColor=#9B6DCA;fontColor=#1a1a1a;fontSize=11;spacing=4;" vertex="1" parent="1">
+        <mxCell id="78" value="&lt;b&gt;ADK outer + LangGraph inner&lt;/b&gt;&#10;HITL interrupt before Office of Research Aid handoff" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F3E8FD;strokeColor=#9B6DCA;fontColor=#1a1a1a;fontSize=11;spacing=4;" vertex="1" parent="1">
           <mxGeometry x="1320" y="630" width="390" height="70" as="geometry" />
         </mxCell>
         <mxCell id="79" value="Knowledge &amp; Data Layer" style="swimlane;startSize=32;rounded=1;arcSize=6;whiteSpace=wrap;html=1;fontStyle=1;fontSize=13;fontColor=#1a1a1a;fillColor=#E6F4EA;strokeColor=#34A853;swimlaneFillColor=#F7FDF8;" vertex="1" parent="1">
@@ -494,10 +494,10 @@
         <mxCell id="164" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.4;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="75" target="92">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="165" value="&lt;b&gt;Architecture decisions (locked)&lt;/b&gt;&#10;• Cloud Run split: FE portals vs BE agent/services&#10;• Shared Cloud SQL (PostgreSQL) for web-app metadata&#10;• BigQuery for analytics / readiness trends&#10;• Memorystore Redis = LangGraph checkpointer + session&#10;• ADK outer orchestration + LangGraph inner revision loop&#10;• Human-in-the-loop review before any OSPA / eRA handoff" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#fff;strokeColor=#1a365d;fontColor=#1a1a1a;fontSize=11;spacing=4;align=left;spacingLeft=12;spacingTop=8;" vertex="1" parent="1">
+        <mxCell id="165" value="&lt;b&gt;Architecture decisions (locked)&lt;/b&gt;&#10;• Cloud Run split: FE portals vs BE agent/services&#10;• Shared Cloud SQL (PostgreSQL) for web-app metadata&#10;• BigQuery for analytics / readiness trends&#10;• Memorystore Redis = LangGraph checkpointer + session&#10;• ADK outer orchestration + LangGraph inner revision loop&#10;• Human-in-the-loop review before any Office of Research Aid / eRA handoff" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#fff;strokeColor=#1a365d;fontColor=#1a1a1a;fontSize=11;spacing=4;align=left;spacingLeft=12;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="20" y="1190" width="520" height="170" as="geometry" />
         </mxCell>
-        <mxCell id="166" value="&lt;b&gt;Data plane&lt;/b&gt;&#10;Cloud Storage holds raw packages and parsed text. Document AI extracts layout and entities. Vertex AI Embeddings + Vector Search power FOA / similar-grant RAG. AlloyDB or Cloud SQL is the system of record for users, projects, versions, and workflow status. BigQuery stores scores, usage, and benchmarks. Firestore holds NIH / FOA / OSPA rule documents." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F8FBFF;strokeColor=#5B8DEF;fontColor=#1a1a1a;fontSize=11;spacing=4;align=left;spacingLeft=12;spacingTop=8;" vertex="1" parent="1">
+        <mxCell id="166" value="&lt;b&gt;Data plane&lt;/b&gt;&#10;Cloud Storage holds raw packages and parsed text. Document AI extracts layout and entities. Vertex AI Embeddings + Vector Search power FOA / similar-grant RAG. AlloyDB or Cloud SQL is the system of record for users, projects, versions, and workflow status. BigQuery stores scores, usage, and benchmarks. Firestore holds NIH / FOA / Office of Research Aid rule documents." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F8FBFF;strokeColor=#5B8DEF;fontColor=#1a1a1a;fontSize=11;spacing=4;align=left;spacingLeft=12;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="560" y="1190" width="900" height="170" as="geometry" />
         </mxCell>
         <mxCell id="167" value="&lt;b&gt;Control plane&lt;/b&gt;&#10;IAP + institutional SSO at the edge. Apigee enforces authZ, quotas, and routing. Secret Manager / KMS for credentials. Security Command Center + Cloud Audit Logs for HIPAA/HITRUST evidence. Langfuse traces prompts and tool calls. Vertex AI Evaluation scores agent quality." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#FBF7FF;strokeColor=#9B6DCA;fontColor=#1a1a1a;fontSize=11;spacing=4;align=left;spacingLeft=12;spacingTop=8;" vertex="1" parent="1">
@@ -511,7 +511,7 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="2" value="&lt;b&gt;2  C4 Container Diagram — OSPA Grant Submission Platform (MCC)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontSize=18;fontColor=#ffffff;fillColor=#1a365d;strokeColor=#1a365d;align=left;spacingLeft=16;" vertex="1" parent="1">
+        <mxCell id="2" value="&lt;b&gt;2  C4 Container Diagram — Office of Research Aid Grant Submission Platform (MCC)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontSize=18;fontColor=#ffffff;fillColor=#1a365d;strokeColor=#1a365d;align=left;spacingLeft=16;" vertex="1" parent="1">
           <mxGeometry x="20" y="16" width="2360" height="44" as="geometry" />
         </mxCell>
         <mxCell id="3" value="PI / Researcher" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#2b6cb0;strokeColor=#1a365d;fontSize=11;fontStyle=1;fontColor=#1a365d;" vertex="1" parent="1">
@@ -538,7 +538,7 @@
         <mxCell id="10" value="&lt;b&gt;Admin / Ops&lt;/b&gt;&#10;Manages rules, configs, users and monitoring" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#FFFFFF;strokeColor=#2B6CB0;fontColor=#1a1a1a;fontSize=10;spacing=4;" vertex="1" parent="1">
           <mxGeometry x="1860" y="160" width="280" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="11" value="MCC — OSPA Grant Submission Platform" style="swimlane;startSize=36;rounded=1;arcSize=6;whiteSpace=wrap;html=1;fontStyle=1;fontSize=13;fontColor=#1a1a1a;fillColor=#E8F1FB;strokeColor=#1A365D;swimlaneFillColor=#F7FBFF;" vertex="1" parent="1">
+        <mxCell id="11" value="MCC — Office of Research Aid Grant Submission Platform" style="swimlane;startSize=36;rounded=1;arcSize=6;whiteSpace=wrap;html=1;fontStyle=1;fontSize=13;fontColor=#1a1a1a;fillColor=#E8F1FB;strokeColor=#1A365D;swimlaneFillColor=#F7FBFF;" vertex="1" parent="1">
           <mxGeometry x="40" y="240" width="1880" height="980" as="geometry" />
         </mxCell>
         <mxCell id="12" value="Web Applications (Cloud Run)" style="swimlane;startSize=28;rounded=1;arcSize=6;whiteSpace=wrap;html=1;fontStyle=1;fontSize=13;fontColor=#1a1a1a;fillColor=#E8F1FB;strokeColor=#5B8DEF;swimlaneFillColor=#FFFFFF;" vertex="1" parent="1">
@@ -595,7 +595,7 @@
         <mxCell id="29" value="" style="shape=mxgraph.gcp2.lock;fillColor=#EA4335;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;aspect=fixed;" vertex="1" parent="1">
           <mxGeometry x="950" y="638" width="32" height="32" as="geometry" />
         </mxCell>
-        <mxCell id="30" value="&lt;b&gt;Compliance Service&lt;/b&gt;&#10;Cloud Run · NIH / FOA / OSPA&#10;rules evaluation" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#FFF3E0;strokeColor=#FB8C00;fontColor=#1a1a1a;fontSize=11;spacing=4;" vertex="1" parent="1">
+        <mxCell id="30" value="&lt;b&gt;Compliance Service&lt;/b&gt;&#10;Cloud Run · NIH / FOA / Office of Research Aid&#10;rules evaluation" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#FFF3E0;strokeColor=#FB8C00;fontColor=#1a1a1a;fontSize=11;spacing=4;" vertex="1" parent="1">
           <mxGeometry x="810" y="678" width="340" height="100" as="geometry" />
         </mxCell>
         <mxCell id="31" value="" style="shape=mxgraph.gcp2.monitor;fillColor=#34A853;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;aspect=fixed;" vertex="1" parent="1">
@@ -655,7 +655,7 @@
         <mxCell id="49" value="" style="shape=mxgraph.gcp2.cloud_firestore;fillColor=#FBBC04;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;aspect=fixed;" vertex="1" parent="1">
           <mxGeometry x="1680.0" y="868" width="40" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="50" value="&lt;b&gt;Rules Engine&lt;/b&gt;&#10;Firestore · business rules, NIH, FOA, OSPA rules" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=10;fontStyle=1;fontColor=#1a202c;" vertex="1" parent="1">
+        <mxCell id="50" value="&lt;b&gt;Rules Engine&lt;/b&gt;&#10;Firestore · business rules, NIH, FOA, Office of Research Aid rules" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;fontSize=10;fontStyle=1;fontColor=#1a202c;" vertex="1" parent="1">
           <mxGeometry x="1534" y="910" width="332" height="86" as="geometry" />
         </mxCell>
         <mxCell id="51" value="" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F3E8FD;strokeColor=#9B6DCA;fontColor=#1a1a1a;fontSize=11;spacing=4;" vertex="1" parent="1">
@@ -1086,7 +1086,7 @@
         <mxCell id="101" value="" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#2b6cb0;strokeColor=#1a365d;fontSize=11;fontStyle=1;fontColor=#1a365d;" vertex="1" parent="1">
           <mxGeometry x="60" y="770" width="50" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="102" value="&lt;b&gt;Review &amp; Override&lt;/b&gt;&#10;Approve / Reject&#10;Provide Feedback&#10;&#10;LangGraph interrupt pauses the graph. ADK surfaces the human task. No eRA / OSPA payload is sent until HITL clears the readiness gate." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#1a1a1a;fontSize=12;spacing=4;" vertex="1" parent="1">
+        <mxCell id="102" value="&lt;b&gt;Review &amp; Override&lt;/b&gt;&#10;Approve / Reject&#10;Provide Feedback&#10;&#10;LangGraph interrupt pauses the graph. ADK surfaces the human task. No eRA / Office of Research Aid payload is sent until HITL clears the readiness gate." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#1a1a1a;fontSize=12;spacing=4;" vertex="1" parent="1">
           <mxGeometry x="130" y="760" width="440" height="200" as="geometry" />
         </mxCell>
         <mxCell id="103" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.4;dashed=1;dashPattern=8 6;exitX=0.2;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.3;entryDx=0;entryDy=0;" edge="1" parent="1" source="39" target="100">
@@ -1095,7 +1095,7 @@
         <mxCell id="104" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.4;exitX=1;exitY=0.7;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" edge="1" parent="1" source="41" target="93">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="105" value="Synchronous request/response (solid)   ·   Asynchronous event (dashed)   ·   Trust boundary = MCC VPC + IAP   ·   Default production path = Part C Hybrid (ADK outer + LangGraph inner)   ·   Memorystore Redis is the LangGraph checkpointer   ·   HITL is mandatory before OSPA / eRA handoff" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;fontColor=#1a1a1a;fillColor=#edf2f7;strokeColor=#a0aec0;align=left;spacingLeft=10;" vertex="1" parent="1">
+        <mxCell id="105" value="Synchronous request/response (solid)   ·   Asynchronous event (dashed)   ·   Trust boundary = MCC VPC + IAP   ·   Default production path = Part C Hybrid (ADK outer + LangGraph inner)   ·   Memorystore Redis is the LangGraph checkpointer   ·   HITL is mandatory before Office of Research Aid / eRA handoff" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;fontColor=#1a1a1a;fillColor=#edf2f7;strokeColor=#a0aec0;align=left;spacingLeft=10;" vertex="1" parent="1">
           <mxGeometry x="20" y="1010" width="2360" height="40" as="geometry" />
         </mxCell>
         <mxCell id="106" value="Happy-path sequence (revision loop)" style="swimlane;startSize=32;rounded=1;arcSize=6;whiteSpace=wrap;html=1;fontStyle=1;fontSize=13;fontColor=#1a1a1a;fillColor=#EDF2F7;strokeColor=#4A5568;swimlaneFillColor=#FFFFFF;" vertex="1" parent="1">
@@ -1125,7 +1125,7 @@
         <mxCell id="114" value="8. Submission Agent builds payload; status written to Cloud SQL + notified" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#FFFFFF;strokeColor=#2B6CB0;fontColor=#1a1a1a;fontSize=11;spacing=4;" vertex="1" parent="1">
           <mxGeometry x="1790" y="1190" width="550" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="115" value="MCC (Mayo Clinic Cloud Platform) — OSPA Grant Submission Platform — editable draw.io · official GCP2 icons" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;fontColor=#1a1a1a;fillColor=#edf2f7;strokeColor=#a0aec0;align=left;spacingLeft=10;" vertex="1" parent="1">
+        <mxCell id="115" value="MCC (Mayo Clinic Cloud Platform) — Office of Research Aid Grant Submission Platform — editable draw.io · official GCP2 icons" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;fontColor=#1a1a1a;fillColor=#edf2f7;strokeColor=#a0aec0;align=left;spacingLeft=10;" vertex="1" parent="1">
           <mxGeometry x="20" y="1310" width="2360" height="30" as="geometry" />
         </mxCell>
       </root>

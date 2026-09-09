@@ -4,7 +4,7 @@ A reusable way to **choose** (and later **re-choose**) components for this multi
 
 Use this **before** locking a vendor or runtime, and again at each major increment (pilot → limited production → enterprise).
 
-**Context for scoring:** MCC / GCP, OSPA-mediated NIH (and related) proposals, human-in-the-loop, HIPAA/HITRUST-aligned controls. Operational data already lives in **Cloud SQL** and **BigQuery**.
+**Context for scoring:** MCC / GCP, Office of Research Aid–mediated NIH (and related) proposals, human-in-the-loop, HIPAA/HITRUST-aligned controls. Operational data already lives in **Cloud SQL** and **BigQuery**.
 
 ---
 
@@ -31,7 +31,7 @@ Every selected component must serve at least one capability. If it serves none, 
 
 | Capability ID | Capability | Must exist | Typical component class |
 |---------------|------------|------------|-------------------------|
-| C1 | Identity & access (PI, Navigator, OSPA, Admin) | Yes | SSO + IAP + IAM |
+| C1 | Identity & access (PI, Navigator, Office of Research Aid, Admin) | Yes | SSO + IAP + IAM |
 | C2 | Intake / portals | Yes | Cloud Run front ends |
 | C3 | Deterministic multi-step agent workflow | Yes | Orchestrator (ADK and/or LangGraph) |
 | C4 | Document parse / extract | Yes | Document AI + parser service |
@@ -45,7 +45,7 @@ Every selected component must serve at least one capability. If it serves none, 
 | C12 | Analytics | Yes | BigQuery |
 | C13 | Retrieval over guidelines / similar grants | Should | Vector Search |
 | C14 | Control plane (policy, kill-switch, audit) | Yes | AGT-style guard + audit log |
-| C15 | Institutional handoff (MIRIS / OSPA) | Yes | Connector + no bypass of OSPA |
+| C15 | Institutional handoff (MIRIS / Office of Research Aid) | Yes | Connector + no bypass of Office of Research Aid |
 | C16 | Observability / eval | Yes | Cloud Trace + prompt traces |
 
 If two products cover the same capability, keep **one** primary and mark the other as fallback.
@@ -61,15 +61,15 @@ Score these **before** cost. Any **Fail** disqualifies the option for production
 | G1 Data classification | Can this component hold the data class we will put in it? | Research-admin data only in approved stores; no PHI in logs/prompts unless BAA + DLP | Proposal text or personnel data in an unapproved SaaS |
 | G2 BAA / HITRUST | Is there a BAA (or equivalent) and HITRUST-aligned path on this CSP? | GCP org with CMEK, VPC-SC, Access Approval available | Consumer API key in a laptop process talking to a public model |
 | G3 Residency | Can data stay in the approved region / org? | Region pinned; no silent cross-region training use | Vendor trains on tenant prompts |
-| G4 Identity | Does it honor institutional SSO and least privilege? | IAP + IAM roles mapped to PI / Navigator / OSPA / Admin | Shared service account for all portals |
+| G4 Identity | Does it honor institutional SSO and least privilege? | IAP + IAM roles mapped to PI / Navigator / Office of Research Aid / Admin | Shared service account for all portals |
 | G5 Audit | Can we prove who did what, including HITL overrides? | Immutable audit log; control-plane events on every agent/tool call | LLM output with no trace of rule or user |
 | G6 Secrets | Are keys only in Secret Manager / workload identity? | No long-lived keys in code or Cloud Run env files | API keys in repo or chat logs |
 | G7 Egress | Is outbound access to NIH / eRA explicitly allow-listed? | Restricted egress; RePORTER and ASSIST as named endpoints | Open internet from agent runtime |
-| G8 Human authority | Can the system submit **without** OSPA when policy forbids it? | Submission Agent only hands off to OSPA unless policy allows | Agent posts directly to Grants.gov in prod |
+| G8 Human authority | Can the system submit **without** Office of Research Aid when policy forbids it? | Submission Agent only hands off to Office of Research Aid unless policy allows | Agent posts directly to Grants.gov in prod |
 | G9 Prompt / log hygiene | Are prompts, traces, and eval sets free of secrets and unnecessary PII? | DLP on logs; redaction; retention limits | Full proposal text in a third-party observability cloud with no BAA |
 | G10 Model use policy | Is the model endpoint approved for this data class? | Vertex in-tenant / approved model garden | Shadow IT model with unknown retention |
 
-**OSPA-specific gate:** the platform may **prepare and score** a package; it may not become the official submitting office.
+**Office of Research Aid-specific gate:** the platform may **prepare and score** a package; it may not become the official submitting office.
 
 ---
 
@@ -144,7 +144,7 @@ TCO ≈ Infra + Tokens + People + Risk
 |--------|-----------------|---------|
 | **Infra** | Cloud Run CPU/RAM/requests, Cloud SQL, Memorystore, GCS, BigQuery scans, Vector Search, Apigee, Document AI pages, networking, CMEK | Concurrent users, package size, retention |
 | **Tokens** | Input + output tokens × model price × retries × eval runs × HITL re-runs | Aims vs full Research Strategy; reviewer + compliance extra passes |
-| **People** | Platform on-call, prompt/rule maintenance, FOA/skill updates, OSPA liaison, eval set curation | Number of mechanisms (R01/R21/K) and institutes supported |
+| **People** | Platform on-call, prompt/rule maintenance, FOA/skill updates, Office of Research Aid liaison, eval set curation | Number of mechanisms (R01/R21/K) and institutes supported |
 | **Risk / lock-in** | Exit cost, dual-run during cutover, audit findings, idle reserved capacity | Proprietary agent state; single-model dependency |
 
 ### 7.2 Token cost (usually the swing factor)
@@ -203,10 +203,10 @@ Budget Scrutinizer and most SF424 checks should stay **rules-first** (cheap, det
 |------------|---------|-----|----------------|
 | FOA / SF424 / salary-cap / modular rules | Every NIH notice | Knowledge Updater + Compliance owner | Silent non-compliance |
 | Skill / prompt regression | Every model bump | Eval owner | Quality drift |
-| Control-plane policies | Quarterly | Security + OSPA | Audit gaps |
+| Control-plane policies | Quarterly | Security + Office of Research Aid | Audit gaps |
 | Dependency / image patching | Continuous | Platform | CVE debt on Cloud Run |
 | Dual-runtime (hybrid) | Ongoing | Platform | ADK and LangGraph diverge |
-| Human review queue UX | Ongoing | Product + OSPA | HITL becomes a bottleneck |
+| Human review queue UX | Ongoing | Product + Office of Research Aid | HITL becomes a bottleneck |
 
 **Selection implication:** prefer components the existing MCC platform team already operates (Cloud SQL, BQ, Run, Secret Manager) over a new product that needs a new on-call rotation—unless a gate forces it.
 
@@ -222,7 +222,7 @@ Budget Scrutinizer and most SF424 checks should stay **rules-first** (cheap, det
 
 ## 8. Worked example (illustrative scoring)
 
-Assumptions: MCC GCP, ~50 packages/month in year 1, HITL required, OSPA is the submitter.
+Assumptions: MCC GCP, ~50 packages/month in year 1, HITL required, Office of Research Aid is the submitter.
 
 | Component decision | Options | Gate | Weighted score (illustrative) | Decision |
 |--------------------|---------|------|-------------------------------|----------|
@@ -264,7 +264,7 @@ Re-run the framework when any of these happen:
 - Package volume triples
 - HITRUST / internal audit finding
 - ADK Workflow gains (or loses) looping / checkpoint feature parity
-- OSPA requires a new system of record besides MIRIS
+- Office of Research Aid requires a new system of record besides MIRIS
 
 ---
 

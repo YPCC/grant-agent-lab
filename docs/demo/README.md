@@ -15,7 +15,7 @@ What the recording shows:
 5. Copilot-style rail (“Review this grant DOCX”)
 6. **HITL: revise** then **HITL: approve freeze**
 7. PI **Submit to NIH** stays disabled
-8. Switch role to **OSPA** — Submit enables (demo only, no eRA login)
+8. Switch role to **Office of Research Aid** — Submit enables (demo only, no eRA login)
 
 ## Stills
 
@@ -23,7 +23,7 @@ What the recording shows:
 |------|------|
 | After review | [still-review.png](still-review.png) |
 | Checklist | [still-checklist.png](still-checklist.png) |
-| OSPA RBAC | [still-ospa-rbac.png](still-ospa-rbac.png) |
+| Office of Research Aid RBAC | [still-office-of-research-aid-rbac.png](still-office-of-research-aid-rbac.png) |
 
 ## Re-run locally
 

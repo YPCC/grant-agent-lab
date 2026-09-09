@@ -9,7 +9,7 @@ Start here: **[configure](docs/guides/how-to-configure.md)** · **[launch UI](do
 ```mermaid
 flowchart TD
   PI[PI / Navigator] --> UI[Workbench / CopilotKit]
-  OSPA[OSPA / AOR] --> UI
+  ORA["Office of Research Aid / AOR"] --> UI
   UI --> CP[Control plane<br/>guard · audit · kill-switch]
   CP --> ORCH[Path A ADK / B LangGraph / C hybrid]
   ORCH --> WR[Writer]
@@ -33,7 +33,7 @@ Full diagrams (system context, paths, RBAC): [docs/architecture.md](docs/archite
 3. **Checks compliance** against NIH SF424-style rules and institutional policies.
 4. **Scrutinizes the budget** against NIH modular/detailed norms (does **not** invent a budget).
 5. **Scores Missing Essentials** (required R01 package items) and **pauses for HITL**.
-6. **Packages** an approved proposal for institutional review. Official NIH submit stays with **OSPA / AOR**.
+6. **Packages** an approved proposal for institutional review. Official NIH submit stays with **Office of Research Aid / AOR**.
 
 Three parallel implementations:
 
@@ -56,7 +56,7 @@ pip install python-docx
 python3 ui-copilotkit/serve_workbench.py
 ```
 
-Open [http://127.0.0.1:8765](http://127.0.0.1:8765). Review the sample R01 Aims `.docx`, inspect the checklist, try HITL revise/approve, switch role to OSPA to see Submit enable (demo only).
+Open [http://127.0.0.1:8765](http://127.0.0.1:8765). Review the sample R01 Aims `.docx`, inspect the checklist, try HITL revise/approve, switch role to Office of Research Aid to see Submit enable (demo only).
 
 Recorded demo: [docs/demo/e2e-workbench-demo.mp4](docs/demo/e2e-workbench-demo.mp4) (43s).
 

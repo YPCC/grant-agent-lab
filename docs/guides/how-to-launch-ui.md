@@ -19,7 +19,8 @@ Recorded walkthroughs:
 - CopilotKit Next.js: [docs/demo/e2e-copilotkit-demo.mp4](../demo/e2e-copilotkit-demo.mp4) (32s)
 - Python workbench: [docs/demo/e2e-workbench-demo.mp4](../demo/e2e-workbench-demo.mp4) (43s)
 
-Notes: [demo README](../demo/README.md).
+Notes: [demo README](../demo/README.md).  
+Re-record: [how to create demo files](how-to-create-demo-files.md).
 
 | Action | What happens |
 |--------|----------------|
@@ -41,7 +42,7 @@ Official [`CopilotSidebar`](https://docs.copilotkit.ai), `useCopilotAction("revi
 
 ```bash
 cd grant-agent-lab/ui-copilotkit
-npm install
+npm install --legacy-peer-deps
 npm run dev
 ```
 

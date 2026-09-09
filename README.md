@@ -2,7 +2,7 @@
 
 **Multi-agent system for drafting, reviewing, compliance-checking, budget-validating, and packaging NIH (and related) grant proposals until they are ready for institutional review and submission.**
 
-Start here: **[configure](docs/guides/how-to-configure.md)** · **[launch UI](docs/guides/how-to-launch-ui.md)** · **[architecture (Mermaid)](docs/architecture.md)** · **[docs index](docs/README.md)**
+Start here: **[configure](docs/guides/how-to-configure.md)** · **[launch UI](docs/guides/how-to-launch-ui.md)** · **[create demos](docs/guides/how-to-create-demo-files.md)** · **[architecture (Mermaid)](docs/architecture.md)** · **[docs index](docs/README.md)**
 
 ## Architecture
 
@@ -89,8 +89,11 @@ grant-agent-lab/
 │   ├── demo/                     # recorded E2E UI walkthrough
 │   ├── guides/
 │   │   ├── how-to-configure.md
-│   │   └── how-to-launch-ui.md
+│   │   ├── how-to-launch-ui.md
+│   │   └── how-to-create-demo-files.md
 │   └── architecture-considerations/  # EA notes + draw.io
+├── scripts/
+│   └── record_demo.py            # Playwright + ffmpeg recorder
 ├── config/
 │   ├── runtime.yaml              # path, HITL, agents
 │   ├── checklists/r01_essentials.yaml
@@ -125,6 +128,7 @@ Used in [draw.io](docs/architecture-considerations/) files:
 | [Docs index](docs/README.md) | All guides |
 | [How to configure](docs/guides/how-to-configure.md) | `runtime.yaml`, agents, HITL, env |
 | [How to launch UI](docs/guides/how-to-launch-ui.md) | Workbench and CopilotKit |
+| [How to create demo files](docs/guides/how-to-create-demo-files.md) | Record MP4 + stills |
 | [Demo videos](docs/demo/README.md) | CopilotKit UI + Python workbench walkthroughs |
 | [Architecture (Mermaid)](docs/architecture.md) | System context, graph, RBAC |
 | [Architecture considerations](docs/architecture-considerations/README.md) | EA packet, Cloud SQL, Cloud Run |

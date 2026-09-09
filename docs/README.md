@@ -4,6 +4,7 @@
 |-----|----------|
 | [How to configure](guides/how-to-configure.md) | `runtime.yaml`, agents, HITL, checklist, env vars |
 | [How to launch the UI](guides/how-to-launch-ui.md) | Workbench on :8765 and CopilotKit Next.js |
+| [How to create demo files](guides/how-to-create-demo-files.md) | Record MP4 + stills (Playwright / ffmpeg) |
 | [Demo videos](demo/README.md) | CopilotKit UI + Python workbench walkthroughs (MP4) |
 | [Architecture (Mermaid)](architecture.md) | System context, agent graph, paths, RBAC |
 | [Part B LangGraph + HITL](part-b-langgraph-hitl.md) | Interrupt-before-freeze |

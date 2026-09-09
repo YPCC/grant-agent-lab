@@ -33,4 +33,5 @@ PYTHONPATH=. python3 ui-copilotkit/serve_workbench.py
 # http://127.0.0.1:8765
 ```
 
-How to launch: [../guides/how-to-launch-ui.md](../guides/how-to-launch-ui.md).
+How to launch: [../guides/how-to-launch-ui.md](../guides/how-to-launch-ui.md).  
+How to **re-record** these files: [../guides/how-to-create-demo-files.md](../guides/how-to-create-demo-files.md).

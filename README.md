@@ -58,15 +58,39 @@ python3 ui-copilotkit/serve_workbench.py
 
 Open [http://127.0.0.1:8765](http://127.0.0.1:8765). Review the sample R01 Aims `.docx`, inspect the checklist, try HITL revise/approve, switch role to Office of Research Aid to see Submit enable (demo only).
 
-Recorded demos: [CopilotKit UI](docs/demo/e2e-copilotkit-demo.mp4) (32s) · [Python workbench](docs/demo/e2e-workbench-demo.mp4) (43s).
+**Recorded demos** (watch first):
+
+| UI | Video |
+|----|--------|
+| CopilotKit Next.js (`:3000`) | [e2e-copilotkit-demo.mp4](docs/demo/e2e-copilotkit-demo.mp4) (32s) |
+| Python workbench (`:8765`) | [e2e-workbench-demo.mp4](docs/demo/e2e-workbench-demo.mp4) (43s) |
 
 CopilotKit Next.js (optional chat):
 
 ```bash
-cd ui-copilotkit && npm install && npm run dev
+cd ui-copilotkit && npm install --legacy-peer-deps && npm run dev
 ```
 
 See [how to launch the UI](docs/guides/how-to-launch-ui.md).
+
+## Record a demo
+
+Demos are Playwright walkthroughs encoded to H.264 MP4 (1440×900) in [`docs/demo/`](docs/demo/). Full recipe: [how to create demo files](docs/guides/how-to-create-demo-files.md).
+
+```bash
+pip install playwright python-docx
+python3 -m playwright install chromium   # ffmpeg also required
+
+# Terminal A — UI
+PYTHONPATH=. python3 ui-copilotkit/serve_workbench.py
+
+# Terminal B — record
+PYTHONPATH=. python3 scripts/record_demo.py --target workbench
+# or, with Next.js already on :3000:
+PYTHONPATH=. python3 scripts/record_demo.py --target copilotkit
+```
+
+That overwrites `docs/demo/e2e-*-demo.mp4` plus matching `still-*.png`. Do not commit `node_modules/`, `.next/`, or raw WebM.
 
 ## Quick start — agents / tests
 

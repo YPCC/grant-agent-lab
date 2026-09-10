@@ -4,6 +4,8 @@
 
 Start here: **[configure](docs/guides/how-to-configure.md)** · **[launch UI](docs/guides/how-to-launch-ui.md)** · **[eval harness](docs/harness.md)** · **[create demos](docs/guides/how-to-create-demo-files.md)** · **[architecture](docs/architecture.md)** · **[C4 infographics](docs/architecture-considerations/c4-infographics/README.md)** · **[docs index](docs/README.md)**
 
+[![Harness](https://github.com/YPCC/grant-agent-lab/actions/workflows/harness.yml/badge.svg)](https://github.com/YPCC/grant-agent-lab/actions/workflows/harness.yml)
+
 ## Architecture
 
 ```mermaid
@@ -100,7 +102,7 @@ That overwrites `docs/demo/e2e-*-demo.mp4` plus matching `still-*.png`. Do not c
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
-PYTHONPATH=. python -m pytest tests/test_harness.py tests/test_harness_mcp.py tests/test_harness_policies.py tests/test_checklist.py tests/test_intake_office.py -q
+PYTHONPATH=. python -m pytest tests/test_harness.py tests/test_harness_mcp.py tests/test_harness_policies.py tests/test_control_plane.py tests/test_graph_pipeline.py tests/test_checklist.py tests/test_intake_office.py -q
 
 # Eval harness (MCP plugin for Copilot / any LLM tool)
 PYTHONPATH=. python3 -m src.harness run-case weak_aims_vague

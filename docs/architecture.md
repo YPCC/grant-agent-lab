@@ -64,14 +64,14 @@ flowchart TD
   HITL -->|approve and checklist clear| PK[Package Creator]
   HITL -->|approve but required missing| WR
 
-  PK --> READY[Institutional package ready]
-  READY -.->|Office of Research Aid only| SA[Submission assistant<br/>AOR present]
-  SA -.-> ASSIST[ASSIST tracking #]
+  PK --> READY[Intake form complete]
+  READY --> ODB[Submit to Office of Research Aid database]
+  ODB --> TRACK[Tracking number returned to PI]
 
   CP[Control plane] -.-> RV
   CP -.-> CC
   CP -.-> HITL
-  CP -.-> SA
+  CP -.-> ODB
 ```
 
 ## Runtime paths

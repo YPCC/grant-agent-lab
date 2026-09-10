@@ -36,6 +36,18 @@ def _parse_simple_yaml(text: str) -> dict[str, Any]:
             cur["required"] = "true" in line.lower()
         elif line.startswith("    group:"):
             cur["group"] = line.split(":", 1)[1].strip()
+        elif line.startswith("    type:"):
+            cur["type"] = line.split(":", 1)[1].strip()
+        elif line.startswith("    help:"):
+            cur["help"] = line.split(":", 1)[1].strip()
+        elif line.startswith("    rule:"):
+            cur["rule"] = line.split(":", 1)[1].strip()
+        elif line.startswith("    human_only:"):
+            cur["human_only"] = "true" in line.lower()
+        elif line.startswith("    options:"):
+            rest = line.split(":", 1)[1].strip()
+            if rest.startswith("[") and rest.endswith("]"):
+                cur["options"] = [p.strip(" '\"") for p in rest[1:-1].split(",") if p.strip()]
         elif line.startswith("    detect:"):
             rest = line.split(":", 1)[1].strip()
             if rest.startswith("[") and rest.endswith("]"):

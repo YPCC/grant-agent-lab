@@ -75,12 +75,11 @@ Writes `docs/demo/e2e-copilotkit-demo.mp4` and `still-copilotkit-*.png`.
 **Workbench (`:8765`)**
 
 1. Role **PI**
-2. Review sample DOCX (Specific Aims extract + score)
-3. Missing Essentials checklist
-4. Copilot-style chat: “Review this grant DOCX”
-5. HITL **revise** then **approve freeze**
-6. Submit disabled for PI
-7. Switch role to **Office of Research Aid** → Submit enables (demo only)
+2. Review sample DOCX
+3. Grouped **intake form** (Compliance, Formatting, Institutional)
+4. Override remaining unknowns + PI certify
+5. **Submit to Office of Research Aid** (not NIH)
+6. Packaging agent upload + **tracking number** on the PI record
 
 **CopilotKit (`:3000`)**
 

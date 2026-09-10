@@ -83,10 +83,10 @@ def copy_still(src_name: str, dest_name: str) -> None:
 
 
 def record_workbench(page) -> None:
-    banner(page, "Grant Agent Lab — workbench end-to-end demo", 2.4)
+    banner(page, "Grant Agent Lab — Office of Research Aid intake demo", 2.4)
     shot(page, "01_landing")
 
-    banner(page, "1. Agents auto-review the sample Specific Aims .docx", 1.4)
+    banner(page, "1. Agents review the sample Specific Aims .docx", 1.4)
     page.get_by_role("button", name="Review sample DOCX").click(force=True)
     page.wait_for_function(
         "() => { const n = document.getElementById('score'); return n && n.textContent.trim() !== '—'; }",
@@ -94,36 +94,45 @@ def record_workbench(page) -> None:
     )
     page.wait_for_timeout(1200)
     shot(page, "02_review")
-    banner(page, "2. Readiness score + reviewer / compliance findings", 2.8)
+    banner(page, "2. Findings + Missing Essentials", 2.4)
 
-    page.locator("#check").scroll_into_view_if_needed()
-    page.wait_for_timeout(600)
-    shot(page, "03_checklist")
-    banner(page, "3. Missing Essentials checklist — required R01 items", 2.8)
+    page.locator("#intake-wrap").scroll_into_view_if_needed()
+    page.wait_for_timeout(800)
+    shot(page, "03_intake")
+    banner(page, "3. Intake form — Compliance, Formatting, Institutional (agent-filled)", 3.0)
 
-    page.locator("#q").fill("Review this grant DOCX")
-    page.locator(".chat form button").click(force=True)
-    page.wait_for_timeout(2000)
-    shot(page, "04_chat")
-    banner(page, "4. Copilot-style agent rail explains the review", 2.4)
+    banner(page, "4. PI overrides remaining unknowns (including PI certify)", 2.2)
+    page.evaluate(
+        """async () => {
+          const payload = {PI_CERTIFY: 'yes'};
+          document.querySelectorAll('#intake select').forEach((sel) => {
+            if (sel.value === 'unknown' || sel.value === '') {
+              const onch = sel.getAttribute('onchange') || '';
+              const m = onch.match(/override\\('([^']+)'/);
+              if (m) payload[m[1]] = 'yes';
+            }
+          });
+          const res = await fetch('/api/intake', {method:'POST', headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({overrides: payload})});
+          const form = await res.json();
+          if (window.renderIntake) window.renderIntake(form);
+        }"""
+    )
+    page.wait_for_timeout(1200)
+    page.locator("#intake-wrap").scroll_into_view_if_needed()
+    shot(page, "04_overrides")
+    banner(page, "5. Intake complete — Submit to Office of Research Aid (not NIH)", 2.8)
 
     page.evaluate("document.querySelector('.chat') && (document.querySelector('.chat').style.display='none')")
-    page.get_by_role("button", name="HITL: revise").click(force=True)
-    page.wait_for_timeout(1200)
-    banner(page, "5. HITL revise — graph pauses; PI sends the draft back", 2.6)
-    page.get_by_role("button", name="HITL: approve freeze").click(force=True)
-    page.wait_for_timeout(1200)
-    banner(page, "6. HITL approve freeze — blocked if required items missing", 2.6)
-
-    banner(page, "7. RBAC: PI cannot Submit to NIH", 2.0)
-    shot(page, "05_pi")
-    page.locator("#role").select_option("Office of Research Aid")
-    page.wait_for_timeout(1000)
-    shot(page, "06_ora")
-    banner(page, "8. Office of Research Aid — Submit enables (demo, no eRA login)", 3.0)
     page.locator("#submit").click(force=True)
-    page.wait_for_timeout(600)
-    banner(page, "Package stays institutional until AOR submits. Demo complete.", 3.0)
+    page.wait_for_function(
+        "() => { const n = document.getElementById('trackbanner'); return n && n.style.display !== 'none' && n.textContent.includes('ORA-'); }",
+        timeout=20000,
+    )
+    shot(page, "05_tracking")
+    banner(page, "6. Packaging agent uploaded the packet. Tracking number returned to the PI.", 3.4)
+    shot(page, "06_ora")
+    banner(page, "Demo complete — office database only, never NIH ASSIST.", 2.8)
     shot(page, "07_done")
     page.wait_for_timeout(500)
 
@@ -131,7 +140,7 @@ def record_workbench(page) -> None:
 def record_copilotkit(page) -> None:
     page.wait_for_timeout(2000)
     page.evaluate(HIDE_CK_OVERLAY)
-    banner(page, "CopilotKit UI — Grant Agent Lab R01 review demo", 2.4)
+    banner(page, "CopilotKit — Office of Research Aid intake", 2.4)
     shot(page, "01_landing")
 
     page.get_by_role("button", name="Review sample DOCX").click(force=True)
@@ -148,41 +157,46 @@ def record_copilotkit(page) -> None:
     except Exception:
         page.wait_for_timeout(4000)
     page.evaluate(HIDE_CK_OVERLAY)
-    banner(page, "1. CopilotKit workbench reviews the sample Specific Aims .docx", 2.8)
+    banner(page, "1. CopilotKit reviews the R01 DOCX and fills intake", 2.8)
     shot(page, "02_review")
-    banner(page, "2. Findings rail: reviewer, compliance, budget scrutinizer", 2.6)
+
+    page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+    page.wait_for_timeout(800)
+    banner(page, "2. Grouped intake: Compliance · Formatting · Institutional", 2.8)
+    shot(page, "03_intake")
 
     page.evaluate(
-        """() => {
-          const ta = document.querySelector('textarea');
-          if (!ta) return;
-          const proto = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement.prototype, 'value');
-          proto.set.call(ta, 'Review the Specific Aims document');
-          ta.dispatchEvent(new Event('input', { bubbles: true }));
+        """async () => {
+          const payload = {};
+          document.querySelectorAll('select').forEach((sel) => {
+            if (sel.value === 'unknown' || sel.value === '') {
+              const label = sel.previousElementSibling;
+            }
+          });
         }"""
     )
-    page.wait_for_timeout(500)
-    if page.locator("textarea").count():
+    # complete remaining via API if intake state is in React only — click each unknown select
+    selects = page.locator("section.card select")
+    n = selects.count()
+    for i in range(n):
+        sel = selects.nth(i)
         try:
-            page.locator("textarea").first.press("Enter")
+            val = sel.input_value()
+            if val in ("unknown", ""):
+                sel.select_option("yes")
+                page.wait_for_timeout(200)
         except Exception:
             pass
-    page.wait_for_timeout(1500)
+    page.wait_for_timeout(800)
+    banner(page, "3. PI certifies and overrides remaining unknowns", 2.4)
     page.evaluate(HIDE_CK_OVERLAY)
-    banner(page, "3. CopilotSidebar — ask Grant agents to review the DOCX", 2.8)
-    shot(page, "04_sidebar")
-
-    banner(page, "4. RBAC: PI cannot Submit to NIH", 2.0)
-    page.locator("select").select_option("Office of Research Aid")
-    page.wait_for_timeout(1000)
-    page.evaluate(HIDE_CK_OVERLAY)
-    banner(page, "5. Office of Research Aid — Submit enables (demo, no eRA)", 3.0)
+    page.get_by_role("button", name="Submit to Office of Research Aid").click(force=True)
+    page.wait_for_timeout(2500)
     shot(page, "06_ora")
-    page.get_by_role("button", name="Submit to NIH").click(force=True)
-    page.wait_for_timeout(500)
-    banner(page, "CopilotKit demo complete — package still requires human AOR.", 3.0)
+    banner(page, "4. Tracking number from the office database — not NIH", 3.2)
     shot(page, "07_done")
     page.wait_for_timeout(500)
+
 
 
 def main() -> int:
@@ -228,7 +242,8 @@ def main() -> int:
         dest = DEMO / "e2e-workbench-demo.mp4"
         stills = [
             ("02_review.png", "still-review.png"),
-            ("03_checklist.png", "still-checklist.png"),
+            ("03_intake.png", "still-intake.png"),
+            ("05_tracking.png", "still-tracking.png"),
             ("06_ora.png", "still-office-of-research-aid-rbac.png"),
         ]
     else:

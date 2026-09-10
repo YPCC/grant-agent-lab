@@ -20,8 +20,9 @@ flowchart TD
   ME --> HITL{HITL freeze}
   HITL -->|revise| WR
   HITL -->|approve + complete| PK[Package Creator]
-  PK --> READY[Ready for institution]
-  READY -.->|AOR present only| ASSIST[ASSIST / Grants.gov]
+  PK --> READY[Ready for Office of Research Aid]
+  READY --> ODB[Submit package to office database]
+  ODB --> TRACK[Tracking number returned to PI]
 ```
 
 Full diagrams (system context, paths, RBAC): [docs/architecture.md](docs/architecture.md).
@@ -33,7 +34,7 @@ Full diagrams (system context, paths, RBAC): [docs/architecture.md](docs/archite
 3. **Checks compliance** against NIH SF424-style rules and institutional policies.
 4. **Scrutinizes the budget** against NIH modular/detailed norms (does **not** invent a budget).
 5. **Scores Missing Essentials** (required R01 package items) and **pauses for HITL**.
-6. **Packages** an approved proposal for institutional review. Official NIH submit stays with **Office of Research Aid / AOR**.
+6. **Packages** an approved proposal and submits it to the **Office of Research Aid database**. Completing the grouped intake form (compliance, formatting, institutional) unlocks submit. A **tracking number** comes back to the PI. This lab does **not** submit to NIH ASSIST.
 
 Three parallel implementations:
 
@@ -62,8 +63,8 @@ Open [http://127.0.0.1:8765](http://127.0.0.1:8765). Review the sample R01 Aims 
 
 | UI | Video |
 |----|--------|
-| CopilotKit Next.js (`:3000`) | [e2e-copilotkit-demo.mp4](docs/demo/e2e-copilotkit-demo.mp4) (32s) |
-| Python workbench (`:8765`) | [e2e-workbench-demo.mp4](docs/demo/e2e-workbench-demo.mp4) (43s) |
+| CopilotKit Next.js (`:3000`) | [e2e-copilotkit-demo.mp4](docs/demo/e2e-copilotkit-demo.mp4) |
+| Python workbench (`:8765`) | [e2e-workbench-demo.mp4](docs/demo/e2e-workbench-demo.mp4) (intake → office tracking) |
 
 CopilotKit Next.js (optional chat):
 

@@ -29,13 +29,15 @@ Those are encoded as the aim-linkage and scope-vs-budget checks above.
 
 ## Grant Package Creator
 
-Runs only when `final_package_ready=True` (post-HITL approval).
+Runs when the **Office of Research Aid intake form** is complete (`can_submit_to_office=True`).
 
-- Writes a versioned directory under `output/packages/<tag>/`
-- Records `package_snapshot` on state (path, contents, version_tag, approved_by)
-- Version tag: `{proposal_id}-v{aims_version}-i{iteration}-{UTC}`
+- Writes `output/packages/<ORA-tracking>/` (`MANIFEST.json`, `intake-form.json`, findings, excerpt)
+- Registers the packet in the **office database** (demo)
+- Returns a **tracking number** (`ORA-YYYYMMDD-xxxxxx`) to the PI
 
-This is the “push” of the approved packet into a durable, auditable form for institutional submission.
+This is **not** an NIH ASSIST / Grants.gov submit.
+
+Implementation: `src/shared/packaging.py` · intake catalog: `config/checklists/ora_intake.yaml`.
 
 ## Graph fragment
 

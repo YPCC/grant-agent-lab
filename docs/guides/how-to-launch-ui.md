@@ -24,11 +24,12 @@ Re-record: [how to create demo files](how-to-create-demo-files.md).
 
 | Action | What happens |
 |--------|----------------|
-| Review sample DOCX | Loads `data/samples/r01-aims-draft-for-review.docx`, runs reviewer + checklist |
+| Review sample DOCX | Loads `data/samples/r01-aims-draft-for-review.docx`, runs reviewer + intake agent |
 | Upload `.docx` | Same pipeline on your file |
+| Intake form | Grouped Compliance / Formatting / Institutional; agent-filled, human override |
+| Submit to Office of Research Aid | Enabled when required intake items are answered; packaging agent uploads; tracking number returns |
 | HITL: revise / approve freeze | Resumes Part B graph (`GrantGraph.resume`) |
-| Role chip PI → Office of Research Aid | Enables **Submit to NIH** (demo only; no eRA login) |
-| Download review report | Writes `review-report.docx` |
+| Role chip | PI, Navigator, Office of Research Aid, Admin — PI **can** submit to the office database |
 
 The workbench calls:
 

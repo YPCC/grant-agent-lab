@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 from src.shared.checklist import evaluate_checklist
+from src.shared.intake import fill_intake
 
 
 INDEPENDENCE_HINTS = (
@@ -127,6 +128,7 @@ def review_text(text: str, filename: str = "upload.docx") -> dict:
     score = max(0, 100 - 25 * len(blockers) - 12 * len(majors) - 5 * (len(findings) - len(blockers) - len(majors)))
 
     checklist = evaluate_checklist(text)
+    intake = fill_intake(text, filename)
     return {
         "filename": filename,
         "char_count": len(text),
@@ -137,9 +139,10 @@ def review_text(text: str, filename: str = "upload.docx") -> dict:
         "submit_enabled_for_pi": False,
         "findings": findings,
         "checklist": checklist,
+        "intake": intake,
         "summary": (
             f"{len(findings)} finding(s): {len(blockers)} blocker/fatal, {len(majors)} major. "
-            + checklist["summary"]
+            + checklist["summary"] + " " + intake["summary"]
         ),
     }
 
@@ -156,8 +159,8 @@ def write_review_docx(result: dict, out_path: str | Path) -> None:
     meta.add_run(result.get("summary", ""))
 
     doc.add_paragraph(
-        "RBAC: PI can run review and freeze science. Official submit stays with Office of Research Aid / AOR. "
-        "This report is evidence for institutional routing, not an eRA submission."
+        "RBAC: PI reviews, completes the Office of Research Aid intake form, and submits the package to the office database. "
+        "This is not an NIH ASSIST / Grants.gov submission."
     )
 
     doc.add_heading("Findings", level=2)

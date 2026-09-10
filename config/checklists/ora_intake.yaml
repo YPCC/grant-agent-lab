@@ -1,0 +1,156 @@
+# Office of Research Aid intake checklist.
+# Filled by the Intake agent from the proposal; PI/Navigator may override.
+# All required items must be answered (not unknown) before submit to the office database.
+
+mechanism: R01
+title: Office of Research Aid intake form
+destination: office_database
+not: NIH_ASSIST
+
+groups:
+  - id: Compliance
+    description: Regulatory and NIH package elements
+  - id: Formatting
+    description: Page limits, font, file naming
+  - id: Institutional
+    description: Local routing checks before Research Aid intake
+
+items:
+  - id: BUDGET_ELEMENT
+    group: Compliance
+    label: Budget or modular budget + justification is included
+    type: yes_no
+    required: true
+    detect: [budget justification, modular budget, personnel justification, person-month]
+    help: Office will not intake an R01 without a budget element (not a dollar invention — presence only).
+
+  - id: HUMAN_SUBJECTS
+    group: Compliance
+    label: Human subjects involved
+    type: enum
+    options: [yes, no, not_applicable]
+    required: true
+    detect: [human subjects, irb, human participants]
+    help: If yes, IRB determination / protocol ID is required before Office freeze.
+
+  - id: VERTEBRATE_ANIMALS
+    group: Compliance
+    label: Vertebrate animal studies
+    type: enum
+    options: [yes, no, not_applicable]
+    required: true
+    detect: [vertebrate animals, iacuc, animal care, mouse, mice, rodent]
+    help: If yes, IACUC protocol must be pending or approved.
+
+  - id: SELECT_AGENTS
+    group: Compliance
+    label: Select agents / dual-use research of concern
+    type: enum
+    options: [yes, no]
+    required: true
+    detect: [select agent, dual use, durc]
+    help: Default no unless the document mentions select agents.
+
+  - id: DMS_PLAN
+    group: Compliance
+    label: Data Management and Sharing plan present
+    type: yes_no
+    required: true
+    detect: [data management and sharing, dms plan]
+    help: NIH DMS policy — even $0 direct-cost sharing needs a labeled plan.
+
+  - id: COI_DISCLOSURE
+    group: Compliance
+    label: Conflict of interest / financial disclosure acknowledged
+    type: yes_no
+    required: true
+    detect: [conflict of interest, financial disclosure, fcoi]
+    help: Institutional COI form; agent marks unknown unless mentioned.
+
+  - id: AIMS_ONE_PAGE
+    group: Formatting
+    label: Specific Aims fits one page (≤ ~4500 characters)
+    type: yes_no
+    required: true
+    detect: []
+    rule: aims_char_limit
+    help: NIH Specific Aims = 1 page. Agent uses extracted character count.
+
+  - id: RS_PAGE_LIMIT
+    group: Formatting
+    label: Research Strategy within R01 12-page limit (or N/A if Aims-only draft)
+    type: enum
+    options: [yes, no, not_applicable]
+    required: true
+    detect: [research strategy, significance, innovation, approach]
+    help: Aims-only drafts should be marked not_applicable by the PI.
+
+  - id: FONT_MARGINS
+    group: Formatting
+    label: NIH font (≥11 pt) and ≥0.5 in margins
+    type: enum
+    options: [yes, no, unknown]
+    required: true
+    detect: []
+    help: Cannot always be inferred from extracted text; PI may override.
+
+  - id: FILE_NAMING
+    group: Formatting
+    label: File follows office naming (PILast_R01_Aims.docx)
+    type: yes_no
+    required: false
+    detect: []
+    rule: filename
+    help: Convenience check; not a blocker for demo intake.
+
+  - id: PI_ELIGIBLE
+    group: Institutional
+    label: PI is eligible / appointed to submit through this office
+    type: yes_no
+    required: true
+    detect: [principal investigator, pd/pi]
+    help: Navigator or PI attests; agent cannot prove appointment from the DOCX.
+
+  - id: FA_RATE
+    group: Institutional
+    label: F&A (indirect cost) rate acknowledged
+    type: yes_no
+    required: true
+    detect: [f&a, facilities and administrative, indirect cost]
+    help: Office applies the negotiated rate; presence of acknowledgment is the check.
+
+  - id: COST_SHARING
+    group: Institutional
+    label: Cost sharing committed
+    type: enum
+    options: [yes, no]
+    required: true
+    detect: [cost share, cost sharing, matching funds]
+    help: Default no unless the document commits match.
+
+  - id: SUBAWARDS
+    group: Institutional
+    label: Subawards / consortium sites
+    type: enum
+    options: [yes, no]
+    required: true
+    detect: [subaward, consortium, subrecipient]
+    help: If yes, subrecipient commitment letters belong in the package.
+
+  - id: EXPORT_CONTROL
+    group: Institutional
+    label: Export-control / ITAR concern
+    type: enum
+    options: [yes, no]
+    required: true
+    detect: [export control, itar, ear99]
+    help: Default no.
+
+  - id: PI_CERTIFY
+    group: Institutional
+    label: PI certifies the intake answers are accurate
+    type: yes_no
+    required: true
+    detect: []
+    help: Human-only. Agent cannot auto-check this box.
+    human_only: true

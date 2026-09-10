@@ -92,7 +92,7 @@
         <mxCell id="30" value="MIRIS (Office of Research Aid)" style="fillColor=#f5f5f5;strokeColor=#666666;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
           <mxGeometry x="440" y="605" width="140" height="50" as_="geometry"/>
         </mxCell>
-        <mxCell id="31" value="eRA / ASSIST" style="fillColor=#f5f5f5;strokeColor=#666666;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+        <mxCell id="31" value="Office of Research Aid DB" style="fillColor=#f5f5f5;strokeColor=#666666;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">
           <mxGeometry x="600" y="605" width="140" height="50" as_="geometry"/>
         </mxCell>
         <mxCell id="32" value="Email / Notify" style="fillColor=#f5f5f5;strokeColor=#666666;rounded=1;html=1;whiteSpace=wrap;" vertex="1" parent="1">

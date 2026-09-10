@@ -16,7 +16,7 @@ Context for *this* lab: MCC / GCP, Office of Research Aid–mediated grants, HIT
 ## 0. Mission and scope
 
 1. What job must the system finish that a single chatbot cannot (e.g. draft → review → compliance → HITL → package)?
-2. What is explicitly **out of scope** for v1 (e.g. official eRA submission, budget *planning*, clinical PHI)?
+2. What is explicitly **out of scope** for v1 (e.g. official NIH ASSIST submit, budget *planning*, clinical PHI)?
 3. Who is the institutional authority that must remain in the loop (Office of Research Aid, IRB, sponsored programs)?
 4. What does “done” mean (readiness score only vs versioned package ready for institutional review)?
 5. Which funding mechanisms and sponsors are in scope (R01, R21, K, NSF, foundations)?
@@ -79,7 +79,7 @@ Context for *this* lab: MCC / GCP, Office of Research Aid–mediated grants, HIT
 42. How long must drafts, packages, and checkpoints be retained?
 43. What is the maximum document size and page count we must parse?
 44. Do we need a semantic index (FOA, guidelines, similar grants) in v1?
-45. Which external APIs are required (RePORTER, eRA, SSO, email, MIRIS)?
+45. Which external APIs are required (RePORTER, office database, SSO, email)?
 46. What is the integration style (sync API, Pub/Sub, batch file drop)?
 47. How do we version a package so Office of Research Aid can see “what was approved”?
 48. Can we reconstruct a run from state + artifacts alone (time-travel)?
@@ -110,7 +110,7 @@ Context for *this* lab: MCC / GCP, Office of Research Aid–mediated grants, HIT
 63. Network: VPC, private SQL/Redis, restricted egress allow-list?
 64. Encryption: CMEK required? In transit and at rest for GCS, SQL, traces?
 65. Prompt injection and tool-abuse: what can an agent *not* call even if the model asks?
-66. Can agents write to production MIRIS / eRA, or only to a staging handoff?
+66. Can agents write to the Office of Research Aid database, or only stage a package?
 67. DLP on logs, traces, and eval sets?
 68. Who can export a full package out of the org?
 

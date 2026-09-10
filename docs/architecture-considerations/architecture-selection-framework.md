@@ -64,7 +64,7 @@ Score these **before** cost. Any **Fail** disqualifies the option for production
 | G4 Identity | Does it honor institutional SSO and least privilege? | IAP + IAM roles mapped to PI / Navigator / Office of Research Aid / Admin | Shared service account for all portals |
 | G5 Audit | Can we prove who did what, including HITL overrides? | Immutable audit log; control-plane events on every agent/tool call | LLM output with no trace of rule or user |
 | G6 Secrets | Are keys only in Secret Manager / workload identity? | No long-lived keys in code or Cloud Run env files | API keys in repo or chat logs |
-| G7 Egress | Is outbound access to NIH / eRA explicitly allow-listed? | Restricted egress; RePORTER and ASSIST as named endpoints | Open internet from agent runtime |
+| G7 Egress | Is outbound access to NIH RePORTER explicitly allow-listed? | Restricted egress; RePORTER + office database as named endpoints | Open internet from agent runtime |
 | G8 Human authority | Can the system submit **without** Office of Research Aid when policy forbids it? | Submission Agent only hands off to Office of Research Aid unless policy allows | Agent posts directly to Grants.gov in prod |
 | G9 Prompt / log hygiene | Are prompts, traces, and eval sets free of secrets and unnecessary PII? | DLP on logs; redaction; retention limits | Full proposal text in a third-party observability cloud with no BAA |
 | G10 Model use policy | Is the model endpoint approved for this data class? | Vertex in-tenant / approved model garden | Shadow IT model with unknown retention |

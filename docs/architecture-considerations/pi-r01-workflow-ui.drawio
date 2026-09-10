@@ -19,13 +19,13 @@
         <mxCell id="s4" value="4 Compliance&#xa;Blockers cited to rules" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="640" y="90" width="160" height="70" as="geometry"/>
         </mxCell>
-        <mxCell id="s5" value="5 Package&#xa;PI Freeze + version tag" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="s5" value="5 Intake form&#xa;Compliance · Formatting&#xa;Institutional · PI certify" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="840" y="90" width="160" height="70" as="geometry"/>
         </mxCell>
-        <mxCell id="s6" value="6 Office of Research Aid queue&#xa;Approve to transmit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+        <mxCell id="s6" value="6 Submit to Office&#xa;of Research Aid&#xa;packaging agent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
           <mxGeometry x="1040" y="90" width="160" height="70" as="geometry"/>
         </mxCell>
-        <mxCell id="s7" value="7 Submission assistant&#xa;AOR present + MFA&#xa;tracking #" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+        <mxCell id="s7" value="7 Tracking number&#xa;ORA-… back to PI&#xa;office database" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="1240" y="90" width="180" height="70" as="geometry"/>
         </mxCell>
         <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;" edge="1" parent="1" source="s1" target="s2"><mxGeometry relative="1" as="geometry"/></mxCell>
@@ -46,19 +46,19 @@
         <mxCell id="a4" value="Compliance + Budget scrutinizer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
           <mxGeometry x="700" y="210" width="180" height="40" as="geometry"/>
         </mxCell>
-        <mxCell id="r1" value="PI: edit + run agents + Freeze. Submit disabled." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="r1" value="PI: edit + run agents + complete intake + submit to office." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="40" y="290" width="280" height="50" as="geometry"/>
         </mxCell>
-        <mxCell id="r2" value="RA/Navigator: edit if granted; run review/compliance." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="r2" value="RA/Navigator: edit if granted; override intake fields." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="340" y="290" width="300" height="50" as="geometry"/>
         </mxCell>
-        <mxCell id="r3" value="Office of Research Aid / AOR: waive, approve transmit, official submit." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+        <mxCell id="r3" value="Office of Research Aid: review queue after ingest; NIH transmit is out of lab." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
           <mxGeometry x="660" y="290" width="320" height="50" as="geometry"/>
         </mxCell>
         <mxCell id="r4" value="Admin: kill-switch, roles, full audit." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
           <mxGeometry x="1000" y="290" width="260" height="50" as="geometry"/>
         </mxCell>
-        <mxCell id="n1" value="Do not store eRA passwords or submit without an identified AOR action." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;" vertex="1" parent="1">
+        <mxCell id="n1" value="This lab never stores eRA passwords or submits to NIH ASSIST. Submit is to the office database." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;" vertex="1" parent="1">
           <mxGeometry x="40" y="370" width="620" height="40" as="geometry"/>
         </mxCell>
         <mxCell id="n2" value="One Proposal → many Documents (Aims, Strategy, Biosketch, Budget, DMS), each with version, owner, status, agent runs." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">

@@ -1,17 +1,19 @@
 # Architecture (Mermaid)
 
-GitHub renders these diagrams on the repo. Editable draw.io files live in [architecture-considerations](architecture-considerations/README.md).
+GitHub renders these diagrams on the repo. Editable **C4 / draw.io** files live in [architecture-considerations](architecture-considerations/README.md).
 
-## System context
+This lab’s submit path ends at the **Office of Research Aid database**. NIH ASSIST / Grants.gov is **out of band** (office staff, not the agents).
 
-Who talks to the lab. Official NIH submit stays with Office of Research Aid / AOR.
+## C4 — system context
+
+Actors, the lab, stores, and the **office database** (NIH ASSIST is not a lab actor).
 
 ```mermaid
 flowchart LR
   subgraph People
     PI[PI]
     RA[Navigator / RA]
-    ORA["Office of Research Aid / AOR"]
+    ORA["Office of Research Aid"]
     ADM[Platform admin]
   end
 
@@ -29,7 +31,7 @@ flowchart LR
 
   subgraph External
     NIH[NIH RePORTER / FOA]
-    ASSIST[ASSIST / Grants.gov]
+    ODB[Office of Research Aid database]
   end
 
   PI --> UI
@@ -42,36 +44,34 @@ flowchart LR
   ORCH --> BQ
   ORCH --> GCS
   ORCH --> NIH
-  ORA -.->|human SSO / MFA| ASSIST
+  PI -->|complete intake + submit| ODB
+  ODB -->|tracking number| PI
 ```
 
 ## Agent graph (Part B default)
 
-Deterministic scientific loop with HITL **before** freeze. Missing Essentials is a first-class node.
-
 ```mermaid
 flowchart TD
-  IN[Intake: idea / FOA / DOCX] --> KU[Knowledge Updater]
+  IN[DOCX / idea / FOA] --> KU[Knowledge Updater]
   KU --> WR[Grant Writer]
   WR --> RV[Grant Reviewer]
   RV --> CC[Compliance Checker]
   CC --> BS[Budget Scrutinizer]
-  BS --> ME[Missing Essentials checklist]
-  ME --> HITL{HITL interrupt<br/>PI / Office of Research Aid}
+  BS --> ME[Missing Essentials]
+  ME --> IF[Intake form<br/>Compliance · Formatting · Institutional]
+  IF --> HITL{HITL interrupt}
 
   HITL -->|revise| WR
-  HITL -->|waive optional| HITL
-  HITL -->|approve and checklist clear| PK[Package Creator]
-  HITL -->|approve but required missing| WR
+  HITL -->|PI certify + required answered| PK[Package Creator]
+  HITL -->|unknowns remain| IF
 
-  PK --> READY[Intake form complete]
-  READY --> ODB[Submit to Office of Research Aid database]
-  ODB --> TRACK[Tracking number returned to PI]
+  PK --> ODB[Office of Research Aid database]
+  ODB --> TRACK[Tracking number → PI]
 
   CP[Control plane] -.-> RV
   CP -.-> CC
   CP -.-> HITL
-  CP -.-> ODB
+  CP -.-> PK
 ```
 
 ## Runtime paths
@@ -99,18 +99,20 @@ flowchart TB
 
 ## UI and RBAC
 
+PI **can** submit the packet to the office. Nobody in this lab submits to NIH.
+
 ```mermaid
 flowchart LR
   WB[Workbench] --> ROOM[Proposal room]
   ROOM --> DOCS[Document tree]
   ROOM --> RAIL[Agent rail + Copilot chat]
-  ROOM --> CL[Checklist]
+  ROOM --> FORM[Intake form]
   ROOM --> HITL[HITL freeze]
 
-  PI[Role PI] -->|edit / run agents / freeze| ROOM
-  PI -.->|Submit disabled| X[No official NIH submit]
-  ORA["Role Office of Research Aid"] -->|waive / approve transmit| ROOM
-  ORA -->|Submit enabled demo| SA[Submission assistant]
+  PI[Role PI] -->|edit / run agents / complete intake| ROOM
+  PI -->|Submit to Office of Research Aid| ODB[Office database]
+  ODB -->|tracking #| PI
+  ORA["Role Office of Research Aid"] -->|review queue / waive| ROOM
 ```
 
 ## Shared state (conceptual)
@@ -122,17 +124,22 @@ classDiagram
     +documents[]
     +findings[]
     +checklist
+    +intake
     +hitl
     +package_ready
+    +tracking_number
     +decision
   }
-  class ChecklistItem {
+  class IntakeItem {
     +id
-    +label
-    +required
-    +status
+    +group
+    +value
+    +source agent|human
+    +complete
   }
-  ProposalState "1" --> "*" ChecklistItem : missing_essentials
+  ProposalState "1" --> "*" IntakeItem : ora_intake
 ```
+
+Intake catalog: [`config/checklists/ora_intake.yaml`](../config/checklists/ora_intake.yaml). Narrative: [intake and office submit](intake-and-office-submit.md).
 
 Color legend used in draw.io (same meaning as README): blue = ADK / UI, green = LangGraph nodes, yellow = knowledge, rose = HITL, purple = shared state.

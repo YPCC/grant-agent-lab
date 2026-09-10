@@ -32,7 +32,7 @@
         <mxCell id="10" value="" style="shape=mxgraph.gcp2.application;fillColor=#4285F4;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;aspect=fixed;" vertex="1" parent="1">
           <mxGeometry x="36" y="450" width="28" height="28" as="geometry" />
         </mxCell>
-        <mxCell id="11" value="NIH eRA Commons (API)" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F7FAFC;strokeColor=#718096;fontColor=#1a1a1a;fontSize=10;spacing=4;" vertex="1" parent="1">
+        <mxCell id="11" value="Office of Research Aid database" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F7FAFC;strokeColor=#718096;fontColor=#1a1a1a;fontSize=10;spacing=4;" vertex="1" parent="1">
           <mxGeometry x="72" y="444" width="164" height="48" as="geometry" />
         </mxCell>
         <mxCell id="12" value="" style="shape=mxgraph.gcp2.application_system;fillColor=#12B5CB;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;aspect=fixed;" vertex="1" parent="1">
@@ -494,7 +494,7 @@
         <mxCell id="164" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.4;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="75" target="92">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="165" value="&lt;b&gt;Architecture decisions (locked)&lt;/b&gt;&#10;• Cloud Run split: FE portals vs BE agent/services&#10;• Shared Cloud SQL (PostgreSQL) for web-app metadata&#10;• BigQuery for analytics / readiness trends&#10;• Memorystore Redis = LangGraph checkpointer + session&#10;• ADK outer orchestration + LangGraph inner revision loop&#10;• Human-in-the-loop review before any Office of Research Aid / eRA handoff" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#fff;strokeColor=#1a365d;fontColor=#1a1a1a;fontSize=11;spacing=4;align=left;spacingLeft=12;spacingTop=8;" vertex="1" parent="1">
+        <mxCell id="165" value="&lt;b&gt;Architecture decisions (locked)&lt;/b&gt;&#10;• Cloud Run split: FE portals vs BE agent/services&#10;• Shared Cloud SQL (PostgreSQL) for web-app metadata&#10;• BigQuery for analytics / readiness trends&#10;• Memorystore Redis = LangGraph checkpointer + session&#10;• ADK outer orchestration + LangGraph inner revision loop&#10;• Human-in-the-loop review before any Office of Research Aid database ingest" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#fff;strokeColor=#1a365d;fontColor=#1a1a1a;fontSize=11;spacing=4;align=left;spacingLeft=12;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="20" y="1190" width="520" height="170" as="geometry" />
         </mxCell>
         <mxCell id="166" value="&lt;b&gt;Data plane&lt;/b&gt;&#10;Cloud Storage holds raw packages and parsed text. Document AI extracts layout and entities. Vertex AI Embeddings + Vector Search power FOA / similar-grant RAG. AlloyDB or Cloud SQL is the system of record for users, projects, versions, and workflow status. BigQuery stores scores, usage, and benchmarks. Firestore holds NIH / FOA / Office of Research Aid rule documents." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F8FBFF;strokeColor=#5B8DEF;fontColor=#1a1a1a;fontSize=11;spacing=4;align=left;spacingLeft=12;spacingTop=8;" vertex="1" parent="1">
@@ -673,7 +673,7 @@
         <mxCell id="55" value="" style="shape=mxgraph.gcp2.application;fillColor=#4285F4;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;aspect=fixed;" vertex="1" parent="1">
           <mxGeometry x="1980" y="300" width="28" height="28" as="geometry" />
         </mxCell>
-        <mxCell id="56" value="NIH eRA Commons (API)" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F7FAFC;strokeColor=#718096;fontColor=#1a1a1a;fontSize=11;spacing=4;" vertex="1" parent="1">
+        <mxCell id="56" value="Office of Research Aid database" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#F7FAFC;strokeColor=#718096;fontColor=#1a1a1a;fontSize=11;spacing=4;" vertex="1" parent="1">
           <mxGeometry x="2018" y="290" width="340" height="56" as="geometry" />
         </mxCell>
         <mxCell id="57" value="" style="shape=mxgraph.gcp2.application_system;fillColor=#12B5CB;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;aspect=fixed;" vertex="1" parent="1">
@@ -1074,7 +1074,7 @@
         <mxCell id="97" value="Audit Logs" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#1a1a1a;fontSize=11;spacing=4;" vertex="1" parent="1">
           <mxGeometry x="2090" y="826" width="240" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="98" value="eRA Submission Status" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#1a1a1a;fontSize=11;spacing=4;" vertex="1" parent="1">
+        <mxCell id="98" value="Office tracking number" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#1a1a1a;fontSize=11;spacing=4;" vertex="1" parent="1">
           <mxGeometry x="1830" y="896" width="240" height="56" as="geometry" />
         </mxCell>
         <mxCell id="99" value="Notifications" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#E6F4EA;strokeColor=#34A853;fontColor=#1a1a1a;fontSize=11;spacing=4;" vertex="1" parent="1">
@@ -1086,7 +1086,7 @@
         <mxCell id="101" value="" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#2b6cb0;strokeColor=#1a365d;fontSize=11;fontStyle=1;fontColor=#1a365d;" vertex="1" parent="1">
           <mxGeometry x="60" y="770" width="50" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="102" value="&lt;b&gt;Review &amp; Override&lt;/b&gt;&#10;Approve / Reject&#10;Provide Feedback&#10;&#10;LangGraph interrupt pauses the graph. ADK surfaces the human task. No eRA / Office of Research Aid payload is sent until HITL clears the readiness gate." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#1a1a1a;fontSize=12;spacing=4;" vertex="1" parent="1">
+        <mxCell id="102" value="&lt;b&gt;Review &amp; Override&lt;/b&gt;&#10;Approve / Reject&#10;Provide Feedback&#10;&#10;LangGraph interrupt pauses the graph. ADK surfaces the human task. No office-database payload is sent until HITL and the intake form are complete." style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#FCE8E6;strokeColor=#EA4335;fontColor=#1a1a1a;fontSize=12;spacing=4;" vertex="1" parent="1">
           <mxGeometry x="130" y="760" width="440" height="200" as="geometry" />
         </mxCell>
         <mxCell id="103" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.4;dashed=1;dashPattern=8 6;exitX=0.2;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.3;entryDx=0;entryDy=0;" edge="1" parent="1" source="39" target="100">
@@ -1095,7 +1095,7 @@
         <mxCell id="104" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=1.4;exitX=1;exitY=0.7;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" edge="1" parent="1" source="41" target="93">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="105" value="Synchronous request/response (solid)   ·   Asynchronous event (dashed)   ·   Trust boundary = MCC VPC + IAP   ·   Default production path = Part C Hybrid (ADK outer + LangGraph inner)   ·   Memorystore Redis is the LangGraph checkpointer   ·   HITL is mandatory before Office of Research Aid / eRA handoff" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;fontColor=#1a1a1a;fillColor=#edf2f7;strokeColor=#a0aec0;align=left;spacingLeft=10;" vertex="1" parent="1">
+        <mxCell id="105" value="Synchronous request/response (solid)   ·   Asynchronous event (dashed)   ·   Trust boundary = MCC VPC + IAP   ·   Default production path = Part C Hybrid (ADK outer + LangGraph inner)   ·   Memorystore Redis is the LangGraph checkpointer   ·   HITL is mandatory before Office of Research Aid database ingest" style="rounded=0;whiteSpace=wrap;html=1;fontSize=11;fontColor=#1a1a1a;fillColor=#edf2f7;strokeColor=#a0aec0;align=left;spacingLeft=10;" vertex="1" parent="1">
           <mxGeometry x="20" y="1010" width="2360" height="40" as="geometry" />
         </mxCell>
         <mxCell id="106" value="Happy-path sequence (revision loop)" style="swimlane;startSize=32;rounded=1;arcSize=6;whiteSpace=wrap;html=1;fontStyle=1;fontSize=13;fontColor=#1a1a1a;fillColor=#EDF2F7;strokeColor=#4A5568;swimlaneFillColor=#FFFFFF;" vertex="1" parent="1">

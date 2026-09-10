@@ -85,11 +85,11 @@ Writes `docs/demo/e2e-copilotkit-demo.mp4` and `still-copilotkit-*.png`.
 
 1. CopilotKit workbench + **CopilotSidebar**
 2. Review sample DOCX / findings rail
-3. Sidebar message box
-4. PI Submit disabled
-5. Role **Office of Research Aid** → Submit enables
+3. Grouped intake form
+4. PI overrides + certify
+5. **Submit to Office of Research Aid** → tracking number
 
-Do **not** record eRA login, passwords, or a live NIH submit.
+Do **not** record eRA login, passwords, or a live NIH submit. The demo submit is **to the Office of Research Aid database**.
 
 ## Manual recording (OBS / browser)
 

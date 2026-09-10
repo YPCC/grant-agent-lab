@@ -20,8 +20,8 @@ An NIH R01 is not “open a chat and generate a grant.” In practice the PI mov
 | **5. Budget (parallel)** | Modular vs detailed; personnel months; justification tied to aims | PI + Office of Research Aid/admin | Budget **scrutinizer** (validate), not a silent planner |
 | **6. Forms pack** | Biosketches, Other Support, Facilities, Resource Sharing, DMS | PI, RA, Office of Research Aid | Required-docs grid with missing flags |
 | **7. Internal review** | Lab / department / mock study section | Reviewer role | Agent critique + human comments side by side |
-| **8. Institutional routing** | Office of Research Aid package review, F&A, signatures | Office of Research Aid | Reviewer portal; PI cannot “submit NIH” yet |
-| **9. Official submission** | **AOR / Office of Research Aid** submits via ASSIST / Grants.gov | Office of Research Aid (AOR) | Staged submit; human authenticates |
+| **8. Institutional routing** | PI completes office intake form; packaging agent uploads to office database; tracking # returns | PI + Office of Research Aid | Grouped intake; Submit to Office of Research Aid |
+| **9. Official NIH submission** | **Out of this lab.** Office staff may later use ASSIST; agents never do. | Office of Research Aid (AOR) | Not implemented here |
 | **10. After** | Validations, JIT, summary statement, resubmission | PI, Office of Research Aid | Status timeline; new version of same proposal |
 
 The UI should feel like a **proposal workbench with a live agency layer**, not a chatbot that owns the grant.
@@ -136,13 +136,13 @@ States the PI sees:
 
 1. **Drafting** — agents may run  
 2. **Ready for PI freeze** — PI locks science  
-3. **Ready for Office of Research Aid** — package built (version tag)  
-4. **In institutional review**  
-5. **Approved to transmit**  
-6. **Submitted** (ASSIST / Grants.gov tracking #)  
-7. **Post-submit** (errors / JIT)
+3. **Intake form** — Compliance / Formatting / Institutional, agent-filled, human override  
+4. **Submitted to Office of Research Aid** — packaging agent uploaded the packet  
+5. **Tracking number on PI record** (`ORA-…`)  
+6. **In office review**  
+7. **NIH transmit** — **out of this product**; office process only
 
-The “submit” button is **not** a single red button for the PI on an R01 in an Office of Research Aid institution.
+The PI **does** click **Submit to Office of Research Aid** after the intake form is complete. There is no Submit to NIH in this UI.
 
 ---
 
@@ -158,18 +158,18 @@ Showcase RBAC by making it **visible in the chrome** (“You are PI”) and by d
 | Run Compliance / Budget scrutinizer | Yes | Yes | No | Yes | Yes | Yes |
 | Waive a blocker | Request | Request | No | No | **Yes** | Policy only |
 | Freeze science / create package version | Yes | No | No | No | Yes | Yes |
-| Mark “approved for institutional submit” | No | No | No | No | **Yes** | No |
-| Transmit to ASSIST / Grants.gov | No* | No | No | No | **Yes (AOR)** | No |
+| Complete office intake / override | Yes | Yes | No | No | Yes | Yes |
+| Submit packet to Office of Research Aid database | **Yes** | If delegated | No | No | Yes | Yes |
+| Transmit to NIH ASSIST / Grants.gov | No | No | No | No | **Out of lab** | No |
 | View full audit | Own proposal | Own proposal | Limited | Assigned | Assigned + office | All |
 | Kill-switch / disable an agent | No | No | No | No | No | **Yes** |
 | Manage roles on a proposal | Yes (invite) | No | No | No | Yes | Yes |
 
-\*Some institutions allow PI-as-AOR in rare setups. Default for MCC/Office of Research Aid: **No**.
-
 **UI patterns that make RBAC real:**
 
 - Role chip in the header.  
-- Disabled Submit with tooltip: “Office of Research Aid AOR submits after institutional approval.”  
+- **Submit to Office of Research Aid** enabled only when required intake items are answered.  
+- Disabled NIH language: this lab never offers Submit to NIH.
 - Share dialog: add person + role (PI, Co-I, Navigator, Reviewer, Office of Research Aid).  
 - “Why can’t I click this?” always answers with role + policy, not a blank control.
 
@@ -184,48 +184,40 @@ Showcase RBAC by making it **visible in the chrome** (“You are PI”) and by d
 | Reviewer | After a section is stable | Treat like a mock study section; decide what to fix |
 | Compliance | Continuous + on Freeze | Fix blockers before bothering Office of Research Aid |
 | Budget Scrutinizer | Budget tab | Fix effort / modular / aim linkage |
-| Package Creator | After PI freeze + no blockers | Produces versioned packet + evidence |
-| Submission assistant | Only after Office of Research Aid approval | See section 6 |
+| Package Creator | After intake complete | Versioned packet + upload to office database |
+| Intake agent | After review | Fills Compliance / Formatting / Institutional form |
 
 Agent runs should be **jobs on a document**, with progress and a diff—not a hidden background rewrite of the only copy.
 
 ---
 
-## 6. Submission agent — design it so it is real and safe
+## 6. Office submit — design it so it is real and safe
 
-**Do not** ship “the agent logs into eRA with stored PI passwords and clicks Submit.”
+**Do not** ship “the agent logs into eRA and clicks NIH Submit.”
 
-Reasons: AOR authority, credential policy, MFA, audit, and irreversible sponsor actions.
-
-### Recommended pattern (showcase-able and honest)
+This lab’s submit is **to the Office of Research Aid database**.
 
 ```
-Package Creator
-    → versioned packet in GCS + Cloud SQL manifest
-    → Office of Research Aid reviews in Review queue
-    → AOR authenticates to ASSIST / Grants.gov (human SSO / MFA)
-    → Submission assistant pre-fills forms and attachments
-    → AOR confirms a Submit checklist
-    → System records tracking number + timestamp + actor
+Intake agent fills form from the DOCX
+    → PI / Navigator overrides unknowns and certifies
+    → Package Creator writes output/packages/<ORA-…>/
+    → Packet uploaded to Office of Research Aid database
+    → Tracking number returned to the PI
 ```
 
-Call the component a **Submission assistant**, not an autonomous submitter.
+What it *may* do:
 
-What it *may* do after approval:
+- Assemble MANIFEST, intake JSON, findings, excerpt  
+- Require every required intake item to be answered  
+- Return `ORA-YYYYMMDD-xxxxxx` onto the PI record  
 
-- Map package files to ASSIST attachment slots  
-- Validate file names, page counts, and required forms  
-- Open a guided checklist beside the official site  
-- Optionally use a **browser automation session the AOR has already logged into** (user-present), never a vaulted password replay  
-- Write back status (accepted / validation errors / tracking ID)
-
-What it must not do in v1:
+What it must not do:
 
 - Store NIH/eRA passwords  
-- Submit without an identified AOR action in the audit log  
-- Bypass Office of Research Aid because the PI is in a hurry  
+- Call ASSIST / Grants.gov  
+- Bypass the intake form  
 
-If a demo needs theater: show a **simulated ASSIST** screen in the lab with a fake tracking number, labeled **demo only**, and the same RBAC rules.
+Demo: CopilotKit + workbench show this path. See [intake and office submit](../intake-and-office-submit.md).
 
 ---
 
@@ -257,12 +249,12 @@ The workbench lists proposals. The room lists documents. That matches how PIs ju
 6. Reviewer returns one major (aims not independent). PI accepts a revise.  
 7. PI uploads a budget justification; Scrutinizer flags missing PI person-months.  
 8. Compliance still open: DMS plan missing. RA adds a stub; flag clears.  
-9. PI clicks **Freeze for Office of Research Aid**. Package v1 appears. Submit stays disabled for PI.  
-10. Office of Research Aid role logs in, sees Review queue, waives nothing, **Approves to transmit**.  
-11. AOR starts Submission assistant → checklist → (demo) tracking #.  
-12. Activity log shows every agent + the AOR submit event.
+9. PI completes the **office intake form** (agent-filled; overrides + PI certify).  
+10. PI clicks **Submit to Office of Research Aid**. Packaging agent uploads.  
+11. Tracking number `ORA-…` appears on the PI record.  
+12. Activity log shows every agent + the office ingest event.
 
-That path is the story. Build screens in that order.
+That path is the story. Build screens in that order. NIH ASSIST is not in this click-path.
 
 ---
 

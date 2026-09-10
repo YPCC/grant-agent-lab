@@ -1,12 +1,16 @@
-# End-to-End Workflow (to Institutional Submission)
+# End-to-end workflow (to Office of Research Aid)
 
-1. **Intake** – PI / RA supplies research idea, hypothesis (if ready), mechanism, deadline, team strengths.
-2. **Knowledge refresh** (optional / scheduled) – Knowledge Updater pulls latest FOA / SF424 / NOSI guidance.
-3. **Draft Specific Aims** – Grant Writer produces the 1-page Aims following grant-proposal-assistant frameworks.
-4. **Mock Study Section** – Grant Reviewer applies scientific-strategic-review-board + primary/secondary reviewer lens.
-5. **Compliance Gate** – Compliance Checker evaluates NIH page limits, required elements, and institutional policies.
-6. **Human-in-the-Loop** – PI / RA reviews critiques + compliance report and either approves or requests revision.
-7. **Revision loop** – Writer incorporates feedback; cycle repeats until no blockers remain.
-8. **Package Ready** – Final state marked `final_package_ready=True`. Evidence bundle (critiques, compliance, audit log) is generated for institutional review / submission.
+This path **stops at the office database**. It does not submit to NIH ASSIST.
 
-The control plane mediates every critical step and records an audit trail suitable for institutional compliance officers.
+1. **Draft / upload** – PI supplies an R01 DOCX (or the writer drafts Aims).
+2. **Knowledge refresh** (optional) – Knowledge Updater pulls FOA / SF424 / RePORTER context.
+3. **Mock study section** – Grant Reviewer + scientific-strategic-review-board lens.
+4. **Compliance + budget scrutinizer** – NIH norms; presence of a budget element, not invented dollars.
+5. **Missing Essentials** – required package items vs `r01_essentials.yaml`.
+6. **Office intake form** – grouped Compliance / Formatting / Institutional questions, agent-filled from the document; PI overrides and certifies.
+7. **HITL** – freeze / revise until required intake items are answered.
+8. **Package creator** – versioned packet under `output/packages/<ORA-…>/`.
+9. **Submit to Office of Research Aid** – upload to the office database.
+10. **Tracking number** – `ORA-YYYYMMDD-xxxxxx` returned to the PI.
+
+The control plane mediates every critical step and records an audit trail. Official NIH submit, if it happens later, is an office process outside this lab.

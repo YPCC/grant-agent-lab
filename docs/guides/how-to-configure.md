@@ -47,7 +47,7 @@ agents:
   submission_assistant: {enabled: false}  # Office of Research Aid / AOR only; never autonomous
 ```
 
-Keep `submission_assistant.enabled: false` unless you are building the AOR-present assistant. Never store eRA passwords.
+Keep `submission_assistant.enabled: false`. This lab submits to the **Office of Research Aid database** via the packaging agent, not to NIH. Never store eRA passwords.
 
 ## 4. Checklist catalog (Missing Essentials)
 

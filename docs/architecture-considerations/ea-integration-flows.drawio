@@ -71,7 +71,7 @@
         <mxCell id="23" value="Control plane (AGT-style)&amp;#xa;Every agent/tool call → guard()&amp;#xa;Identity · kill-switch · audit&amp;#xa;Evidence in final package" style="fillColor=#ffffff;strokeColor=#999999;rounded=1;fontSize=11;html=1;whiteSpace=wrap;" vertex="1" parent="1">
           <mxGeometry x="480" y="460" width="280" height="110" as_="geometry"/>
         </mxCell>
-        <mxCell id="24" value="External I/O&amp;#xa;IN: NIH RePORTER, SSO, uploads&amp;#xa;OUT: MIRIS handoff, eRA status,&amp;#xa;email notifications" style="fillColor=#ffffff;strokeColor=#999999;rounded=1;fontSize=11;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+        <mxCell id="24" value="External I/O&amp;#xa;IN: NIH RePORTER, SSO, uploads&amp;#xa;OUT: office DB tracking #,&amp;#xa;email notifications" style="fillColor=#ffffff;strokeColor=#999999;rounded=1;fontSize=11;html=1;whiteSpace=wrap;" vertex="1" parent="1">
           <mxGeometry x="800" y="460" width="280" height="110" as_="geometry"/>
         </mxCell>
       </root>

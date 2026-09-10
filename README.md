@@ -1,6 +1,6 @@
 # Grant Agent Lab
 
-**Multi-agent system for drafting, reviewing, compliance-checking, budget-validating, and packaging NIH (and related) grant proposals until they are ready for institutional review and submission.**
+**Multi-agent system for drafting, reviewing, compliance-checking, budget-validating, and packaging NIH (and related) grant proposals, then submitting the packet to the Office of Research Aid database (not NIH).**
 
 Start here: **[configure](docs/guides/how-to-configure.md)** · **[launch UI](docs/guides/how-to-launch-ui.md)** · **[create demos](docs/guides/how-to-create-demo-files.md)** · **[architecture (Mermaid)](docs/architecture.md)** · **[docs index](docs/README.md)**
 
@@ -9,7 +9,7 @@ Start here: **[configure](docs/guides/how-to-configure.md)** · **[launch UI](do
 ```mermaid
 flowchart TD
   PI[PI / Navigator] --> UI[Workbench / CopilotKit]
-  ORA["Office of Research Aid / AOR"] --> UI
+  ORA["Office of Research Aid"] --> UI
   UI --> CP[Control plane<br/>guard · audit · kill-switch]
   CP --> ORCH[Path A ADK / B LangGraph / C hybrid]
   ORCH --> WR[Writer]
@@ -17,11 +17,11 @@ flowchart TD
   RV --> CC[Compliance]
   CC --> BS[Budget scrutinizer]
   BS --> ME[Missing Essentials]
-  ME --> HITL{HITL freeze}
+  ME --> INTAKE[Intake form<br/>Compliance · Formatting · Institutional]
+  INTAKE --> HITL{HITL freeze}
   HITL -->|revise| WR
-  HITL -->|approve + complete| PK[Package Creator]
-  PK --> READY[Ready for Office of Research Aid]
-  READY --> ODB[Submit package to office database]
+  HITL -->|PI certify + complete| PK[Package Creator]
+  PK --> ODB[Office of Research Aid database]
   ODB --> TRACK[Tracking number returned to PI]
 ```
 
@@ -57,7 +57,7 @@ pip install python-docx
 python3 ui-copilotkit/serve_workbench.py
 ```
 
-Open [http://127.0.0.1:8765](http://127.0.0.1:8765). Review the sample R01 Aims `.docx`, inspect the checklist, try HITL revise/approve, switch role to Office of Research Aid to see Submit enable (demo only).
+Open [http://127.0.0.1:8765](http://127.0.0.1:8765). Review the sample R01 Aims `.docx`, complete the grouped **intake form** (agent-filled; override as needed, including PI certify), then **Submit to Office of Research Aid**. A tracking number comes back to the PI. There is no Submit to NIH.
 
 **Recorded demos** (watch first):
 
@@ -121,10 +121,14 @@ grant-agent-lab/
 │   └── record_demo.py            # Playwright + ffmpeg recorder
 ├── config/
 │   ├── runtime.yaml              # path, HITL, agents
-│   ├── checklists/r01_essentials.yaml
+│   ├── checklists/
+│   │   ├── r01_essentials.yaml
+│   │   └── ora_intake.yaml      # office intake form
 │   └── policies/
 ├── src/
 │   ├── shared/checklist.py
+│   ├── shared/intake.py
+│   ├── shared/packaging.py
 │   ├── control_plane/
 │   ├── part_a_adk/
 │   ├── part_b_langgraph/
@@ -155,8 +159,9 @@ Used in [draw.io](docs/architecture-considerations/) files:
 | [How to launch UI](docs/guides/how-to-launch-ui.md) | Workbench and CopilotKit |
 | [How to create demo files](docs/guides/how-to-create-demo-files.md) | Record MP4 + stills |
 | [Demo videos](docs/demo/README.md) | CopilotKit UI + Python workbench walkthroughs |
-| [Architecture (Mermaid)](docs/architecture.md) | System context, graph, RBAC |
-| [Architecture considerations](docs/architecture-considerations/README.md) | EA packet, Cloud SQL, Cloud Run |
+| [Architecture (Mermaid)](docs/architecture.md) | System context (C4), graph, RBAC |
+| [Architecture considerations](docs/architecture-considerations/README.md) | EA packet, Cloud SQL, Cloud Run, draw.io C4 |
+| [Intake & office submit](docs/intake-and-office-submit.md) | Form groups, packaging, tracking number |
 | [Part B LangGraph + HITL](docs/part-b-langgraph-hitl.md) | Interrupt-before-freeze |
 | [Budget & package](docs/budget-and-package-agent.md) | Scrutinizer + package creator |
 | [Control plane](docs/control-plane-integration.md) | AGT / agent-control-lab |

@@ -10,7 +10,7 @@ How to **choose** components (function, CSP, security gates, tokens, TCO): [Arch
 
 Questions to ask before choosing (function, UX, security, compliance, audit, control plane, governance): [Architecture discovery questions](architecture-discovery-questions.md).
 
-PI-facing product (R01 workbench, multi-doc, RBAC, staged submit): [PI R01 workflow UI](pi-r01-workflow-ui.md).
+PI-facing product (R01 workbench, intake form, office submit + tracking): [PI R01 workflow UI](pi-r01-workflow-ui.md). Narrative: [intake and office submit](../intake-and-office-submit.md).
 
 Rendered Mermaid (system context, agent graph, paths): [Architecture (Mermaid)](../architecture.md). Configure: [how-to-configure](../guides/how-to-configure.md). Launch UI: [how-to-launch-ui](../guides/how-to-launch-ui.md).
 
@@ -27,7 +27,7 @@ Rendered Mermaid (system context, agent graph, paths): [Architecture (Mermaid)](
 | [pure-adk-architecture.drawio](pure-adk-architecture.drawio) | Agent runtime path A | Pure Google ADK 2.0 Graph Workflow |
 | [pure-langgraph-architecture.drawio](pure-langgraph-architecture.drawio) | Agent runtime path B | Pure LangGraph + checkpointer |
 | [mcc-office-of-research-aid-c4-source.jpg](mcc-office-of-research-aid-c4-source.jpg) | Source reference | Original MCC C4 / GCP deployment sketch |
-| [pi-r01-workflow-ui.drawio](pi-r01-workflow-ui.drawio) | PI product UX | R01 workbench → room → Office of Research Aid → staged submit |
+| [pi-r01-workflow-ui.drawio](pi-r01-workflow-ui.drawio) | PI product UX | R01 workbench → intake form → office database → tracking # |
 | [mcc-office-of-research-aid-gcp-reference-architecture.drawio](mcc-office-of-research-aid-gcp-reference-architecture.drawio) | Full GCP reference (3 pages) | Deployment view + C4 containers + ADK/LangGraph/MCP orchestration with official draw.io GCP2 icons |
 
 ### Color legend (used consistently)
@@ -189,7 +189,7 @@ Front ends are thin, authenticated UIs. They call back-end Cloud Run services (t
 └────────────────────────────────────────────────────────────┘
              │
              ▼
-    External: NIH RePORTER · eRA/ASSIST · MIRIS (Office of Research Aid) · SSO
+    External: NIH RePORTER · Office of Research Aid database · SSO
 ```
 
 ### Output → input chain
@@ -202,9 +202,9 @@ Front ends are thin, authenticated UIs. They call back-end Cloud Run services (t
 | Grant Writer | Specific Aims / section drafts | Reviewer |
 | Grant Reviewer | Critiques (fatal / major / minor) | Compliance, Writer (revision) |
 | Compliance + Budget Scrutinizer | Issues (blocker / warning) | HITL + Readiness |
-| HITL (PI / Office of Research Aid) | Approve / revise | Writer (loop) or Package Creator |
-| Package Creator | Versioned package + evidence | Submission Agent / Office of Research Aid handoff |
-| Submission | Status + audit events | Cloud SQL, BigQuery, notifications |
+| HITL (PI / Office of Research Aid) | Approve / revise / certify intake | Writer (loop) or Package Creator |
+| Package Creator | Versioned package + intake JSON | Office of Research Aid database |
+| Office ingest | Tracking number `ORA-…` | PI record, Cloud SQL, notifications |
 
 Integration mechanisms: HTTPS APIs, Pub/Sub for async jobs, shared Cloud SQL + Memorystore, GCS object paths, and typed **`ProposalState`** as the contract between agents.
 
@@ -242,14 +242,14 @@ See [ea-integration-flows.drawio](ea-integration-flows.drawio) and [ea-container
 ### Platform → external
 
 - **NIH RePORTER:** search criteria → abstracts / activity codes / PIs
-- **Office of Research Aid / MIRIS:** package ready for institutional review (does not bypass Office of Research Aid)
-- **eRA / ASSIST / Grants.gov:** only after institutional approval, if policy allows
-- **Email / notifications:** readiness alerts, HITL requests, submission status
+- **Office of Research Aid database:** completed intake packet; tracking number returned to PI
+- **NIH ASSIST / Grants.gov:** **out of this lab** (office process after ingest)
+- **Email / notifications:** readiness alerts, HITL requests, office tracking number
 
 ### Security / compliance context
 
 - HIPAA / HITRUST-aligned controls (VPC, CMEK, IAM, audit logs).
-- Office of Research Aid remains the institutional gate. The platform prepares and scores packages; it does not replace official submission authority.
+- Office of Research Aid remains the institutional gate. The platform prepares, scores, and **ingests packets into the office database**. It does not submit to NIH.
 
 See [ea-system-context.drawio](ea-system-context.drawio).
 

@@ -121,7 +121,6 @@ grant-agent-lab/
 │   │   ├── how-to-configure.md
 │   │   ├── how-to-launch-ui.md
 │   │   └── how-to-create-demo-files.md
-│   └── architecture-considerations/  # EA notes + draw.io
 ├── scripts/
 │   └── record_demo.py            # Playwright + ffmpeg recorder
 ├── config/

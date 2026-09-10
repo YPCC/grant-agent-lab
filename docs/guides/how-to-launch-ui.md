@@ -12,7 +12,7 @@ pip install python-docx
 python3 ui-copilotkit/serve_workbench.py
 ```
 
-Open [http://127.0.0.1:8765](http://127.0.0.1:8765).
+Open [http://127.0.0.1:8080](http://127.0.0.1:8080).
 
 Recorded walkthroughs:
 
@@ -29,13 +29,15 @@ Re-record: [how to create demo files](how-to-create-demo-files.md).
 | Intake form | Grouped Compliance / Formatting / Institutional; agent-filled, human override |
 | Submit to Office of Research Aid | Enabled when required intake items are answered; packaging agent uploads; tracking number returns |
 | HITL: revise / approve freeze | Resumes Part B graph (`GrantGraph.resume`) |
+| Harness tab | Runs `data/harness/cases` on the same graph |
 | Role chip | PI, Navigator, Office of Research Aid, Admin — PI **can** submit to the office database |
 
-The workbench calls:
+The workbench calls **one pipeline**:
 
-- `ui-copilotkit/lib/review_grant_docx.py` — extract + findings
-- `src/shared/checklist.py` — Missing Essentials
-- `src/part_b_langgraph/graph.py` — HITL pause/resume
+- `src/part_b_langgraph/graph.py` — knowledge → reviewer → checklist → intake → HITL
+- `src/control_plane/guard.py` — ALLOW / DENY / ASK
+- `src/shared/docx_text.py` — extract `.docx` text
+
 
 ## Option B — CopilotKit React (Next.js)
 

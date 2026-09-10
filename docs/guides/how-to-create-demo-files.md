@@ -4,7 +4,7 @@ Demo files live in [`docs/demo/`](../demo/). They are **screen recordings** of a
 
 | File | Source UI | Typical length |
 |------|-----------|----------------|
-| [`e2e-workbench-demo.mp4`](../demo/e2e-workbench-demo.mp4) | Python workbench `:8765` | ~40s |
+| [`e2e-workbench-demo.mp4`](../demo/e2e-workbench-demo.mp4) | Python workbench `:8080` | ~40s |
 | [`e2e-copilotkit-demo.mp4`](../demo/e2e-copilotkit-demo.mp4) | CopilotKit Next.js `:3000` | ~30s |
 | `still-*.png` | Same session, key frames | — |
 
@@ -72,7 +72,7 @@ Writes `docs/demo/e2e-copilotkit-demo.mp4` and `still-copilotkit-*.png`.
 
 ## What each walkthrough must show
 
-**Workbench (`:8765`)**
+**Workbench (`:8080`)**
 
 1. Role **PI**
 2. Review sample DOCX

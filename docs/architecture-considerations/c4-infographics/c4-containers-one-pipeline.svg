@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 780" role="img" aria-labelledby="t d">
+  <title id="t">C4 containers — one GrantGraph pipeline</title>
+  <desc id="d">Workbench, MCP, GrantGraph nodes, shared catalogs, and control-plane guard.</desc>
+  <rect width="1400" height="780" fill="#f4f6f8"/>
+  <rect width="1400" height="64" fill="#1a6b7a"/>
+  <text x="28" y="32" fill="#fff" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="22" font-weight="700">C4 — Containers</text>
+  <text x="28" y="52" fill="#d7eef2" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">One pipeline · harness = workbench = MCP</text>
+
+  <rect x="24" y="88" width="180" height="64" rx="10" fill="#fff" stroke="#c5d0dc"/>
+  <text x="44" y="126" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#122033">PI / Navigator</text>
+
+  <rect x="230" y="88" width="940" height="560" rx="14" fill="#fff" stroke="#9aa8b6"/>
+  <text x="250" y="118" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#5b6b7c" letter-spacing="0.08em">GRANT AGENT LAB</text>
+
+  <rect x="250" y="136" width="430" height="80" rx="10" fill="#dae8fc" stroke="#6c8ebf"/>
+  <text x="268" y="166" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1b4f8a">Workbench :8080</text>
+  <text x="268" y="188" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#1b4f8a">Review · Intake · Harness tab</text>
+
+  <rect x="700" y="136" width="450" height="80" rx="10" fill="#dae8fc" stroke="#6c8ebf"/>
+  <text x="718" y="166" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#1b4f8a">MCP stdio</text>
+  <text x="718" y="188" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#1b4f8a">python -m src.harness mcp</text>
+
+  <!-- graph nodes -->
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">
+    <rect x="250" y="240" width="140" height="70" rx="8" fill="#fff2cc" stroke="#d6b656"/>
+    <text x="262" y="270" font-weight="700" fill="#3d3208">Knowledge</text>
+    <text x="262" y="290" fill="#3d3208">FOA / packs</text>
+    <rect x="410" y="240" width="140" height="70" rx="8" fill="#d5e8d4" stroke="#82b366"/>
+    <text x="422" y="270" font-weight="700" fill="#1b4332">Reviewer</text>
+    <text x="422" y="290" fill="#1b4332">GPA + SSRB</text>
+    <rect x="570" y="240" width="150" height="70" rx="8" fill="#d5e8d4" stroke="#82b366"/>
+    <text x="582" y="270" font-weight="700" fill="#1b4332">Essentials</text>
+    <text x="582" y="290" fill="#1b4332">R01 checklist</text>
+    <rect x="740" y="240" width="140" height="70" rx="8" fill="#d5e8d4" stroke="#82b366"/>
+    <text x="752" y="270" font-weight="700" fill="#1b4332">Intake</text>
+    <text x="752" y="290" fill="#1b4332">ora_intake.yaml</text>
+    <rect x="900" y="240" width="110" height="70" rx="8" fill="#f8cecc" stroke="#b85450"/>
+    <text x="912" y="270" font-weight="700" fill="#6b1d1d">HITL</text>
+    <text x="912" y="290" fill="#6b1d1d">approve</text>
+    <rect x="1030" y="240" width="120" height="70" rx="8" fill="#d5e8d4" stroke="#82b366"/>
+    <text x="1040" y="270" font-weight="700" fill="#1b4332">Package</text>
+    <text x="1040" y="290" fill="#1b4332">ORA only</text>
+  </g>
+
+  <rect x="250" y="340" width="900" height="72" rx="10" fill="#e1d5e7" stroke="#9673a6"/>
+  <text x="268" y="370" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#4a2c5a">Shared catalogs (single source of truth)</text>
+  <text x="268" y="392" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#4a2c5a">config/checklists/r01_essentials.yaml · ora_intake.yaml · config/policies/nih_sf424_rules.yaml</text>
+
+  <rect x="250" y="430" width="900" height="88" rx="10" fill="#fff2cc" stroke="#d6b656"/>
+  <text x="268" y="460" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#3d3208">control_plane.guard + src/harness/policies.py</text>
+  <text x="268" y="484" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#3d3208">DENY submit_to_nih / invent_budget / auto_certify · ASK freeze / submit_office unless human_approved</text>
+  <text x="268" y="504" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#3d3208">GitHub Actions: .github/workflows/harness.yml (eval-cage)</text>
+
+  <rect x="250" y="538" width="900" height="88" rx="10" fill="#f8cecc" stroke="#b85450"/>
+  <text x="268" y="568" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#6b1d1d">Eval harness</text>
+  <text x="268" y="590" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#6b1d1d">data/harness/cases/*.yaml  →  run_pipeline()  →  GrantGraph.invoke / resume  →  graders</text>
+  <text x="268" y="610" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#6b1d1d">Optional agents/grant-navigator.yaml (Omnigent) is a driver, not a second graph.</text>
+
+  <rect x="1196" y="136" width="180" height="200" rx="12" fill="#d5e8d4" stroke="#82b366"/>
+  <text x="1210" y="170" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1b4332">ORA database</text>
+  <text x="1210" y="194" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#1b4332">tracking number</text>
+  <text x="1210" y="214" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#1b4332">back to PI</text>
+
+  <rect x="1196" y="360" width="180" height="120" rx="12" fill="#eceff3" stroke="#9aa8b6" stroke-dasharray="6 4"/>
+  <text x="1210" y="394" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#5b6b7c">NIH ASSIST</text>
+  <text x="1210" y="416" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#b85450">DENIED</text>
+
+  <text x="28" y="756" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#5b6b7c">Blue = UI / MCP · Green = graph nodes · Yellow = knowledge / policy · Rose = HITL / harness · Purple = catalogs</text>
+</svg>

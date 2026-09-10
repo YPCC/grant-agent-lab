@@ -10,26 +10,28 @@ Start here: **[configure](docs/guides/how-to-configure.md)** · **[launch UI](do
 
 ```mermaid
 flowchart TD
-  PI[PI / Navigator] --> UI[Workbench / CopilotKit]
+  PI[PI / Navigator] --> UI[Workbench :8080 / CopilotKit]
+  PI --> MCP[MCP stdio · Copilot / Cursor / Claude]
   ORA["Office of Research Aid"] --> UI
-  UI --> CP[Control plane<br/>guard · audit · kill-switch]
-  CP --> ORCH[Path A ADK / B LangGraph / C hybrid]
-  ORCH --> WR[Writer]
-  WR --> RV[Reviewer]
-  RV --> CC[Compliance]
-  CC --> BS[Budget scrutinizer]
-  BS --> ME[Missing Essentials]
-  ME --> INTAKE[Intake form<br/>Compliance · Formatting · Institutional]
+  UI --> CP[Control plane<br/>ALLOW / DENY / ASK]
+  MCP --> CP
+  HARNESS[Eval harness cases] --> CP
+  CP --> G[Part B GrantGraph]
+  G --> RV[Reviewer GPA+SSRB]
+  RV --> ME[Missing Essentials]
+  ME --> INTAKE[Intake form]
   INTAKE --> HITL{HITL freeze}
-  HITL -->|revise| WR
+  HITL -->|revise| RV
   HITL -->|PI certify + complete| PK[Package Creator]
   PK --> ODB[Office of Research Aid database]
   ODB --> TRACK[Tracking number returned to PI]
+  CP -.->|DENY| ASSIST[NIH ASSIST — out of band]
 ```
 
-Full diagrams: [docs/architecture.md](docs/architecture.md) (Mermaid) · [C4 infographics](docs/architecture-considerations/c4-infographics/README.md) · [draw.io](docs/architecture-considerations/README.md).
+Full diagrams: [docs/architecture.md](docs/architecture.md) (Mermaid) · [C4 SVG](docs/architecture-considerations/c4-infographics/c4-system-context-unified.svg) · [C4 infographics](docs/architecture-considerations/c4-infographics/README.md) · [draw.io](docs/architecture-considerations/README.md).
 
-![C4 system context — Office of Research Aid handoff](docs/architecture-considerations/c4-infographics/c4-system-context-office-handoff.jpg)
+![C4 system context — unified](docs/architecture-considerations/c4-infographics/c4-system-context-unified.svg)
+
 
 ## What this lab does
 
@@ -39,8 +41,9 @@ Full diagrams: [docs/architecture.md](docs/architecture.md) (Mermaid) · [C4 inf
 4. **Scrutinizes the budget** against NIH modular/detailed norms (does **not** invent a budget).
 5. **Scores Missing Essentials** (required R01 package items) and **pauses for HITL**.
 6. **Packages** an approved proposal and submits it to the **Office of Research Aid database**. Completing the grouped intake form (compliance, formatting, institutional) unlocks submit. A **tracking number** comes back to the PI. This lab does **not** submit to NIH ASSIST.
+7. **Eval cage** — YAML cases, MCP/CLI plugin, and GitHub Actions run the **same graph**. Weak aims cannot freeze. Control plane **DENY**s NIH ASSIST and invented budget dollars.
 
-Three parallel implementations:
+Three parallel implementations (catalogs and guard are shared). **Harness / workbench / MCP drive Part B:**
 
 | Path | Stack | Best when |
 |------|--------|-----------|
@@ -61,14 +64,14 @@ pip install python-docx
 python3 ui-copilotkit/serve_workbench.py
 ```
 
-Open [http://127.0.0.1:8765](http://127.0.0.1:8765). Review the sample R01 Aims `.docx`, complete the grouped **intake form** (agent-filled; override as needed, including PI certify), then **Submit to Office of Research Aid**. A tracking number comes back to the PI. There is no Submit to NIH.
+Open [http://127.0.0.1:8080](http://127.0.0.1:8080). Review the sample R01 Aims, complete the grouped **intake form** (agent-filled; override as needed, including PI certify), then **Submit to Office of Research Aid**. The **Harness** tab runs the same `GrantGraph` cases. A tracking number comes back to the PI. There is no Submit to NIH.
 
 **Recorded demos** (watch first):
 
 | UI | Video |
 |----|--------|
 | CopilotKit Next.js (`:3000`) | [e2e-copilotkit-demo.mp4](docs/demo/e2e-copilotkit-demo.mp4) (46s, intake → office tracking) |
-| Python workbench (`:8765`) | [e2e-workbench-demo.mp4](docs/demo/e2e-workbench-demo.mp4) (30s, intake → office tracking) |
+| Python workbench (`:8080`) | [e2e-workbench-demo.mp4](docs/demo/e2e-workbench-demo.mp4) (30s, intake → office tracking) |
 
 CopilotKit Next.js (optional chat):
 
@@ -158,11 +161,11 @@ Used in [draw.io](docs/architecture-considerations/) files:
 
 | Color | Meaning |
 |-------|---------|
-| Blue (`#dae8fc` / `#6c8ebf`) | ADK / UI / deployment |
-| Green (`#d5e8d4` / `#82b366`) | LangGraph nodes |
-| Yellow (`#fff2cc` / `#d6b656`) | Knowledge / FOA freshness |
-| Rose (`#f8cecc` / `#b85450`) | Human-in-the-loop |
-| Purple (`#e1d5e7` / `#9673a6`) | Shared state |
+| Blue (`#dae8fc` / `#6c8ebf`) | UI / MCP / Copilot |
+| Green (`#d5e8d4` / `#82b366`) | LangGraph / GrantGraph nodes |
+| Yellow (`#fff2cc` / `#d6b656`) | Knowledge / FOA / control-plane policy |
+| Rose (`#f8cecc` / `#b85450`) | Human-in-the-loop / eval harness |
+| Purple (`#e1d5e7` / `#9673a6`) | Shared catalogs / state |
 
 ## Documentation
 
@@ -173,13 +176,15 @@ Used in [draw.io](docs/architecture-considerations/) files:
 | [How to launch UI](docs/guides/how-to-launch-ui.md) | Workbench and CopilotKit |
 | [How to create demo files](docs/guides/how-to-create-demo-files.md) | Record MP4 + stills |
 | [Demo videos](docs/demo/README.md) | CopilotKit UI + Python workbench walkthroughs |
-| [Architecture (Mermaid)](docs/architecture.md) | System context (C4), graph, RBAC |
-| [C4 infographics](docs/architecture-considerations/c4-infographics/README.md) | Presentation posters (context + L1–L3) |
+| [Architecture (Mermaid)](docs/architecture.md) | System context (C4), one pipeline, RBAC |
+| [C4 infographics](docs/architecture-considerations/c4-infographics/README.md) | SVG context + containers + JPG posters |
+| [Eval harness](docs/harness.md) | Cases, MCP/CLI, CI eval-cage |
+| [Control plane](docs/control-plane-integration.md) | ALLOW / DENY / ASK guard |
+| [Omnigent adapter](docs/omnigent-adoption.md) | Optional outer driver |
 | [Architecture considerations](docs/architecture-considerations/README.md) | EA packet, Cloud SQL, Cloud Run, draw.io C4 |
 | [Intake & office submit](docs/intake-and-office-submit.md) | Form groups, packaging, tracking number |
 | [Part B LangGraph + HITL](docs/part-b-langgraph-hitl.md) | Interrupt-before-freeze |
 | [Budget & package](docs/budget-and-package-agent.md) | Scrutinizer + package creator |
-| [Control plane](docs/control-plane-integration.md) | AGT / agent-control-lab |
 | [Datasets](docs/datasets-and-validation.md) | NIH samples & RePORTER |
 | [CopilotKit UI](ui-copilotkit/README.md) | DOCX review showcase |
 

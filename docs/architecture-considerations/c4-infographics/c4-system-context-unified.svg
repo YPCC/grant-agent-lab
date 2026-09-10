@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 820" role="img" aria-labelledby="t d">
+  <title id="t">C4 system context — Grant Agent Lab</title>
+  <desc id="d">Actors, one GrantGraph pipeline, control plane, Office of Research Aid database. NIH ASSIST is out of band.</desc>
+  <rect width="1400" height="820" fill="#f4f6f8"/>
+  <rect width="1400" height="64" fill="#1a6b7a"/>
+  <text x="28" y="32" fill="#fff" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="22" font-weight="700">C4 — System context</text>
+  <text x="28" y="52" fill="#d7eef2" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13">Grant Agent Lab · packet → Office of Research Aid · NIH ASSIST out of band</text>
+
+  <!-- actors -->
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <rect x="24" y="88" width="250" height="78" rx="10" fill="#fff" stroke="#c5d0dc"/>
+    <text x="40" y="118" font-size="15" font-weight="700" fill="#122033">PI</text>
+    <text x="40" y="140" font-size="12" fill="#5b6b7c">edit · run agents · submit to office</text>
+    <rect x="290" y="88" width="250" height="78" rx="10" fill="#fff" stroke="#c5d0dc"/>
+    <text x="306" y="118" font-size="15" font-weight="700" fill="#122033">Navigator / RA</text>
+    <text x="306" y="140" font-size="12" fill="#5b6b7c">same as PI in this lab</text>
+    <rect x="556" y="88" width="270" height="78" rx="10" fill="#fff" stroke="#c5d0dc"/>
+    <text x="572" y="118" font-size="15" font-weight="700" fill="#122033">Office of Research Aid</text>
+    <text x="572" y="140" font-size="12" fill="#5b6b7c">ingest queue · tracking</text>
+    <rect x="842" y="88" width="250" height="78" rx="10" fill="#fff" stroke="#c5d0dc"/>
+    <text x="858" y="118" font-size="15" font-weight="700" fill="#122033">Platform admin</text>
+    <text x="858" y="140" font-size="12" fill="#5b6b7c">kill-switch · audit · CI</text>
+  </g>
+
+  <!-- platform -->
+  <rect x="24" y="188" width="900" height="430" rx="14" fill="#fff" stroke="#9aa8b6"/>
+  <text x="44" y="218" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#5b6b7c" letter-spacing="0.06em">GRANT AGENT LAB</text>
+
+  <rect x="44" y="236" width="860" height="88" rx="10" fill="#dae8fc" stroke="#6c8ebf"/>
+  <text x="64" y="268" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#1b4f8a">Workbench :8080 + CopilotKit + MCP</text>
+  <text x="64" y="292" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#1b4f8a">Review · Intake · Harness tab · python -m src.harness mcp (Copilot / Cursor / Claude)</text>
+
+  <rect x="44" y="340" width="860" height="120" rx="10" fill="#d5e8d4" stroke="#82b366"/>
+  <text x="64" y="372" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#1b4332">Part B GrantGraph — one pipeline</text>
+  <text x="64" y="398" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#1b4332">knowledge → reviewer (GPA + SSRB) → missing essentials → intake → HITL freeze → ORA package</text>
+  <text x="64" y="422" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#1b4332">Harness YAML cases and the workbench invoke the same graph. Weak aims cannot freeze.</text>
+
+  <rect x="44" y="478" width="860" height="100" rx="10" fill="#fff2cc" stroke="#d6b656"/>
+  <text x="64" y="510" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#3d3208">Control plane guard — ALLOW / DENY / ASK</text>
+  <text x="64" y="534" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#3d3208">DENY NIH ASSIST · DENY invented budget · DENY auto PI_CERTIFY · ASK freeze / office submit</text>
+  <text x="64" y="556" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#3d3208">Kill-switch · audit log · GitHub Actions eval-cage</text>
+
+  <!-- stores -->
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <rect x="44" y="640" width="200" height="70" rx="10" fill="#e1d5e7" stroke="#9673a6"/>
+    <text x="64" y="670" font-size="14" font-weight="700" fill="#4a2c5a">Cloud SQL</text>
+    <text x="64" y="690" font-size="12" fill="#4a2c5a">proposals · tracking</text>
+    <rect x="256" y="640" width="200" height="70" rx="10" fill="#e1d5e7" stroke="#9673a6"/>
+    <text x="276" y="670" font-size="14" font-weight="700" fill="#4a2c5a">BigQuery</text>
+    <text x="276" y="690" font-size="12" fill="#4a2c5a">analytics</text>
+    <rect x="468" y="640" width="210" height="70" rx="10" fill="#fff2cc" stroke="#d6b656"/>
+    <text x="488" y="670" font-size="14" font-weight="700" fill="#3d3208">Knowledge</text>
+    <text x="488" y="690" font-size="12" fill="#3d3208">FOA / RePORTER (read)</text>
+    <rect x="692" y="640" width="210" height="70" rx="10" fill="#d5e8d4" stroke="#82b366"/>
+    <text x="712" y="670" font-size="14" font-weight="700" fill="#1b4332">Package store</text>
+    <text x="712" y="690" font-size="12" fill="#1b4332">output/packages · GCS</text>
+  </g>
+
+  <!-- ORA -->
+  <rect x="956" y="236" width="420" height="200" rx="14" fill="#d5e8d4" stroke="#82b366"/>
+  <text x="976" y="276" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#1b4332">Office of Research Aid database</text>
+  <text x="976" y="304" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#1b4332">PI completes intake + HITL approve</text>
+  <text x="976" y="326" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#1b4332">→ tracking number ORA-YYYYMMDD-xxxxxx</text>
+  <text x="976" y="360" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#1b4332">This is the only submit destination.</text>
+
+  <!-- NIH out of band -->
+  <rect x="956" y="460" width="420" height="158" rx="14" fill="#eceff3" stroke="#9aa8b6" stroke-dasharray="7 5"/>
+  <text x="976" y="500" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#5b6b7c">NIH ASSIST / Grants.gov</text>
+  <text x="976" y="528" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#5b6b7c">OUT OF BAND — office staff, not agents</text>
+  <text x="976" y="552" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#b85450">Denied by control plane. Not a lab actor.</text>
+
+  <text x="28" y="798" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#5b6b7c">Optional Omnigent YAML is an outer driver only. Catalogs: config/checklists. PI_CERTIFY is human-only.</text>
+</svg>

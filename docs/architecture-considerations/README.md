@@ -20,7 +20,7 @@ Rendered Mermaid: [Architecture (Mermaid)](../architecture.md). **C4 infographic
 
 | File | EA use | What it shows |
 |------|--------|----------------|
-| [c4-infographics/](c4-infographics/README.md) | C4 posters | Infographic system context + L1–L3 triptychs |
+| [c4-infographics/](c4-infographics/README.md) | C4 posters | Unified SVG context + containers, office-handoff JPG, L1–L3 triptychs |
 | [ea-container-infrastructure.drawio](ea-container-infrastructure.drawio) | Container / infrastructure | Cloud Run FE vs BE, Cloud SQL, BigQuery, stack per container |
 | [ea-integration-flows.drawio](ea-integration-flows.drawio) | Integration | Which stage output becomes the next stage input |
 | [hybrid-architecture.drawio](hybrid-architecture.drawio) | Agent runtime (recommended) | ADK outer + LangGraph inner |

@@ -12,7 +12,7 @@ Walkthroughs submit the packet to the **Office of Research Aid database** (intak
 4. **Submit to Office of Research Aid**
 5. Tracking number returned to the PI
 
-## 2. Python workbench (port 8765)
+## 2. Python workbench (port 8080)
 
 [e2e-workbench-demo.mp4](e2e-workbench-demo.mp4) — 30s, no npm.
 

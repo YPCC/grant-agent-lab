@@ -63,8 +63,8 @@ Open [http://127.0.0.1:8765](http://127.0.0.1:8765). Review the sample R01 Aims 
 
 | UI | Video |
 |----|--------|
-| CopilotKit Next.js (`:3000`) | [e2e-copilotkit-demo.mp4](docs/demo/e2e-copilotkit-demo.mp4) |
-| Python workbench (`:8765`) | [e2e-workbench-demo.mp4](docs/demo/e2e-workbench-demo.mp4) (intake → office tracking) |
+| CopilotKit Next.js (`:3000`) | [e2e-copilotkit-demo.mp4](docs/demo/e2e-copilotkit-demo.mp4) (46s, intake → office tracking) |
+| Python workbench (`:8765`) | [e2e-workbench-demo.mp4](docs/demo/e2e-workbench-demo.mp4) (30s, intake → office tracking) |
 
 CopilotKit Next.js (optional chat):
 

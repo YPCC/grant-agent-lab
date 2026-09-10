@@ -129,8 +129,12 @@ def record_workbench(page) -> None:
         "() => { const n = document.getElementById('trackbanner'); return n && n.style.display !== 'none' && n.textContent.includes('ORA-'); }",
         timeout=20000,
     )
+    page.evaluate("window.scrollTo(0, 0)")
+    page.wait_for_timeout(600)
     shot(page, "05_tracking")
     banner(page, "6. Packaging agent uploaded the packet. Tracking number returned to the PI.", 3.4)
+    page.evaluate("window.scrollTo(0, 0)")
+    page.wait_for_timeout(400)
     shot(page, "06_ora")
     banner(page, "Demo complete — office database only, never NIH ASSIST.", 2.8)
     shot(page, "07_done")
@@ -191,9 +195,20 @@ def record_copilotkit(page) -> None:
     banner(page, "3. PI certifies and overrides remaining unknowns", 2.4)
     page.evaluate(HIDE_CK_OVERLAY)
     page.get_by_role("button", name="Submit to Office of Research Aid").click(force=True)
-    page.wait_for_timeout(2500)
+    try:
+        page.wait_for_function(
+            "() => document.body.innerText.includes('Office tracking number') || document.body.innerText.includes('ORA-')",
+            timeout=20000,
+        )
+    except Exception:
+        page.wait_for_timeout(2500)
+    page.evaluate("window.scrollTo(0, 0)")
+    page.wait_for_timeout(600)
+    page.evaluate(HIDE_CK_OVERLAY)
     shot(page, "06_ora")
     banner(page, "4. Tracking number from the office database — not NIH", 3.2)
+    page.evaluate("window.scrollTo(0, 0)")
+    page.wait_for_timeout(400)
     shot(page, "07_done")
     page.wait_for_timeout(500)
 
@@ -250,6 +265,7 @@ def main() -> int:
         dest = DEMO / "e2e-copilotkit-demo.mp4"
         stills = [
             ("02_review.png", "still-copilotkit-review.png"),
+            ("03_intake.png", "still-copilotkit-intake.png"),
             ("06_ora.png", "still-copilotkit-ora.png"),
         ]
 

@@ -4,7 +4,7 @@ Walkthroughs submit the packet to the **Office of Research Aid database** (intak
 
 ## 1. CopilotKit Next.js UI (port 3000)
 
-[e2e-copilotkit-demo.mp4](e2e-copilotkit-demo.mp4) — CopilotSidebar + grouped intake form.
+[e2e-copilotkit-demo.mp4](e2e-copilotkit-demo.mp4) — 46s, CopilotSidebar + grouped intake form.
 
 1. Review sample DOCX
 2. Intake form (Compliance / Formatting / Institutional) agent-filled
@@ -14,7 +14,7 @@ Walkthroughs submit the packet to the **Office of Research Aid database** (intak
 
 ## 2. Python workbench (port 8765)
 
-[e2e-workbench-demo.mp4](e2e-workbench-demo.mp4) — no npm.
+[e2e-workbench-demo.mp4](e2e-workbench-demo.mp4) — 30s, no npm.
 
 Same intake → package → tracking flow, plus HITL freeze.
 

@@ -20,13 +20,12 @@ We reuse the architectural pattern from [YPCC/agent-control-lab](https://github.
 
 ## How it is wired
 
-1. Every call from the Orchestrator into the LangGraph graph (or ADK sub-agent) goes through a thin `control_plane.guard()` façade.
+1. Every Part B graph node (`knowledge`, `review`, `checklist`, `intake`, `freeze`, `submit_office`) goes through `control_plane.guard()`.
 2. The façade performs:
-   - Identity / trust tier check
-   - Kill-switch / ring check
-   - Optional policy evaluation (LiteGovernor-style or simple rule list)
-   - Audit event emission
-3. HITL decisions are also recorded as first-class audit events.
-4. Final institutional package contains a compliance evidence bundle.
+   - Kill-switch check
+   - Policy evaluation from `src.harness.policies` — **DENY** NIH ASSIST / invented budget / auto-certify; **ASK** freeze / office submit / waiver unless `human_approved=True`
+   - Audit event emission (`output/audit_log.jsonl`)
+3. HITL decisions are first-class (`GrantGraph.resume`); the workbench Submit button is the human approval for ORA packaging.
+4. Harness cases and the workbench call the same graph. There is no parallel toy runner.
 
 See `src/control_plane/` for the concrete implementation.

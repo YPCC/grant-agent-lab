@@ -1,3 +1,3 @@
-from .graph import GrantGraph, build_graph
+from .graph import GrantGraph, build_graph, snapshot
 
-__all__ = ["GrantGraph", "build_graph"]
+__all__ = ["GrantGraph", "build_graph", "snapshot"]

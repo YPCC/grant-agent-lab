@@ -1,10 +1,24 @@
 # Architecture (Mermaid)
 
-GitHub renders these diagrams on the repo. Editable **C4 / draw.io** files live in [architecture-considerations](architecture-considerations/README.md).
+GitHub renders these diagrams on the repo.
+
+- **C4 infographics (posters):** [architecture-considerations/c4-infographics](architecture-considerations/c4-infographics/README.md)
+- **Editable draw.io:** [architecture-considerations](architecture-considerations/README.md)
 
 This lab’s submit path ends at the **Office of Research Aid database**. NIH ASSIST / Grants.gov is **out of band** (office staff, not the agents).
 
-## C4 — system context
+## C4 infographics
+
+Canonical system context for this lab:
+
+![C4 system context — office handoff](architecture-considerations/c4-infographics/c4-system-context-office-handoff.jpg)
+
+Level 1–3 posters (generic grant-platform vocabulary, mapped in the infographics README):
+
+- [C4 L1–L3 — grant-seeker](architecture-considerations/c4-infographics/c4-levels-1-2-3-grant-seeker.jpg)
+- [C4 L1–L3 — researchers](architecture-considerations/c4-infographics/c4-levels-1-2-3-researchers.jpg)
+
+## C4 — system context (Mermaid)
 
 Actors, the lab, stores, and the **office database** (NIH ASSIST is not a lab actor).
 

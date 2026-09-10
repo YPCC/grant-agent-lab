@@ -12,7 +12,7 @@ Questions to ask before choosing (function, UX, security, compliance, audit, con
 
 PI-facing product (R01 workbench, intake form, office submit + tracking): [PI R01 workflow UI](pi-r01-workflow-ui.md). Narrative: [intake and office submit](../intake-and-office-submit.md).
 
-Rendered Mermaid (system context, agent graph, paths): [Architecture (Mermaid)](../architecture.md). Configure: [how-to-configure](../guides/how-to-configure.md). Launch UI: [how-to-launch-ui](../guides/how-to-launch-ui.md).
+Rendered Mermaid: [Architecture (Mermaid)](../architecture.md). **C4 infographics (posters):** [c4-infographics](c4-infographics/README.md). Configure: [how-to-configure](../guides/how-to-configure.md). Launch UI: [how-to-launch-ui](../guides/how-to-launch-ui.md).
 
 ---
 
@@ -20,7 +20,7 @@ Rendered Mermaid (system context, agent graph, paths): [Architecture (Mermaid)](
 
 | File | EA use | What it shows |
 |------|--------|----------------|
-| [ea-system-context.drawio](ea-system-context.drawio) | System context | Actors ↔ platform ↔ stores ↔ external systems |
+| [c4-infographics/](c4-infographics/README.md) | C4 posters | Infographic system context + L1–L3 triptychs |
 | [ea-container-infrastructure.drawio](ea-container-infrastructure.drawio) | Container / infrastructure | Cloud Run FE vs BE, Cloud SQL, BigQuery, stack per container |
 | [ea-integration-flows.drawio](ea-integration-flows.drawio) | Integration | Which stage output becomes the next stage input |
 | [hybrid-architecture.drawio](hybrid-architecture.drawio) | Agent runtime (recommended) | ADK outer + LangGraph inner |

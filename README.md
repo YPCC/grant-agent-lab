@@ -2,7 +2,7 @@
 
 **Multi-agent system for drafting, reviewing, compliance-checking, budget-validating, and packaging NIH (and related) grant proposals, then submitting the packet to the Office of Research Aid database (not NIH).**
 
-Start here: **[configure](docs/guides/how-to-configure.md)** · **[launch UI](docs/guides/how-to-launch-ui.md)** · **[create demos](docs/guides/how-to-create-demo-files.md)** · **[architecture (Mermaid)](docs/architecture.md)** · **[docs index](docs/README.md)**
+Start here: **[configure](docs/guides/how-to-configure.md)** · **[launch UI](docs/guides/how-to-launch-ui.md)** · **[create demos](docs/guides/how-to-create-demo-files.md)** · **[architecture](docs/architecture.md)** · **[C4 infographics](docs/architecture-considerations/c4-infographics/README.md)** · **[docs index](docs/README.md)**
 
 ## Architecture
 
@@ -25,7 +25,9 @@ flowchart TD
   ODB --> TRACK[Tracking number returned to PI]
 ```
 
-Full diagrams (system context, paths, RBAC): [docs/architecture.md](docs/architecture.md).
+Full diagrams: [docs/architecture.md](docs/architecture.md) (Mermaid) · [C4 infographics](docs/architecture-considerations/c4-infographics/README.md) · [draw.io](docs/architecture-considerations/README.md).
+
+![C4 system context — Office of Research Aid handoff](docs/architecture-considerations/c4-infographics/c4-system-context-office-handoff.jpg)
 
 ## What this lab does
 
@@ -111,6 +113,9 @@ grant-agent-lab/
 ├── docs/
 │   ├── README.md                 # docs index
 │   ├── architecture.md           # Mermaid diagrams
+│   ├── architecture-considerations/
+│   │   ├── README.md             # EA notes + draw.io
+│   │   └── c4-infographics/      # presentation C4 posters
 │   ├── demo/                     # recorded E2E UI walkthrough
 │   ├── guides/
 │   │   ├── how-to-configure.md
@@ -160,6 +165,7 @@ Used in [draw.io](docs/architecture-considerations/) files:
 | [How to create demo files](docs/guides/how-to-create-demo-files.md) | Record MP4 + stills |
 | [Demo videos](docs/demo/README.md) | CopilotKit UI + Python workbench walkthroughs |
 | [Architecture (Mermaid)](docs/architecture.md) | System context (C4), graph, RBAC |
+| [C4 infographics](docs/architecture-considerations/c4-infographics/README.md) | Presentation posters (context + L1–L3) |
 | [Architecture considerations](docs/architecture-considerations/README.md) | EA packet, Cloud SQL, Cloud Run, draw.io C4 |
 | [Intake & office submit](docs/intake-and-office-submit.md) | Form groups, packaging, tracking number |
 | [Part B LangGraph + HITL](docs/part-b-langgraph-hitl.md) | Interrupt-before-freeze |

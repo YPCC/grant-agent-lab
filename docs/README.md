@@ -7,6 +7,7 @@
 | [How to create demo files](guides/how-to-create-demo-files.md) | Record MP4 + stills (Playwright / ffmpeg) |
 | [Demo videos](demo/README.md) | CopilotKit UI + Python workbench walkthroughs (MP4) |
 | [Architecture (Mermaid)](architecture.md) | C4 context, agent graph, paths, RBAC |
+| [C4 infographics](architecture-considerations/c4-infographics/README.md) | Presentation posters (office handoff + L1–L3) |
 | [Intake & office submit](intake-and-office-submit.md) | Form groups, packaging agent, tracking number |
 | [Part B LangGraph + HITL](part-b-langgraph-hitl.md) | Interrupt-before-freeze |
 | [End-to-end workflow](end-to-end-workflow.md) | Draft → office database (not NIH) |

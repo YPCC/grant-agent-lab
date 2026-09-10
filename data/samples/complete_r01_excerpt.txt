@@ -1,0 +1,15 @@
+Mechanism: R01 FOA PA-25-301. Principal investigator Jane Doe.
+
+Specific Aim 1. The central hypothesis is that X causes Y via Z. We hypothesize NMDA-dependent LTP is required for perceptual learning. Aims are independent and Aim 2 does not depend on Aim 1. Alternative if Aim 1 fails: switch to a correlative design.
+
+Significance. Innovation. Approach and experimental design with vehicle controls.
+
+Bibliography / references cited.
+
+Budget justification for a modular budget. PD/PI effort is 2.4 person-months.
+
+Biosketch / biographical sketch of the PI. Other support / current and pending. Facilities and other resources.
+
+Data management and sharing / DMS plan attached. Human subjects not applicable. Vertebrate animals not applicable. Authentication of key biological resources N/A.
+
+Conflict of interest / financial disclosure acknowledged. F&A facilities and administrative indirect cost rate acknowledged.

@@ -2,7 +2,7 @@
 
 **Multi-agent system for drafting, reviewing, compliance-checking, budget-validating, and packaging NIH (and related) grant proposals, then submitting the packet to the Office of Research Aid database (not NIH).**
 
-Start here: **[configure](docs/guides/how-to-configure.md)** · **[launch UI](docs/guides/how-to-launch-ui.md)** · **[create demos](docs/guides/how-to-create-demo-files.md)** · **[architecture](docs/architecture.md)** · **[C4 infographics](docs/architecture-considerations/c4-infographics/README.md)** · **[docs index](docs/README.md)**
+Start here: **[configure](docs/guides/how-to-configure.md)** · **[launch UI](docs/guides/how-to-launch-ui.md)** · **[eval harness](docs/harness.md)** · **[create demos](docs/guides/how-to-create-demo-files.md)** · **[architecture](docs/architecture.md)** · **[C4 infographics](docs/architecture-considerations/c4-infographics/README.md)** · **[docs index](docs/README.md)**
 
 ## Architecture
 
@@ -100,7 +100,11 @@ That overwrites `docs/demo/e2e-*-demo.mp4` plus matching `still-*.png`. Do not c
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
-PYTHONPATH=. python -m pytest tests/ -q
+PYTHONPATH=. python -m pytest tests/test_harness.py tests/test_harness_mcp.py tests/test_harness_policies.py tests/test_checklist.py tests/test_intake_office.py -q
+
+# Eval harness (MCP plugin for Copilot / any LLM tool)
+PYTHONPATH=. python3 -m src.harness run-case weak_aims_vague
+PYTHONPATH=. python3 -m src.harness mcp
 ```
 
 Optional LLM keys (gitignored `.env`): `GOOGLE_API_KEY`, `OPENAI_API_KEY`, `XAI_API_KEY`.
@@ -136,9 +140,13 @@ grant-agent-lab/
 │   ├── control_plane/
 │   ├── part_a_adk/
 │   ├── part_b_langgraph/
-│   └── part_c_hybrid/
+│   ├── part_c_hybrid/
+│   └── harness/                  # eval cage + MCP/CLI + Omnigent policies
+├── agents/                       # optional Omnigent/Copilot driver YAML
+├── plugin/                       # Copilot / Cursor / Claude MCP snippets
 ├── ui-copilotkit/                # workbench + CopilotKit
 ├── data/samples/
+├── data/harness/cases/           # YAML eval fixtures
 └── tests/
 ```
 

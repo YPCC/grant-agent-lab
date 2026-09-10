@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "grant-agent-harness": {
+      "type": "stdio",
+      "command": "python3",
+      "args": ["-m", "src.harness", "mcp"]
+    }
+  }
+}

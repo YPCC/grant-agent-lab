@@ -15,4 +15,6 @@
 | [PI R01 workflow UI](architecture-considerations/pi-r01-workflow-ui.md) | Product spec and RBAC |
 | [Control plane](control-plane-integration.md) | AGT-style guard |
 | [Budget & package](budget-and-package-agent.md) | Scrutinizer (not planner) |
+| [Eval harness](harness.md) | In-lab cases, graders, MCP/CLI |
+| [Omnigent adapter](omnigent-adoption.md) | Optional outer driver; not a rewrite |
 | [Datasets](datasets-and-validation.md) | Public NIH samples / RePORTER |

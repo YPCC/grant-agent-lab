@@ -16,6 +16,9 @@ adk = ["google-adk>=2.0"]
 observability = ["langfuse>=2.0", "opentelemetry-api", "opentelemetry-sdk"]
 dev = ["pytest", "ruff"]
 
+[project.scripts]
+grant-harness = "src.harness.cli:main"
+
 [build-system]
 requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
@@ -23,3 +26,6 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["src*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

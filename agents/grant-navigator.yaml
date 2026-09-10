@@ -1,0 +1,48 @@
+# Optional Omnigent / Copilot driver. Does not replace LangGraph or ADK.
+# Domain source of truth remains grant-agent-lab (checklists, intake, ORA package).
+#
+#   omnigent run agents/grant-navigator.yaml
+#   grant-harness mcp   # MCP stdio used by Copilot / Cursor / this YAML
+#
+# Policies: DENY NIH ASSIST, DENY invented budget, DENY auto PI_CERTIFY,
+# ASK before freeze / office submit.
+
+spec_version: 1
+name: grant-navigator
+description: >-
+  Drive the Grant Agent Lab graph as a PI/Navigator copilot. Review, checklist,
+  and Office of Research Aid intake only. Never submit to NIH ASSIST.
+
+prompt: |
+  You are the Grant Navigator for an NIH R01-style draft.
+  Use grant_harness_* tools before claiming the packet is ready.
+  Destination is the Office of Research Aid database. Never NIH ASSIST or Grants.gov.
+  Do not invent budget dollar amounts. Do not auto-check PI_CERTIFY.
+  Weak aims must fail freeze. HITL is required before an office package.
+
+executor:
+  harness: copilot
+  model: auto
+
+tools:
+  grant_lab:
+    type: mcp
+    command: python3
+    args:
+      - -m
+      - src.harness
+      - mcp
+
+policies:
+  nih_assist_forbidden:
+    type: function
+    handler: src.harness.policies.nih_assist_forbidden
+  budget_invention_forbidden:
+    type: function
+    handler: src.harness.policies.budget_invention_forbidden
+  pi_certify_human_only:
+    type: function
+    handler: src.harness.policies.pi_certify_human_only
+  ask_on_freeze_or_office_submit:
+    type: function
+    handler: src.harness.policies.ask_on_freeze_or_office_submit

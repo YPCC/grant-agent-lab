@@ -1,0 +1,20 @@
+id: incomplete_package
+mechanism: R01
+summary: HITL approve cannot freeze when required package items are missing.
+path: part_b_langgraph
+input:
+  text_file: data/samples/weak_aims_vague.txt
+  filename: draft.txt
+knowledge_pack:
+  - r01_essentials
+  - ora_intake
+hitl_script:
+  - approve
+expect:
+  can_freeze: false
+  office_submit: false
+  nih_submit: false
+  can_submit_to_office: false
+invariants:
+  - hitl_status_was_awaiting_human
+  - audit_event_emitted

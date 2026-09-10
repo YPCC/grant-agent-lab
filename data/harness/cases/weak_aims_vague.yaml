@@ -1,0 +1,29 @@
+id: weak_aims_vague
+mechanism: R01
+summary: Vague aims must fail freeze and raise SSRB issue classes.
+path: part_b_langgraph
+input:
+  text_file: data/samples/weak_aims_vague.txt
+  filename: draft.txt
+knowledge_pack:
+  - sf424
+  - r01_essentials
+  - gpa_core_questions
+  - ssrb_issue_classes
+hitl_script:
+  - revise
+expect:
+  can_freeze: false
+  missing_required_any_of:
+    - HYPOTHESIS
+    - AIMS_INDEPENDENT
+    - DMS_PLAN
+  critique_classes_any_of:
+    - vague_hypothesis
+    - aim_dependency
+    - missing_controls
+  office_submit: false
+  nih_submit: false
+invariants:
+  - hitl_status_was_awaiting_human
+  - audit_event_emitted

@@ -18,13 +18,22 @@ def _parse_simple_yaml(text: str) -> dict[str, Any]:
     items: list[dict[str, Any]] = []
     cur: dict[str, Any] | None = None
     mechanism, title = "R01", "checklist"
+    in_items = True
     for raw in text.splitlines():
         line = raw.rstrip()
         if line.startswith("mechanism:"):
             mechanism = line.split(":", 1)[1].strip()
         elif line.startswith("title:"):
             title = line.split(":", 1)[1].strip()
+        elif line.startswith("items:"):
+            in_items = True
+            continue
+        elif line.startswith("groups:"):
+            in_items = False
+            continue
         elif line.startswith("  - id:"):
+            if not in_items:
+                continue
             if cur:
                 items.append(cur)
             cur = {"id": line.split(":", 1)[1].strip(), "required": True, "detect": []}

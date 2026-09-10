@@ -1,0 +1,26 @@
+id: complete_ora_packet
+mechanism: R01
+summary: Keyword-complete excerpt plus human certify can freeze and register with Office of Research Aid.
+path: harness_v0
+input:
+  text_file: data/samples/complete_r01_excerpt.txt
+  filename: Doe_R01_Aims.docx
+  intake_overrides:
+    FONT_MARGINS: yes
+    PI_ELIGIBLE: yes
+    PI_CERTIFY: yes
+    RS_PAGE_LIMIT: not_applicable
+knowledge_pack:
+  - r01_essentials
+  - ora_intake
+  - invariants
+hitl_script:
+  - approve
+expect:
+  can_freeze: true
+  office_submit: true
+  nih_submit: false
+  can_submit_to_office: true
+invariants:
+  - hitl_status_was_awaiting_human
+  - audit_event_emitted

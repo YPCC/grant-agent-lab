@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "grant-agent-harness": {
+      "command": "python3",
+      "args": ["-m", "src.harness", "mcp"]
+    }
+  }
+}

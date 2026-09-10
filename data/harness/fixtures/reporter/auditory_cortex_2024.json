@@ -1,0 +1,22 @@
+{
+  "source": "frozen-fixture",
+  "query": "auditory cortex",
+  "fiscal_years": [2024],
+  "note": "Not a live NIH RePORTER call. Replace with a dated pull when refreshing knowledge.",
+  "results": [
+    {
+      "project_title": "Synaptic mechanisms of auditory perceptual learning",
+      "activity_code": "R01",
+      "institute": "NIDCD",
+      "fiscal_year": 2024,
+      "abstract_excerpt": "This project tests how cortical synapses support frequency discrimination learning."
+    },
+    {
+      "project_title": "Thalamocortical plasticity after hearing loss",
+      "activity_code": "R21",
+      "institute": "NIDCD",
+      "fiscal_year": 2024,
+      "abstract_excerpt": "Explores thalamocortical EPSP changes after peripheral damage."
+    }
+  ]
+}

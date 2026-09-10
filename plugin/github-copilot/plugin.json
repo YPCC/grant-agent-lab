@@ -1,0 +1,13 @@
+{
+  "name": "grant-agent-harness",
+  "version": "0.1.0",
+  "displayName": "Grant Agent Lab harness",
+  "description": "Eval cage and Office of Research Aid tools. Never NIH ASSIST.",
+  "publisher": "YPCC",
+  "mcpServers": {
+    "grant-agent-harness": {
+      "command": "python3",
+      "args": ["-m", "src.harness", "mcp"]
+    }
+  }
+}

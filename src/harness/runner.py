@@ -5,6 +5,7 @@ import json
 from typing import Any
 
 from src.control_plane.guard import get_audit_log
+from src.control_plane.observability import score_case
 from src.harness.graders import grade_run
 from src.part_b_langgraph.graph import build_graph, snapshot
 
@@ -72,6 +73,7 @@ def run_case(case: dict[str, Any], *, allow_package: bool | None = None, graph=N
         graph=graph,
     )
     run["grade"] = grade_run(case, run)
+    score_case(run["grade"])
     return run
 
 

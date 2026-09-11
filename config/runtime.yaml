@@ -25,6 +25,8 @@ checklist:
 
 observability:
   audit_log: output/audit_log.jsonl
+  # Langfuse: set LANGFUSE_PUBLIC_KEY + LANGFUSE_SECRET_KEY (see docs/observability.md)
+  langfuse: env
 
 control_plane:
   guard: true

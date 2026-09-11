@@ -70,6 +70,7 @@ To add a required form (for example a DMS plan variant), append an item and re-r
 ```yaml
 observability:
   audit_log: output/audit_log.jsonl
+  langfuse: env   # on when LANGFUSE_PUBLIC_KEY + LANGFUSE_SECRET_KEY are set
 
 control_plane:
   guard: true
@@ -77,6 +78,8 @@ control_plane:
 ```
 
 `pi_cannot_submit: true` is the RBAC rule shown in the UI (Submit disabled for PI).
+
+Langfuse setup: [observability.md](../observability.md). Without keys, agents still run; spans stay in-memory.
 
 NIH SF424-style rules live in [`config/policies/nih_sf424_rules.yaml`](../../config/policies/nih_sf424_rules.yaml).
 
@@ -88,7 +91,8 @@ NIH SF424-style rules live in [`config/policies/nih_sf424_rules.yaml`](../../con
 | `GOOGLE_API_KEY` | ADK / Gemini writer | Optional for checklist-only demo |
 | `OPENAI_API_KEY` | CopilotKit free-form chat | Optional; workbench review works without it |
 | `XAI_API_KEY` | Optional Grok-backed skills | Optional |
-| `LANGSMITH_API_KEY` | LangGraph Platform | Optional |
+| `LANGFUSE_PUBLIC_KEY` / `LANGFUSE_SECRET_KEY` | Per-agent traces | Optional; see [observability](../observability.md) |
+| `LANGFUSE_BASE_URL` | Langfuse Cloud or self-host | Optional (default cloud.langfuse.com) |
 
 Copy keys into a local `.env` (gitignored). Do not commit secrets.
 
@@ -100,6 +104,8 @@ python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
 # ADK path:
 pip install -e ".[adk]"
+# Langfuse traces:
+pip install -e ".[observability]"
 ```
 
 `python-docx` is needed for the DOCX workbench:

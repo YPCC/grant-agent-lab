@@ -16,6 +16,7 @@ knowledge → reviewer (GPA + SSRB) → missing essentials → intake → HITL f
 | **LangGraph agent (Part B, default)** | `GrantGraph`: invoke / resume, interrupt-before-freeze, MemorySaver or in-process threads. Same nodes as the workbench. |
 | **ADK and hybrid (Parts A / C)** | Pure Google ADK 2.0, or ADK outer + LangGraph inner. Switch in `config/runtime.yaml` — no rewrite of checklists. |
 | **Control plane** | `guard()` wraps nodes. **ALLOW** review/checklist/intake. **ASK** freeze and office submit. **DENY** NIH ASSIST, invented budget dollars, auto `PI_CERTIFY`. Audit log + kill-switch. |
+| **Langfuse observability** | Optional. One parent trace per graph invoke/resume; a child span per agent. DENY = ERROR, ASK = WARNING. Keys off → no-op (CI still green). |
 | **Eval harness** | YAML cases (weak aims, good aims, HITL, incomplete, complete ORA). Deterministic graders. CI on every push. Workbench Harness tab runs the **same graph**. |
 | **MCP / Copilot plugin** | `python3 -m src.harness mcp` — Copilot, Cursor, Claude, optional Omnigent driver. Domain truth stays in this repo. |
 | **Catalogs, not vibes** | `r01_essentials.yaml`, `ora_intake.yaml`, SF424 rules, GPA four questions, SSRB issue classes. |

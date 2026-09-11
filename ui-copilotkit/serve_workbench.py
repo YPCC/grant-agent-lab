@@ -84,6 +84,7 @@ pre.out{white-space:pre-wrap;font-size:12px;background:#0e2a4a;color:#e8eef5;pad
   <h1>Grant Agent Lab · Part B graph · Office of Research Aid</h1>
   <div>
     <span class="chip" id="rolechip">You are PI</span>
+    <span class="chip" id="obs-chip" title="Per-agent traces. Keys enable Langfuse Cloud / self-host.">Langfuse off</span>
     <select id="role" onchange="onRole()">
       <option>PI</option><option>Navigator</option><option>Office of Research Aid</option><option>Admin</option>
     </select>
@@ -294,6 +295,16 @@ function chat(e){
   return false;
 }
 review();
+obsStatus();
+async function obsStatus(){
+  try {
+    const s = await (await fetch('/api/observability')).json();
+    const el = document.getElementById('obs-chip');
+    const on = s.langfuse && (s.langfuse.enabled || s.langfuse.configured);
+    el.textContent = on ? 'Langfuse on' : 'Langfuse off';
+    el.title = (s.langfuse && s.langfuse.host) || '';
+  } catch (e) {}
+}
 </script>
 </body>
 </html>
@@ -349,6 +360,9 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200, HTML.encode())
         if path == "/api/harness/cases":
             return self._json(200, list_cases())
+        if path == "/api/observability":
+            from src.control_plane.observability import status as obs_status
+            return self._json(200, obs_status())
         if path.startswith("/office/packages/"):
             tracking = path.rsplit("/", 1)[-1]
             dest = ROOT / "output" / "packages" / tracking / "MANIFEST.json"

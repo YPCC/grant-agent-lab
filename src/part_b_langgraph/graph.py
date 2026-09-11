@@ -10,6 +10,7 @@ import os
 from typing import Any, TypedDict
 
 from src.control_plane.guard import PolicyAsk, get_audit_log, guard
+from src.control_plane.observability import trace_run
 from src.harness.checklist import evaluate_checklist
 from src.harness.intake import fill_intake
 from src.harness.knowledge import resolve_packs
@@ -211,38 +212,50 @@ class GrantGraph:
 
     def invoke(self, state: ProposalState, config: dict | None = None) -> ProposalState:
         tid = (config or {}).get("configurable", {}).get("thread_id", "default")
-        s: ProposalState = {**self.threads.get(tid, {}), **state}
-        s["findings"] = list(state.get("findings") or [])
-        s["decision"] = ""
-        s = _run_prefix(s)
-        self.threads[tid] = s
-        return s
+        with trace_run(
+            "grant-graph.invoke",
+            session_id=tid,
+            metadata={"proposal_id": state.get("proposal_id"), "filename": state.get("filename")},
+            tags=["grant-agent-lab", "part_b", "invoke"],
+        ):
+            s: ProposalState = {**self.threads.get(tid, {}), **state}
+            s["findings"] = list(state.get("findings") or [])
+            s["decision"] = ""
+            s = _run_prefix(s)
+            self.threads[tid] = s
+            return s
 
     def resume(self, thread_id: str, decision: str, **updates: Any) -> ProposalState:
-        s = dict(self.threads.get(thread_id) or {})
-        s.update(updates)
-        s["decision"] = decision
-        hitl = dict(s.get("hitl") or {})
-        decisions = list(hitl.get("decisions") or [])
-        decisions.append(decision)
-        hitl["decisions"] = decisions
-        hitl["decision"] = decision
-        hitl["status"] = "resumed"
-        s["hitl"] = hitl
-        nxt = route_after_hitl(s)
-        if nxt == "freeze":
-            s = freeze_package_node(s)
-        elif nxt == "revise":
-            s = reviewer_node(s)
-            s = missing_essentials_node(s)
-            s = intake_node(s)
-            s = hitl_interrupt_node(s)
+        with trace_run(
+            "grant-graph.resume",
+            session_id=thread_id,
+            metadata={"decision": decision},
+            tags=["grant-agent-lab", "part_b", "resume"],
+        ):
+            s = dict(self.threads.get(thread_id) or {})
+            s.update(updates)
             s["decision"] = decision
-            s["hitl"] = {**(s.get("hitl") or {}), "status": "resumed", "decision": decision, "decisions": decisions}
-        elif nxt == "wait":
-            s = hitl_interrupt_node(s)
-        self.threads[thread_id] = s
-        return s
+            hitl = dict(s.get("hitl") or {})
+            decisions = list(hitl.get("decisions") or [])
+            decisions.append(decision)
+            hitl["decisions"] = decisions
+            hitl["decision"] = decision
+            hitl["status"] = "resumed"
+            s["hitl"] = hitl
+            nxt = route_after_hitl(s)
+            if nxt == "freeze":
+                s = freeze_package_node(s)
+            elif nxt == "revise":
+                s = reviewer_node(s)
+                s = missing_essentials_node(s)
+                s = intake_node(s)
+                s = hitl_interrupt_node(s)
+                s["decision"] = decision
+                s["hitl"] = {**(s.get("hitl") or {}), "status": "resumed", "decision": decision, "decisions": decisions}
+            elif nxt == "wait":
+                s = hitl_interrupt_node(s)
+            self.threads[thread_id] = s
+            return s
 
 
 def build_graph():

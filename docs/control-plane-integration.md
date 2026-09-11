@@ -16,7 +16,7 @@ We reuse the architectural pattern from [YPCC/agent-control-lab](https://github.
 | Agent SRE            | Partial                                            | Circuit-breaker state file |
 | Agent Compliance     | Integrated                                         | GO / NO-GO gate + compliance_evidence.json |
 | Agent Marketplace    | Projected                                          | Skill / tool fingerprint placeholders |
-| Observability        | Integrated                                         | Langfuse + structured logging + Cloud Trace hooks |
+| Observability        | Integrated                                         | Langfuse spans per agent (optional keys) + audit JSONL |
 
 ## How it is wired
 
@@ -25,6 +25,7 @@ We reuse the architectural pattern from [YPCC/agent-control-lab](https://github.
    - Kill-switch check
    - Policy evaluation from `src.harness.policies` — **DENY** NIH ASSIST / invented budget / auto-certify; **ASK** freeze / office submit / waiver unless `human_approved=True`
    - Audit event emission (`output/audit_log.jsonl`)
+   - A Langfuse span per agent when `LANGFUSE_PUBLIC_KEY` + `LANGFUSE_SECRET_KEY` are set ([observability.md](observability.md))
 3. HITL decisions are first-class (`GrantGraph.resume`); the workbench Submit button is the human approval for ORA packaging.
 4. Harness cases and the workbench call the same graph. There is no parallel toy runner.
 

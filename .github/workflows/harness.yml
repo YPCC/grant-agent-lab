@@ -29,6 +29,7 @@ jobs:
             tests/test_harness_mcp.py \
             tests/test_harness_policies.py \
             tests/test_control_plane.py \
+            tests/test_observability.py \
             tests/test_graph_pipeline.py \
             tests/test_checklist.py \
             tests/test_intake_office.py

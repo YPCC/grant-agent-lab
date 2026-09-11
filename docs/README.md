@@ -15,6 +15,7 @@
 | [Architecture considerations](architecture-considerations/README.md) | EA packet, Cloud Run, Cloud SQL, draw.io |
 | [PI R01 workflow UI](architecture-considerations/pi-r01-workflow-ui.md) | Product spec and RBAC |
 | [Control plane](control-plane-integration.md) | AGT-style guard |
+| [Observability (Langfuse)](observability.md) | Per-agent traces; optional keys |
 | [Budget & package](budget-and-package-agent.md) | Scrutinizer (not planner) |
 | [Eval harness](harness.md) | In-lab cases, graders, MCP/CLI |
 | [What the harness is vs Omnigent](harness-vs-omnigent.md) | Call-out: our eval cage vs Omni meta-harness |

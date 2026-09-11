@@ -105,14 +105,14 @@ That overwrites `docs/demo/e2e-*-demo.mp4` plus matching `still-*.png`. Do not c
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
-PYTHONPATH=. python -m pytest tests/test_harness.py tests/test_harness_mcp.py tests/test_harness_policies.py tests/test_control_plane.py tests/test_graph_pipeline.py tests/test_checklist.py tests/test_intake_office.py -q
+PYTHONPATH=. python -m pytest tests/test_harness.py tests/test_harness_mcp.py tests/test_harness_policies.py tests/test_control_plane.py tests/test_observability.py tests/test_graph_pipeline.py tests/test_checklist.py tests/test_intake_office.py -q
 
 # Eval harness (MCP plugin for Copilot / any LLM tool)
 PYTHONPATH=. python3 -m src.harness run-case weak_aims_vague
 PYTHONPATH=. python3 -m src.harness mcp
 ```
 
-Optional LLM keys (gitignored `.env`): `GOOGLE_API_KEY`, `OPENAI_API_KEY`, `XAI_API_KEY`.
+Optional LLM keys (gitignored `.env`): `GOOGLE_API_KEY`, `OPENAI_API_KEY`, `XAI_API_KEY`. Optional traces: `LANGFUSE_PUBLIC_KEY` + `LANGFUSE_SECRET_KEY` — [observability](docs/observability.md).
 
 ## Repository layout
 
@@ -182,6 +182,7 @@ Used in [draw.io](docs/architecture-considerations/) files:
 | [Eval harness](docs/harness.md) | Cases, MCP/CLI, CI eval-cage |
 | [Harness vs Omnigent](docs/harness-vs-omnigent.md) | Our eval cage vs Omni meta-harness |
 | [Control plane](docs/control-plane-integration.md) | ALLOW / DENY / ASK guard |
+| [Observability](docs/observability.md) | Langfuse traces per agent |
 | [Omnigent adapter](docs/omnigent-adoption.md) | Optional outer driver |
 | [Architecture considerations](docs/architecture-considerations/README.md) | EA packet, Cloud SQL, Cloud Run, draw.io C4 |
 | [Intake & office submit](docs/intake-and-office-submit.md) | Form groups, packaging, tracking number |

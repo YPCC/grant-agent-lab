@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 780" role="img" aria-labelledby="t d">
   <title id="t">C4 containers — one GrantGraph pipeline</title>
-  <desc id="d">Workbench, MCP, GrantGraph nodes, shared catalogs, and control-plane guard.</desc>
+  <desc id="d">Workbench, MCP, GrantGraph nodes, shared catalogs, control-plane guard, optional Langfuse.</desc>
   <rect width="1400" height="780" fill="#f4f6f8"/>
   <rect width="1400" height="64" fill="#1a6b7a"/>
   <text x="28" y="32" fill="#fff" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="22" font-weight="700">C4 — Containers</text>
@@ -49,7 +49,7 @@
   <rect x="250" y="430" width="900" height="88" rx="10" fill="#fff2cc" stroke="#d6b656"/>
   <text x="268" y="460" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#3d3208">control_plane.guard + src/harness/policies.py</text>
   <text x="268" y="484" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#3d3208">DENY submit_to_nih / invent_budget / auto_certify · ASK freeze / submit_office unless human_approved</text>
-  <text x="268" y="504" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#3d3208">GitHub Actions: .github/workflows/harness.yml (eval-cage)</text>
+  <text x="268" y="504" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#3d3208">Each guard() call = Langfuse span when keys set · GitHub Actions eval-cage</text>
 
   <rect x="250" y="538" width="900" height="88" rx="10" fill="#f8cecc" stroke="#b85450"/>
   <text x="268" y="568" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#6b1d1d">Eval harness</text>
@@ -61,9 +61,14 @@
   <text x="1210" y="194" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#1b4332">tracking number</text>
   <text x="1210" y="214" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#1b4332">back to PI</text>
 
-  <rect x="1196" y="360" width="180" height="120" rx="12" fill="#eceff3" stroke="#9aa8b6" stroke-dasharray="6 4"/>
+  <rect x="1196" y="360" width="180" height="100" rx="12" fill="#eceff3" stroke="#9aa8b6" stroke-dasharray="6 4"/>
   <text x="1210" y="394" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#5b6b7c">NIH ASSIST</text>
   <text x="1210" y="416" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#b85450">DENIED</text>
 
-  <text x="28" y="756" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#5b6b7c">Blue = UI / MCP · Green = graph nodes · Yellow = knowledge / policy · Rose = HITL / harness · Purple = catalogs</text>
+  <rect x="1196" y="480" width="180" height="100" rx="12" fill="#eceff3" stroke="#9aa8b6" stroke-dasharray="6 4"/>
+  <text x="1210" y="512" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#5b6b7c">Langfuse</text>
+  <text x="1210" y="534" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#5b6b7c">optional traces</text>
+  <text x="1210" y="552" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11" fill="#5b6b7c">span per agent</text>
+
+  <text x="28" y="756" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#5b6b7c">Blue = UI / MCP · Green = graph nodes · Yellow = knowledge / policy · Rose = HITL / harness · Purple = catalogs · Dashed = external / optional</text>
 </svg>

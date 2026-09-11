@@ -12,7 +12,7 @@ Questions to ask before choosing (function, UX, security, compliance, audit, con
 
 PI-facing product (R01 workbench, intake form, office submit + tracking): [PI R01 workflow UI](pi-r01-workflow-ui.md). Narrative: [intake and office submit](../intake-and-office-submit.md).
 
-Rendered Mermaid: [Architecture (Mermaid)](../architecture.md). **C4 infographics (posters):** [c4-infographics](c4-infographics/README.md). Configure: [how-to-configure](../guides/how-to-configure.md). Launch UI: [how-to-launch-ui](../guides/how-to-launch-ui.md).
+Rendered Mermaid: [Architecture (Mermaid)](../architecture.md). **C4 infographics (posters):** [c4-infographics](c4-infographics/README.md). Observability: [Langfuse](../observability.md). Configure: [how-to-configure](../guides/how-to-configure.md). Launch UI: [how-to-launch-ui](../guides/how-to-launch-ui.md).
 
 ---
 

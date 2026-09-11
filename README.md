@@ -2,7 +2,7 @@
 
 **Multi-agent system for drafting, reviewing, compliance-checking, budget-validating, and packaging NIH (and related) grant proposals, then submitting the packet to the Office of Research Aid database (not NIH).**
 
-Start here: **[one-pager](docs/one-pager.md)** · **[configure](docs/guides/how-to-configure.md)** · **[launch UI](docs/guides/how-to-launch-ui.md)** · **[eval harness](docs/harness.md)** · **[create demos](docs/guides/how-to-create-demo-files.md)** · **[architecture](docs/architecture.md)** · **[C4 infographics](docs/architecture-considerations/c4-infographics/README.md)** · **[docs index](docs/README.md)**
+Start here: **[one-pager](docs/one-pager.md)** · **[configure](docs/guides/how-to-configure.md)** · **[launch UI](docs/guides/how-to-launch-ui.md)** · **[eval harness](docs/harness.md)** · **[observability](docs/observability.md)** · **[architecture](docs/architecture.md)** · **[C4 infographics](docs/architecture-considerations/c4-infographics/README.md)** · **[docs index](docs/README.md)**
 
 [![Harness](https://github.com/YPCC/grant-agent-lab/actions/workflows/harness.yml/badge.svg)](https://github.com/YPCC/grant-agent-lab/actions/workflows/harness.yml)
 
@@ -26,6 +26,8 @@ flowchart TD
   PK --> ODB[Office of Research Aid database]
   ODB --> TRACK[Tracking number returned to PI]
   CP -.->|DENY| ASSIST[NIH ASSIST — out of band]
+  G -.-> LF[Langfuse<br/>optional per-agent spans]
+  CP -.-> LF
 ```
 
 Full diagrams: [docs/architecture.md](docs/architecture.md) (Mermaid) · [C4 SVG](docs/architecture-considerations/c4-infographics/c4-system-context-unified.svg) · [C4 infographics](docs/architecture-considerations/c4-infographics/README.md) · [draw.io](docs/architecture-considerations/README.md).
@@ -42,6 +44,7 @@ Full diagrams: [docs/architecture.md](docs/architecture.md) (Mermaid) · [C4 SVG
 5. **Scores Missing Essentials** (required R01 package items) and **pauses for HITL**.
 6. **Packages** an approved proposal and submits it to the **Office of Research Aid database**. Completing the grouped intake form (compliance, formatting, institutional) unlocks submit. A **tracking number** comes back to the PI. This lab does **not** submit to NIH ASSIST.
 7. **Eval cage** — YAML cases, MCP/CLI plugin, and GitHub Actions run the **same graph**. Weak aims cannot freeze. Control plane **DENY**s NIH ASSIST and invented budget dollars.
+8. **Observes** each agent (optional [Langfuse](docs/observability.md)): one parent trace per invoke/resume, a child span per `guard()` call. No keys → no-op.
 
 Three parallel implementations (catalogs and guard are shared). **Harness / workbench / MCP drive Part B:**
 
@@ -142,7 +145,7 @@ grant-agent-lab/
 │   ├── shared/checklist.py
 │   ├── shared/intake.py
 │   ├── shared/packaging.py
-│   ├── control_plane/
+│   ├── control_plane/            # guard + optional Langfuse
 │   ├── part_a_adk/
 │   ├── part_b_langgraph/
 │   ├── part_c_hybrid/
@@ -166,6 +169,7 @@ Used in [draw.io](docs/architecture-considerations/) files:
 | Yellow (`#fff2cc` / `#d6b656`) | Knowledge / FOA / control-plane policy |
 | Rose (`#f8cecc` / `#b85450`) | Human-in-the-loop / eval harness |
 | Purple (`#e1d5e7` / `#9673a6`) | Shared catalogs / state |
+| Dashed gray | External / optional — NIH ASSIST (denied) · Langfuse (keys off = no-op) |
 
 ## Documentation
 

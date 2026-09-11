@@ -22,6 +22,7 @@ agents:
 - **HITL** pauses before package freeze. PI/Office of Research Aid choose `approve` / `revise` / `waive`.
 - **Package** registers with the Office of Research Aid database only. NIH ASSIST is **denied** by `control_plane.guard`.
 - The **eval harness** and **workbench** call this same graph.
+- Optional **Langfuse**: `invoke` / `resume` are parent traces; each `guard()` call is a child span ([observability.md](observability.md)).
 
 Default engine is `GrantGraph` (`invoke` / `resume`). Set `GRANT_GRAPH_ENGINE=langgraph` to compile a real `StateGraph` + `MemorySaver` when the package is installed.
 

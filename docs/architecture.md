@@ -5,11 +5,11 @@ GitHub renders these diagrams on the repo.
 - **C4 infographics (posters + SVG):** [architecture-considerations/c4-infographics](architecture-considerations/c4-infographics/README.md)
 - **Editable draw.io:** [architecture-considerations](architecture-considerations/README.md)
 
-This lab’s submit path ends at the **Office of Research Aid database**. NIH ASSIST / Grants.gov is **out of band** (office staff, not the agents). **Harness cases, the workbench, and MCP all invoke the same Part B `GrantGraph`.**
+This lab’s submit path ends at the **Office of Research Aid database**. NIH ASSIST / Grants.gov is **out of band** (office staff, not the agents). **Harness cases, the workbench, and MCP all invoke the same Part B `GrantGraph`.** Each `guard()` call can emit a Langfuse span ([observability.md](observability.md)).
 
 ## C4 infographics
 
-Canonical system context for this lab (updated SVG — one pipeline + guard + MCP):
+Canonical system context for this lab (updated SVG — one pipeline + guard + MCP + Langfuse):
 
 ![C4 system context — unified](architecture-considerations/c4-infographics/c4-system-context-unified.svg)
 
@@ -26,7 +26,7 @@ Level 1–3 posters (generic grant-platform vocabulary, mapped in the infographi
 
 ## C4 — system context (Mermaid)
 
-Actors, the lab, stores, and the **office database** (NIH ASSIST is not a lab actor).
+Actors, the lab, stores, and the **office database** (NIH ASSIST is not a lab actor). Langfuse is an optional external.
 
 ```mermaid
 flowchart LR
@@ -55,6 +55,7 @@ flowchart LR
     NIH[NIH RePORTER / FOA<br/>read only]
     ODB[Office of Research Aid database]
     ASSIST[NIH ASSIST / Grants.gov<br/>OUT OF BAND]
+    LF[Langfuse Cloud / self-host<br/>optional traces]
   end
 
   PI --> UI
@@ -70,6 +71,8 @@ flowchart LR
   G --> GCS
   G --> CAT
   G --> NIH
+  G -.->|span per agent| LF
+  CP -.-> LF
   PI -->|complete intake + HITL approve| ODB
   ODB -->|tracking number| PI
   CP -.->|DENY| ASSIST
@@ -97,6 +100,8 @@ flowchart TB
   end
 
   CP[guard.py + policies.py] -.-> G
+  G -.-> LF[Langfuse · optional]
+  CP -.-> LF
   CAT[config/checklists] -.-> ME
   CAT -.-> IN
   HARNESS[data/harness/cases] -->|run_case| G
@@ -126,6 +131,7 @@ flowchart TD
   CP -.-> ME
   CP -.-> HITL
   CP -.-> PK
+  CP -.-> LF[Langfuse spans]
 ```
 
 Writer / compliance / budget scrutinizer remain available on paths A and C. Path B default is the cage the CI gates.
@@ -152,6 +158,7 @@ flowchart TB
   CFG --> B
   CFG --> C
   H[Harness / workbench / MCP] --> B
+  B -.-> LF[Langfuse]
 ```
 
 ## UI and RBAC
@@ -199,6 +206,6 @@ classDiagram
   ProposalState "1" --> "*" IntakeItem : ora_intake
 ```
 
-Intake catalog: [`config/checklists/ora_intake.yaml`](../config/checklists/ora_intake.yaml). Narrative: [intake and office submit](intake-and-office-submit.md). Harness: [harness.md](harness.md). Guard: [control-plane-integration.md](control-plane-integration.md).
+Intake catalog: [`config/checklists/ora_intake.yaml`](../config/checklists/ora_intake.yaml). Narrative: [intake and office submit](intake-and-office-submit.md). Harness: [harness.md](harness.md). Guard: [control-plane-integration.md](control-plane-integration.md). Traces: [observability.md](observability.md).
 
-Color legend used in draw.io and SVG (same meaning as README): blue = UI / MCP, green = LangGraph nodes, yellow = knowledge / policy, rose = HITL, purple = shared catalogs.
+Color legend used in draw.io and SVG (same meaning as README): blue = UI / MCP, green = LangGraph nodes, yellow = knowledge / policy, rose = HITL, purple = shared catalogs, dashed gray = external / optional (NIH ASSIST denied · Langfuse).

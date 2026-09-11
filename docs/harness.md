@@ -7,7 +7,7 @@ Harness cases invoke **the same Part B `GrantGraph`** as the workbench. There is
 
 `knowledge → reviewer → missing essentials → intake → HITL → freeze / ORA package`
 
-Every node is mediated by `control_plane.guard` (ALLOW / DENY / ASK).
+Every node is mediated by `control_plane.guard` (ALLOW / DENY / ASK). Optional Langfuse: span per agent ([observability.md](observability.md)).
 
 - Cases: `data/harness/cases/`
 - Knowledge packs: `config/checklists/` + `config/policies/` + `data/harness/packs/`

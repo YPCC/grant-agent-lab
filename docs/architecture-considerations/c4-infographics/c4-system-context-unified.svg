@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 820" role="img" aria-labelledby="t d">
   <title id="t">C4 system context — Grant Agent Lab</title>
-  <desc id="d">Actors, one GrantGraph pipeline, control plane, Office of Research Aid database. NIH ASSIST is out of band.</desc>
+  <desc id="d">Actors, one GrantGraph pipeline, control plane, Langfuse traces, Office of Research Aid database. NIH ASSIST is out of band.</desc>
   <rect width="1400" height="820" fill="#f4f6f8"/>
   <rect width="1400" height="64" fill="#1a6b7a"/>
   <text x="28" y="32" fill="#fff" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="22" font-weight="700">C4 — System context</text>
@@ -38,7 +38,7 @@
   <rect x="44" y="478" width="860" height="100" rx="10" fill="#fff2cc" stroke="#d6b656"/>
   <text x="64" y="510" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="#3d3208">Control plane guard — ALLOW / DENY / ASK</text>
   <text x="64" y="534" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#3d3208">DENY NIH ASSIST · DENY invented budget · DENY auto PI_CERTIFY · ASK freeze / office submit</text>
-  <text x="64" y="556" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#3d3208">Kill-switch · audit log · GitHub Actions eval-cage</text>
+  <text x="64" y="556" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#3d3208">Kill-switch · audit log · Langfuse span per agent (optional keys) · eval-cage CI</text>
 
   <!-- stores -->
   <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
@@ -69,5 +69,9 @@
   <text x="976" y="528" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#5b6b7c">OUT OF BAND — office staff, not agents</text>
   <text x="976" y="552" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" fill="#b85450">Denied by control plane. Not a lab actor.</text>
 
-  <text x="28" y="798" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#5b6b7c">Optional Omnigent YAML is an outer driver only. Catalogs: config/checklists. PI_CERTIFY is human-only.</text>
+  <rect x="956" y="640" width="420" height="70" rx="14" fill="#eceff3" stroke="#9aa8b6" stroke-dasharray="7 5"/>
+  <text x="976" y="670" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#5b6b7c">Langfuse (optional)</text>
+  <text x="976" y="692" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#5b6b7c">Per-agent spans · keys off = no-op · does not replace guard</text>
+
+  <text x="28" y="798" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12" fill="#5b6b7c">Optional Omnigent YAML is an outer driver only. Catalogs: config/checklists. PI_CERTIFY is human-only. Langfuse is optional observability.</text>
 </svg>

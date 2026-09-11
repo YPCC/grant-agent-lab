@@ -16,10 +16,9 @@ knowledge → reviewer (GPA + SSRB) → missing essentials → intake → HITL f
 | **LangGraph agent (Part B, default)** | `GrantGraph`: invoke / resume, interrupt-before-freeze. Same nodes as the workbench, harness, and MCP. |
 | **ADK and hybrid (Parts A / C)** | Pure Google ADK 2.0, or ADK outer + LangGraph inner. Switch in `config/runtime.yaml`. |
 | **Control plane** | `guard()` wraps nodes. **ALLOW** review/checklist/intake. **ASK** freeze and office submit. **DENY** NIH ASSIST, invented budget, auto `PI_CERTIFY`. Audit log + kill-switch. |
-| **Governance profiles** | `local` (lightweight default) vs `production` (mandatory identity, fail-closed audit, Langfuse, secrets scan, eval + static red-team gates). |
 | **Langfuse observability** | Optional. Parent trace per invoke/resume; child span per agent. DENY = ERROR, ASK = WARNING. No keys → no-op (CI still green). |
 | **Eval harness** | YAML cases + deterministic graders + GitHub Actions. Weak aims cannot freeze. Optional DeepTeam is a **red-team lane**, not the cage. |
-| **MCP / Copilot plugin** | `python3 -m src.harness mcp`. Optional Omnigent YAML is a *driver*, not a second graph. |
+| **MCP / Copilot / Grok plugin** | `grant-harness mcp` (pipx analog of NPX). Skill is a *driver*. Graph stays here. |
 | **Catalogs** | `r01_essentials.yaml`, `ora_intake.yaml`, SF424 rules, GPA four questions, SSRB issue classes. |
 | **Budget scrutinizer** | Checks modular/detailed norms. Does **not** invent a budget. |
 | **HITL + RBAC** | PI / Navigator / Office / Admin. PI can submit to the **office** database only. |
@@ -32,4 +31,4 @@ knowledge → reviewer (GPA + SSRB) → missing essentials → intake → HITL f
 - Green CI means the cage still holds — not that a model “wrote a good grant.”
 - With Langfuse keys: one trace tree per run, one span per agent. Without keys: the lab still runs.
 
-Deeper: [architecture](architecture.md) · [governance](governance.md) · [C4](architecture-considerations/c4-infographics/README.md) · [observability](observability.md) · [harness vs Omnigent](harness-vs-omnigent.md) · [control plane](control-plane-integration.md) · [Part B HITL](part-b-langgraph-hitl.md).
+Deeper: [architecture](architecture.md) · [governance](governance.md) · [packaging](packaging-and-deploy.md) · [C4](architecture-considerations/c4-infographics/README.md) · [observability](observability.md) · [harness vs Omnigent](harness-vs-omnigent.md) · [control plane](control-plane-integration.md) · [Part B HITL](part-b-langgraph-hitl.md).

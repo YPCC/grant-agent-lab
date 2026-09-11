@@ -2,7 +2,7 @@
 
 **Multi-agent system for drafting, reviewing, compliance-checking, budget-validating, and packaging NIH (and related) grant proposals, then submitting the packet to the Office of Research Aid database (not NIH).**
 
-Start here: **[one-pager](docs/one-pager.md)** · **[governance](docs/governance.md)** · **[configure](docs/guides/how-to-configure.md)** · **[launch UI](docs/guides/how-to-launch-ui.md)** · **[eval harness](docs/harness.md)** · **[observability](docs/observability.md)** · **[architecture](docs/architecture.md)** · **[C4 infographics](docs/architecture-considerations/c4-infographics/README.md)** · **[docs index](docs/README.md)**
+Start here: **[one-pager](docs/one-pager.md)** · **[configure](docs/guides/how-to-configure.md)** · **[launch UI](docs/guides/how-to-launch-ui.md)** · **[eval harness](docs/harness.md)** · **[observability](docs/observability.md)** · **[architecture](docs/architecture.md)** · **[C4 infographics](docs/architecture-considerations/c4-infographics/README.md)** · **[docs index](docs/README.md)**
 
 [![Harness](https://github.com/YPCC/grant-agent-lab/actions/workflows/harness.yml/badge.svg)](https://github.com/YPCC/grant-agent-lab/actions/workflows/harness.yml)
 
@@ -108,7 +108,7 @@ That overwrites `docs/demo/e2e-*-demo.mp4` plus matching `still-*.png`. Do not c
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
-PYTHONPATH=. python -m pytest tests/test_harness.py tests/test_harness_mcp.py tests/test_harness_policies.py tests/test_control_plane.py tests/test_observability.py tests/test_redteam.py tests/test_graph_pipeline.py tests/test_checklist.py tests/test_intake_office.py tests/test_governance.py -q
+PYTHONPATH=. python -m pytest tests/test_harness.py tests/test_harness_mcp.py tests/test_harness_policies.py tests/test_control_plane.py tests/test_observability.py tests/test_redteam.py tests/test_graph_pipeline.py tests/test_checklist.py tests/test_intake_office.py -q
 
 # Eval harness (MCP plugin for Copilot / any LLM tool)
 PYTHONPATH=. python3 -m src.harness run-case weak_aims_vague
@@ -188,6 +188,7 @@ Used in [draw.io](docs/architecture-considerations/) files:
 | [DeepTeam](docs/deepteam-adoption.md) | Optional red-team lane |
 | [Control plane](docs/control-plane-integration.md) | ALLOW / DENY / ASK guard |
 | [Governance](docs/governance.md) | Local vs production fail-closed profile |
+| [Packaging and deploy](docs/packaging-and-deploy.md) | Grok/MCP plugin, pipx, Cloud Run |
 | [Observability](docs/observability.md) | Langfuse traces per agent |
 | [Omnigent adapter](docs/omnigent-adoption.md) | Optional outer driver |
 | [Architecture considerations](docs/architecture-considerations/README.md) | EA packet, Cloud SQL, Cloud Run, draw.io C4 |

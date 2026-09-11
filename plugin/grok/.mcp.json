@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "grant-agent-harness": {
+      "command": "grant-harness",
+      "args": ["mcp"]
+    }
+  }
+}

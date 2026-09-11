@@ -16,6 +16,7 @@
 | [PI R01 workflow UI](architecture-considerations/pi-r01-workflow-ui.md) | Product spec and RBAC |
 | [Control plane](control-plane-integration.md) | AGT-style guard |
 | [Governance profiles](governance.md) | Local vs production (fail-closed) |
+| [Packaging and deploy](packaging-and-deploy.md) | Grok plugin / pipx / PWA vs Cloud Run |
 | [Observability (Langfuse)](observability.md) | Per-agent traces; optional keys |
 | [Budget & package](budget-and-package-agent.md) | Scrutinizer (not planner) |
 | [Eval harness](harness.md) | In-lab cases, graders, MCP/CLI |

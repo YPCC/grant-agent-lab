@@ -63,6 +63,13 @@ def main(argv: list[str] | None = None) -> int:
     s = sub.add_parser("pack")
     s.add_argument("name")
 
+    s = sub.add_parser("redteam", help="Adversarial probes (static). --live uses DeepTeam if installed.")
+    s.add_argument("--live", action="store_true")
+
+    sub.add_parser("profile", help="Print current governance profile (local | production)")
+    s = sub.add_parser("preflight", help="Governance runtime checks; --gates runs eval cage + static red-team")
+    s.add_argument("--gates", action="store_true")
+
     args = p.parse_args(argv)
     if args.cmd == "mcp":
         from src.harness.mcp_server import serve_stdio
@@ -78,6 +85,17 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "pack":
         print(dumps(load_pack(args.name)))
         return 0
+    if args.cmd == "profile":
+        from src.control_plane.profile import as_dict
+
+        print(dumps(as_dict()))
+        return 0
+    if args.cmd == "preflight":
+        from src.control_plane.gates import preflight
+
+        report = preflight(gates=args.gates)
+        print(dumps(report))
+        return 0 if report.get("passed") else 2
     if args.cmd == "redteam":
         from src.harness.redteam import run_deepteam, run_static_probes
 

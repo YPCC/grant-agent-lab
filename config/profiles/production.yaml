@@ -1,0 +1,16 @@
+# Production governance profile. Fail-closed: no silent drop of policy,
+# audit, identity, telemetry, or selected eval/red-team gates.
+name: production
+policy_required: true
+audit_required: true
+audit_fail_closed: true
+telemetry_required: true
+telemetry_stub_ok: true
+identity_required: true
+identity_roles: [PI, Navigator, Office of Research Aid, Admin]
+secrets_redact: true
+secrets_forbid_era: true
+secrets_scan_package: true
+gates_eval_cage: true
+gates_static_redteam: true
+gates_deepteam_live: false

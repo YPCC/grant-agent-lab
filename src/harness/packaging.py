@@ -21,6 +21,11 @@ def create_office_package(
     dest_key = (destination or "").replace(" ", "_").upper()
     if any(b in dest_key for b in BLOCKED):
         raise PermissionError("Harness invariant: NIH ASSIST / Grants.gov submit is forbidden")
+    from src.control_plane.profile import current
+    from src.control_plane.secrets import assert_package_clean
+
+    if current().secrets_scan_package:
+        assert_package_clean(text_excerpt)
     return _create(
         proposal_id=proposal_id,
         filename=filename,

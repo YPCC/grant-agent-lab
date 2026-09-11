@@ -33,4 +33,29 @@ jobs:
             tests/test_redteam.py \
             tests/test_graph_pipeline.py \
             tests/test_checklist.py \
-            tests/test_intake_office.py
+            tests/test_intake_office.py \
+            tests/test_governance.py
+
+  production:
+    name: production-preflight
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install pytest
+        run: pip install pytest
+      - name: Production profile must fail-close
+        env:
+          PYTHONPATH: .
+          GRANT_PROFILE: production
+          GRANT_ACTOR: github-actions
+          GRANT_ROLE: Admin
+          GRANT_TELEMETRY_STUB: "1"
+        run: |
+          python -m pytest -q tests/test_governance.py
+          python -m src.harness preflight
+          python -m src.harness profile
+

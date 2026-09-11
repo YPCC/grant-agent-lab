@@ -1,0 +1,16 @@
+# Lightweight lab profile (default). Guard still runs; telemetry and
+# identity are optional; audit is best-effort.
+name: local
+policy_required: true
+audit_required: false
+audit_fail_closed: false
+telemetry_required: false
+telemetry_stub_ok: true
+identity_required: false
+identity_roles: [PI, Navigator, Office of Research Aid, Admin]
+secrets_redact: true
+secrets_forbid_era: true
+secrets_scan_package: false
+gates_eval_cage: false
+gates_static_redteam: false
+gates_deepteam_live: false

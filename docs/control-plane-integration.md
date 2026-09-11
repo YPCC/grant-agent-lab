@@ -16,7 +16,9 @@ We reuse the architectural pattern from [YPCC/agent-control-lab](https://github.
 | Agent SRE            | Partial                                            | Circuit-breaker state file |
 | Agent Compliance     | Integrated                                         | GO / NO-GO gate + compliance_evidence.json |
 | Agent Marketplace    | Projected                                          | Skill / tool fingerprint placeholders |
-| Observability        | Integrated                                         | Langfuse spans per agent (optional keys) + audit JSONL |
+| Observability        | Integrated                                         | Langfuse spans per agent; **required** on production profile |
+
+Two profiles: **local** (lightweight) and **production** (fail-closed identity, audit, telemetry, secrets, eval/red-team gates). See [governance.md](governance.md).
 
 ## How it is wired
 

@@ -463,6 +463,10 @@ class Handler(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
+    from src.control_plane.gates import assert_runtime_ready
+    from src.control_plane.profile import current
+
+    assert_runtime_ready()
     port = int(os.environ.get("PORT", "8080"))
-    print(f"Workbench http://0.0.0.0:{port} (Part B graph)")
+    print(f"Workbench http://0.0.0.0:{port} (Part B graph, profile={current().name})")
     ThreadingHTTPServer(("0.0.0.0", port), Handler).serve_forever()

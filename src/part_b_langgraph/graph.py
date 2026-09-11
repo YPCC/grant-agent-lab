@@ -10,6 +10,7 @@ import os
 from typing import Any, TypedDict
 
 from src.control_plane.guard import PolicyAsk, get_audit_log, guard
+from src.control_plane.gates import assert_runtime_ready
 from src.control_plane.observability import trace_run
 from src.harness.checklist import evaluate_checklist
 from src.harness.intake import fill_intake
@@ -211,6 +212,7 @@ class GrantGraph:
         self.threads: dict[str, ProposalState] = {}
 
     def invoke(self, state: ProposalState, config: dict | None = None) -> ProposalState:
+        assert_runtime_ready()
         tid = (config or {}).get("configurable", {}).get("thread_id", "default")
         with trace_run(
             "grant-graph.invoke",
@@ -226,6 +228,7 @@ class GrantGraph:
             return s
 
     def resume(self, thread_id: str, decision: str, **updates: Any) -> ProposalState:
+        assert_runtime_ready()
         with trace_run(
             "grant-graph.resume",
             session_id=thread_id,

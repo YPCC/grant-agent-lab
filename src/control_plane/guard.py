@@ -12,14 +12,16 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
 
+from src.control_plane.identity import resolve
 from src.control_plane.observability import observe_agent
+from src.control_plane.profile import current
+from src.control_plane.secrets import redact_event
 from src.harness.policies import evaluate
 
 logger = logging.getLogger("grant_agent_lab.control_plane")
 
 _KILL_SWITCH = False
 _AUDIT_LOG: list[dict[str, Any]] = []
-_AUDIT_FILE = Path("output/audit_log.jsonl")
 
 
 class PolicyDenied(PermissionError):
@@ -28,6 +30,10 @@ class PolicyDenied(PermissionError):
 
 class PolicyAsk(PermissionError):
     """ASK: a human must approve before this action proceeds."""
+
+
+class AuditError(RuntimeError):
+    """Production audit log could not be written."""
 
 
 def set_kill_switch(value: bool) -> None:
@@ -40,15 +46,26 @@ def is_kill_switch_active() -> bool:
     return _KILL_SWITCH
 
 
+def _audit_path() -> Path:
+    return Path(current().audit_path)
+
+
 def _emit_audit(event: dict[str, Any]) -> None:
+    p = current()
     event.setdefault("ts", datetime.now(timezone.utc).isoformat())
+    event.setdefault("profile", p.name)
+    if p.secrets_redact:
+        event = redact_event(event)
     _AUDIT_LOG.append(event)
     try:
-        _AUDIT_FILE.parent.mkdir(parents=True, exist_ok=True)
-        with _AUDIT_FILE.open("a") as f:
+        path = _audit_path()
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("a") as f:
             f.write(json.dumps(event) + "\n")
-    except Exception as exc:  # pragma: no cover
+    except Exception as exc:
         logger.debug("Could not write audit file: %s", exc)
+        if p.audit_fail_closed or p.audit_required:
+            raise AuditError(f"Audit write failed under profile {p.name}: {exc}") from exc
 
 
 def get_audit_log() -> list[dict[str, Any]]:
@@ -62,12 +79,18 @@ def guard(
     *args: Any,
     trust_tier: str = "standard",
     human_approved: bool = False,
+    actor: str | None = None,
+    role: str | None = None,
     **kwargs: Any,
 ) -> Any:
-    """Mediate a call: kill-switch, ALLOW/DENY/ASK, audit, Langfuse span, then fn."""
+    """Mediate a call: identity, kill-switch, ALLOW/DENY/ASK, audit, Langfuse span, then fn."""
+    ident = resolve(actor, role)
     meta = {
         "trust_tier": trust_tier,
         "human_approved": human_approved,
+        "actor": ident["actor"],
+        "role": ident["role"],
+        "profile": current().name,
     }
     with observe_agent(agent_name, action, metadata=meta, input={"agent": agent_name, "action": action}) as obs:
         if is_kill_switch_active():
@@ -77,6 +100,7 @@ def guard(
                 "result": "blocked",
                 "reason": "kill_switch",
                 "trust_tier": trust_tier,
+                **ident,
             })
             obs["status"] = "blocked"
             obs["level"] = "ERROR"
@@ -88,7 +112,12 @@ def guard(
             "target": action,
             "data": {
                 "name": action,
-                "arguments": {"agent": agent_name, "human_approved": human_approved},
+                "arguments": {
+                    "agent": agent_name,
+                    "human_approved": human_approved,
+                    "actor": ident["actor"],
+                    "role": ident["role"],
+                },
             },
         }
         verdict = evaluate(event) or {"result": "ALLOW"}
@@ -103,6 +132,7 @@ def guard(
                 "result": "denied",
                 "reason": reason,
                 "trust_tier": trust_tier,
+                **ident,
             })
             obs["status"] = "denied"
             obs["level"] = "ERROR"
@@ -116,6 +146,7 @@ def guard(
                 "result": "ask",
                 "reason": reason,
                 "trust_tier": trust_tier,
+                **ident,
             })
             obs["status"] = "ask"
             obs["level"] = "WARNING"
@@ -128,6 +159,7 @@ def guard(
             "result": "allowed",
             "trust_tier": trust_tier,
             "human_approved": human_approved,
+            **ident,
         })
 
         try:
@@ -137,6 +169,7 @@ def guard(
                 "action": action,
                 "result": "success",
                 "trust_tier": trust_tier,
+                **ident,
             })
             obs["status"] = "ok"
             obs["output"] = _safe_out(out)
@@ -148,6 +181,7 @@ def guard(
                 "result": "error",
                 "error": str(exc),
                 "trust_tier": trust_tier,
+                **ident,
             })
             obs["status"] = "error"
             obs["level"] = "ERROR"

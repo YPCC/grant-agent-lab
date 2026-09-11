@@ -1,3 +1,7 @@
+# Governance profile: local (default, lightweight) | production (fail-closed).
+# Override with GRANT_PROFILE=production
+profile: local
+
 # Pure LangGraph runtime (Part B) — switch path without code changes.
 # Paths: part_a_adk | part_b_langgraph | part_c_hybrid
 

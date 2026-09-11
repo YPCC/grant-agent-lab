@@ -65,9 +65,11 @@ Each item in [`config/checklists/r01_essentials.yaml`](../../config/checklists/r
 
 To add a required form (for example a DMS plan variant), append an item and re-run review. No code change is required for keyword-based presence checks.
 
-## 5. Control plane and audit
+## 5. Control plane, profiles, and audit
 
 ```yaml
+profile: local   # or production — GRANT_PROFILE env overrides
+
 observability:
   audit_log: output/audit_log.jsonl
   langfuse: env   # on when LANGFUSE_PUBLIC_KEY + LANGFUSE_SECRET_KEY are set
@@ -77,9 +79,11 @@ control_plane:
   pi_cannot_submit: true
 ```
 
+`profile: local` is the lightweight lab. `profile: production` fail-closes identity, audit, telemetry, secrets, and selected eval/red-team gates. Details: [governance.md](../governance.md).
+
 `pi_cannot_submit: true` is the RBAC rule shown in the UI (Submit disabled for PI).
 
-Langfuse setup: [observability.md](../observability.md). Without keys, agents still run; spans stay in-memory.
+Langfuse setup: [observability.md](../observability.md). Local: without keys, agents still run. Production: keys (or `GRANT_TELEMETRY_STUB=1` in CI) are required.
 
 NIH SF424-style rules live in [`config/policies/nih_sf424_rules.yaml`](../../config/policies/nih_sf424_rules.yaml).
 
@@ -91,7 +95,11 @@ NIH SF424-style rules live in [`config/policies/nih_sf424_rules.yaml`](../../con
 | `GOOGLE_API_KEY` | ADK / Gemini writer | Optional for checklist-only demo |
 | `OPENAI_API_KEY` | CopilotKit free-form chat | Optional; workbench review works without it |
 | `XAI_API_KEY` | Optional Grok-backed skills | Optional |
-| `LANGFUSE_PUBLIC_KEY` / `LANGFUSE_SECRET_KEY` | Per-agent traces | Optional; see [observability](../observability.md) |
+| `GRANT_PROFILE` | `local` (default) or `production` | Production fail-closes governance |
+| `GRANT_ACTOR` / `GRANT_ROLE` | Identity on every guarded call | **Required** when `GRANT_PROFILE=production` |
+| `GRANT_AUDIT_LOG` | Audit JSONL path | Production fail-closed |
+| `GRANT_TELEMETRY_STUB` | `1` = CI stub instead of Langfuse export | Production CI only |
+| `LANGFUSE_PUBLIC_KEY` / `LANGFUSE_SECRET_KEY` | Per-agent traces | Optional locally; **required** in production |
 | `LANGFUSE_BASE_URL` | Langfuse Cloud or self-host | Optional (default cloud.langfuse.com) |
 
 Copy keys into a local `.env` (gitignored). Do not commit secrets.

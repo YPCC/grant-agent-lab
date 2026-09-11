@@ -1,6 +1,6 @@
 # How to launch the UI
 
-Two UIs exist. Start with the Python workbench — it needs **no npm and no model key**.
+Two UIs exist. Start with the Python workbench — it needs **no npm and no model key**. Desktop window and MCP embed: [how to use desktop and embedded agent](how-to-use-desktop-and-embedded-agent.md).
 
 ## Option A — Workbench (recommended demo)
 
@@ -13,6 +13,15 @@ python3 ui-copilotkit/serve_workbench.py
 ```
 
 Open [http://127.0.0.1:8080](http://127.0.0.1:8080).
+
+### Option A2 — Desktop window (same UI)
+
+```bash
+pip install -e ".[desktop]" python-docx
+python -m src.desktop
+```
+
+Same tabs (Review, Harness, Settings). Vertex optional: [desktop-and-llm.md](../desktop-and-llm.md). Full walkthrough: [desktop and embedded agent](how-to-use-desktop-and-embedded-agent.md).
 
 Recorded walkthroughs:
 

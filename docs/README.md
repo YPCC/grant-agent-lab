@@ -5,6 +5,7 @@
 | [One-pager](one-pager.md) | What this repo is, what it showcases (LangGraph, guard, harness, Langfuse) |
 | [How to configure](guides/how-to-configure.md) | `runtime.yaml`, agents, HITL, checklist, env vars |
 | [How to launch the UI](guides/how-to-launch-ui.md) | Workbench on :8080 and CopilotKit Next.js |
+| [How to use desktop and embedded agent](guides/how-to-use-desktop-and-embedded-agent.md) | Desktop window + MCP in Grok/Copilot/Cursor/Claude |
 | [How to create demo files](guides/how-to-create-demo-files.md) | Record MP4 + stills (Playwright / ffmpeg) |
 | [Demo videos](demo/README.md) | CopilotKit UI + Python workbench walkthroughs (MP4) |
 | [Architecture (Mermaid)](architecture.md) | C4 context + containers, one pipeline, RBAC |

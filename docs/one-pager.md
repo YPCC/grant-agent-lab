@@ -31,4 +31,4 @@ knowledge → reviewer (GPA + SSRB) → missing essentials → intake → HITL f
 - Green CI means the cage still holds — not that a model “wrote a good grant.”
 - With Langfuse keys: one trace tree per run, one span per agent. Without keys: the lab still runs.
 
-Deeper: [architecture](architecture.md) · [governance](governance.md) · [packaging](packaging-and-deploy.md) · [C4](architecture-considerations/c4-infographics/README.md) · [observability](observability.md) · [harness vs Omnigent](harness-vs-omnigent.md) · [control plane](control-plane-integration.md) · [Part B HITL](part-b-langgraph-hitl.md).
+Deeper: [desktop / embed](guides/how-to-use-desktop-and-embedded-agent.md) · [architecture](architecture.md) · [governance](governance.md) · [packaging](packaging-and-deploy.md) · [C4](architecture-considerations/c4-infographics/README.md) · [observability](observability.md) · [control plane](control-plane-integration.md).

@@ -179,6 +179,7 @@ Used in [draw.io](docs/architecture-considerations/) files:
 | [One-pager](docs/one-pager.md) | What this repo is and showcases |
 | [How to configure](docs/guides/how-to-configure.md) | `runtime.yaml`, agents, HITL, env |
 | [How to launch UI](docs/guides/how-to-launch-ui.md) | Workbench and CopilotKit |
+| [Desktop and embedded agent](docs/guides/how-to-use-desktop-and-embedded-agent.md) | Desktop window + MCP in Grok/Copilot |
 | [How to create demo files](docs/guides/how-to-create-demo-files.md) | Record MP4 + stills |
 | [Demo videos](docs/demo/README.md) | CopilotKit UI + Python workbench walkthroughs |
 | [Architecture (Mermaid)](docs/architecture.md) | System context (C4), one pipeline, RBAC |

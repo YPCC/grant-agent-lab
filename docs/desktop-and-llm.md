@@ -1,5 +1,7 @@
 # Desktop app and configurable LLM
 
+**Walkthrough (clicks, MCP, Python embed):** [How to use the desktop app and the embedded agent](guides/how-to-use-desktop-and-embedded-agent.md).
+
 Run the same GrantGraph in a **desktop window**, with Vertex AI Gemini (or Gemini API / OpenAI / xAI) as an **optional narrative backend**. Deterministic GPA/SSRB graders and the freeze checklist do **not** depend on the LLM.
 
 ```bash

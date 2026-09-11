@@ -2,7 +2,7 @@
 
 **Multi-agent system for drafting, reviewing, compliance-checking, budget-validating, and packaging NIH (and related) grant proposals, then submitting the packet to the Office of Research Aid database (not NIH).**
 
-Start here: **[configure](docs/guides/how-to-configure.md)** · **[launch UI](docs/guides/how-to-launch-ui.md)** · **[eval harness](docs/harness.md)** · **[create demos](docs/guides/how-to-create-demo-files.md)** · **[architecture](docs/architecture.md)** · **[C4 infographics](docs/architecture-considerations/c4-infographics/README.md)** · **[docs index](docs/README.md)**
+Start here: **[one-pager](docs/one-pager.md)** · **[configure](docs/guides/how-to-configure.md)** · **[launch UI](docs/guides/how-to-launch-ui.md)** · **[eval harness](docs/harness.md)** · **[create demos](docs/guides/how-to-create-demo-files.md)** · **[architecture](docs/architecture.md)** · **[C4 infographics](docs/architecture-considerations/c4-infographics/README.md)** · **[docs index](docs/README.md)**
 
 [![Harness](https://github.com/YPCC/grant-agent-lab/actions/workflows/harness.yml/badge.svg)](https://github.com/YPCC/grant-agent-lab/actions/workflows/harness.yml)
 
@@ -172,6 +172,7 @@ Used in [draw.io](docs/architecture-considerations/) files:
 | Guide | Description |
 |-------|-------------|
 | [Docs index](docs/README.md) | All guides |
+| [One-pager](docs/one-pager.md) | What this repo is and showcases |
 | [How to configure](docs/guides/how-to-configure.md) | `runtime.yaml`, agents, HITL, env |
 | [How to launch UI](docs/guides/how-to-launch-ui.md) | Workbench and CopilotKit |
 | [How to create demo files](docs/guides/how-to-create-demo-files.md) | Record MP4 + stills |

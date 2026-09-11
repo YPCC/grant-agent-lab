@@ -2,6 +2,7 @@
 
 | Doc | Contents |
 |-----|----------|
+| [One-pager](one-pager.md) | What this repo is, what it showcases, key features |
 | [How to configure](guides/how-to-configure.md) | `runtime.yaml`, agents, HITL, checklist, env vars |
 | [How to launch the UI](guides/how-to-launch-ui.md) | Workbench on :8080 and CopilotKit Next.js |
 | [How to create demo files](guides/how-to-create-demo-files.md) | Record MP4 + stills (Playwright / ffmpeg) |

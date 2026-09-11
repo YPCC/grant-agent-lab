@@ -19,5 +19,6 @@
 | [Budget & package](budget-and-package-agent.md) | Scrutinizer (not planner) |
 | [Eval harness](harness.md) | In-lab cases, graders, MCP/CLI |
 | [What the harness is vs Omnigent](harness-vs-omnigent.md) | Call-out: our eval cage vs Omni meta-harness |
+| [DeepTeam in the harness](deepteam-adoption.md) | Optional red-team lane; does not replace YAML graders |
 | [Omnigent adapter](omnigent-adoption.md) | Optional outer driver; not a rewrite |
 | [Datasets](datasets-and-validation.md) | Public NIH samples / RePORTER |

@@ -17,7 +17,7 @@ knowledge → reviewer (GPA + SSRB) → missing essentials → intake → HITL f
 | **ADK and hybrid (Parts A / C)** | Pure Google ADK 2.0, or ADK outer + LangGraph inner. Switch in `config/runtime.yaml`. |
 | **Control plane** | `guard()` wraps nodes. **ALLOW** review/checklist/intake. **ASK** freeze and office submit. **DENY** NIH ASSIST, invented budget, auto `PI_CERTIFY`. Audit log + kill-switch. |
 | **Langfuse observability** | Optional. Parent trace per invoke/resume; child span per agent. DENY = ERROR, ASK = WARNING. No keys → no-op (CI still green). |
-| **Eval harness** | YAML cases + deterministic graders + GitHub Actions. Weak aims cannot freeze. |
+| **Eval harness** | YAML cases + deterministic graders + GitHub Actions. Weak aims cannot freeze. Optional DeepTeam is a **red-team lane**, not the cage. |
 | **MCP / Copilot plugin** | `python3 -m src.harness mcp`. Optional Omnigent YAML is a *driver*, not a second graph. |
 | **Catalogs** | `r01_essentials.yaml`, `ora_intake.yaml`, SF424 rules, GPA four questions, SSRB issue classes. |
 | **Budget scrutinizer** | Checks modular/detailed norms. Does **not** invent a budget. |

@@ -78,6 +78,14 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "pack":
         print(dumps(load_pack(args.name)))
         return 0
+    if args.cmd == "redteam":
+        from src.harness.redteam import run_deepteam, run_static_probes
+
+        out = run_static_probes()
+        if args.live:
+            out["deepteam"] = run_deepteam()
+        print(dumps(out))
+        return 0 if out.get("passed") else 2
     if args.cmd == "run-case":
         result = run_case(load_case(args.case_id), allow_package=args.package or None)
         print(dumps(_public(result)))

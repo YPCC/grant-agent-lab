@@ -1,6 +1,6 @@
 # Eval harness (in-lab feature)
 
-Call-out (what this harness is, vs Omnigent’s meta-harness): [harness-vs-omnigent.md](harness-vs-omnigent.md).
+Call-out (what this harness is, vs Omnigent’s meta-harness): [harness-vs-omnigent.md](harness-vs-omnigent.md). Optional LLM red team: [deepteam-adoption.md](deepteam-adoption.md).
 
 
 Harness cases invoke **the same Part B `GrantGraph`** as the workbench. There is one pipeline:
@@ -21,5 +21,6 @@ PYTHONPATH=. python3 -m src.harness list-cases
 PYTHONPATH=. python3 -m src.harness run-case weak_aims_vague
 PYTHONPATH=. python3 -m src.harness mcp
 PYTHONPATH=. python3 ui-copilotkit/serve_workbench.py   # :8080
-PYTHONPATH=. python3 -m pytest tests/test_harness.py tests/test_harness_mcp.py tests/test_harness_policies.py tests/test_control_plane.py tests/test_observability.py tests/test_graph_pipeline.py tests/test_checklist.py tests/test_intake_office.py -q
+PYTHONPATH=. python3 -m src.harness redteam
+PYTHONPATH=. python3 -m pytest tests/test_harness.py tests/test_harness_mcp.py tests/test_harness_policies.py tests/test_control_plane.py tests/test_observability.py tests/test_redteam.py tests/test_graph_pipeline.py tests/test_checklist.py tests/test_intake_office.py -q
 ```

@@ -65,6 +65,19 @@ Each item in [`config/checklists/r01_essentials.yaml`](../../config/checklists/r
 
 To add a required form (for example a DMS plan variant), append an item and re-run review. No code change is required for keyword-based presence checks.
 
+## 5b. LLM backend (desktop / optional narrative)
+
+```yaml
+llm:
+  provider: none    # none | vertex | gemini | openai | xai
+  model: gemini-2.5-flash
+  project: my-gcp-project
+  location: us-central1
+  enrich_review: true
+```
+
+`none` is the CI default. Vertex uses Application Default Credentials. See [desktop-and-llm.md](../desktop-and-llm.md).
+
 ## 5. Control plane, profiles, and audit
 
 ```yaml

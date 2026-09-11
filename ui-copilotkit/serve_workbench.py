@@ -85,6 +85,7 @@ pre.out{white-space:pre-wrap;font-size:12px;background:#0e2a4a;color:#e8eef5;pad
   <div>
     <span class="chip" id="rolechip">You are PI</span>
     <span class="chip" id="obs-chip" title="Per-agent traces. Keys enable Langfuse Cloud / self-host.">Langfuse off</span>
+    <span class="chip" id="llm-chip" title="Configurable backend LLM. none = graders only.">LLM none</span>
     <select id="role" onchange="onRole()">
       <option>PI</option><option>Navigator</option><option>Office of Research Aid</option><option>Admin</option>
     </select>
@@ -93,6 +94,7 @@ pre.out{white-space:pre-wrap;font-size:12px;background:#0e2a4a;color:#e8eef5;pad
 <div class="tabs">
   <button class="on" id="tab-review" onclick="showTab('review')">Review & intake</button>
   <button id="tab-harness" onclick="showTab('harness')">Harness</button>
+  <button id="tab-settings" onclick="showTab('settings')">Settings</button>
 </div>
 <div class="track" id="trackbanner" style="display:none"></div>
 <div id="review-panel">
@@ -138,6 +140,33 @@ pre.out{white-space:pre-wrap;font-size:12px;background:#0e2a4a;color:#e8eef5;pad
   <div class="row" id="case-btns"></div>
   <pre class="out" id="harness-out">Select a case.</pre>
 </section>
+<section class="card hidden" id="settings-panel">
+  <h2>Desktop / LLM backend</h2>
+  <p class="meta">Deterministic GPA/SSRB graders always run. The LLM only adds a narrative. Freeze still uses the checklist. Keys stay in the environment — not in this form.</p>
+  <div class="item"><label>Provider</label>
+    <select id="llm-provider">
+      <option value="none">none (graders only)</option>
+      <option value="vertex">Vertex AI Gemini</option>
+      <option value="gemini">Gemini API (AI Studio key)</option>
+      <option value="openai">OpenAI</option>
+      <option value="xai">xAI Grok</option>
+    </select>
+    <span class="meta">GRANT_LLM_PROVIDER</span></div>
+  <div class="item"><label>Model</label>
+    <input id="llm-model" style="font:inherit;padding:4px" value="gemini-2.5-flash"/>
+    <span class="meta">e.g. gemini-2.5-flash · gpt-4o-mini · grok-3</span></div>
+  <div class="item"><label>Vertex project</label>
+    <input id="llm-project" style="font:inherit;padding:4px" placeholder="GOOGLE_CLOUD_PROJECT"/>
+    <span class="meta">ADC: gcloud auth application-default login</span></div>
+  <div class="item"><label>Vertex location</label>
+    <input id="llm-location" style="font:inherit;padding:4px" value="us-central1"/>
+    <span class="meta">us-central1</span></div>
+  <div class="row">
+    <button class="btn primary" onclick="saveLlm()">Save</button>
+    <button class="btn" onclick="testLlm()">Test connection</button>
+  </div>
+  <pre class="out" id="llm-out">Load settings…</pre>
+</section>
 <div class="chat">
   <h3>Grant agents</h3>
   <div class="msgs" id="msgs">
@@ -154,9 +183,12 @@ let intake = null;
 function showTab(name){
   document.getElementById('review-panel').classList.toggle('hidden', name!=='review');
   document.getElementById('harness-panel').classList.toggle('hidden', name!=='harness');
+  document.getElementById('settings-panel').classList.toggle('hidden', name!=='settings');
   document.getElementById('tab-review').classList.toggle('on', name==='review');
   document.getElementById('tab-harness').classList.toggle('on', name==='harness');
+  document.getElementById('tab-settings').classList.toggle('on', name==='settings');
   if(name==='harness') loadCases();
+  if(name==='settings') loadLlm();
 }
 function onRole(){
   document.getElementById('rolechip').textContent = 'You are ' + document.getElementById('role').value;
@@ -190,6 +222,11 @@ function render(d){
     `<div class="finding ${f.severity}"><b>${(f.severity||'').toUpperCase()} · ${f.agent} · ${f.rule_id}</b>
      <div class="meta">${f.location||''}</div><div>${f.comment||''}</div></div>`
   ).join('');
+  const llm = (d.review && d.review.llm) || {};
+  if (llm.text) {
+    document.getElementById('findings').innerHTML +=
+      `<div class="finding warning"><b>LLM · ${llm.provider||''} · ${llm.model||''}</b><div>${llm.text}</div></div>`;
+  }
   const cl = d.checklist || {};
   document.getElementById('check').innerHTML = (cl.items||[]).map(it =>
     `<div class="finding ${it.status==='present'?'ok':'blocker'}">
@@ -296,6 +333,39 @@ function chat(e){
 }
 review();
 obsStatus();
+llmStatus();
+async function llmStatus(){
+  try {
+    const s = await (await fetch('/api/llm')).json();
+    const el = document.getElementById('llm-chip');
+    el.textContent = 'LLM ' + (s.provider || 'none');
+    el.title = (s.model || '') + ' · ' + (s.detail || s.detail || '');
+  } catch (e) {}
+}
+async function loadLlm(){
+  const s = await (await fetch('/api/llm')).json();
+  document.getElementById('llm-provider').value = s.provider || 'none';
+  document.getElementById('llm-model').value = s.model || '';
+  document.getElementById('llm-project').value = s.project || '';
+  document.getElementById('llm-location').value = s.location || 'us-central1';
+  document.getElementById('llm-out').textContent = JSON.stringify(s, null, 2);
+}
+async function saveLlm(){
+  const body = {
+    provider: document.getElementById('llm-provider').value,
+    model: document.getElementById('llm-model').value,
+    project: document.getElementById('llm-project').value,
+    location: document.getElementById('llm-location').value,
+  };
+  const s = await (await fetch('/api/llm', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)})).json();
+  document.getElementById('llm-out').textContent = JSON.stringify(s, null, 2);
+  llmStatus();
+}
+async function testLlm(){
+  document.getElementById('llm-out').textContent = 'Testing…';
+  const s = await (await fetch('/api/llm/test', {method:'POST'})).json();
+  document.getElementById('llm-out').textContent = JSON.stringify(s, null, 2);
+}
 async function obsStatus(){
   try {
     const s = await (await fetch('/api/observability')).json();
@@ -363,6 +433,9 @@ class Handler(BaseHTTPRequestHandler):
         if path == "/api/observability":
             from src.control_plane.observability import status as obs_status
             return self._json(200, obs_status())
+        if path == "/api/llm":
+            from src.llm.client import llm_status
+            return self._json(200, llm_status())
         if path.startswith("/office/packages/"):
             tracking = path.rsplit("/", 1)[-1]
             dest = ROOT / "output" / "packages" / tracking / "MANIFEST.json"
@@ -376,6 +449,17 @@ class Handler(BaseHTTPRequestHandler):
         length = int(self.headers.get("Content-Length") or 0)
         raw = self.rfile.read(length)
 
+        if path == "/api/llm":
+            payload = json.loads(raw.decode() or "{}")
+            from src.llm.client import llm_status
+            from src.llm.config import save_overrides
+
+            save_overrides(payload)
+            return self._json(200, llm_status())
+        if path == "/api/llm/test":
+            from src.llm.client import complete
+
+            return self._json(200, complete("Reply with the single word pong."))
         if path == "/api/hitl":
             payload = json.loads(raw.decode() or "{}")
             decision = payload.get("decision", "revise")

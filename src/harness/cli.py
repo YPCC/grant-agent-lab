@@ -66,6 +66,7 @@ def main(argv: list[str] | None = None) -> int:
     s = sub.add_parser("redteam", help="Adversarial probes (static). --live uses DeepTeam if installed.")
     s.add_argument("--live", action="store_true")
 
+    sub.add_parser("desktop", help="Open the desktop workbench (pywebview or browser)")
     sub.add_parser("profile", help="Print current governance profile (local | production)")
     s = sub.add_parser("preflight", help="Governance runtime checks; --gates runs eval cage + static red-team")
     s.add_argument("--gates", action="store_true")
@@ -85,6 +86,10 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "pack":
         print(dumps(load_pack(args.name)))
         return 0
+    if args.cmd == "desktop":
+        from src.desktop.app import main as desktop_main
+
+        return desktop_main()
     if args.cmd == "profile":
         from src.control_plane.profile import as_dict
 

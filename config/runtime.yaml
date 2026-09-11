@@ -35,3 +35,14 @@ observability:
 control_plane:
   guard: true
   pi_cannot_submit: true
+
+# Desktop / workbench LLM. none = deterministic graders only (CI default).
+# Vertex: gcloud auth application-default login && GOOGLE_CLOUD_PROJECT=...
+# Override: GRANT_LLM_PROVIDER=vertex GRANT_LLM_MODEL=gemini-2.5-flash
+llm:
+  provider: none
+  model: gemini-2.5-flash
+  project: ""
+  location: us-central1
+  enrich_review: true
+

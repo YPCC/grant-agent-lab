@@ -189,6 +189,7 @@ Used in [draw.io](docs/architecture-considerations/) files:
 | [Control plane](docs/control-plane-integration.md) | ALLOW / DENY / ASK guard |
 | [Governance](docs/governance.md) | Local vs production fail-closed profile |
 | [Packaging and deploy](docs/packaging-and-deploy.md) | Grok/MCP plugin, pipx, Cloud Run |
+| [Desktop and LLM](docs/desktop-and-llm.md) | Native window · Vertex Gemini backend |
 | [Observability](docs/observability.md) | Langfuse traces per agent |
 | [Omnigent adapter](docs/omnigent-adoption.md) | Optional outer driver |
 | [Architecture considerations](docs/architecture-considerations/README.md) | EA packet, Cloud SQL, Cloud Run, draw.io C4 |

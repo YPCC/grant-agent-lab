@@ -58,6 +58,19 @@ def reviewer_node(state: ProposalState) -> ProposalState:
         state.get("text") or "",
         mechanism=state.get("mechanism") or "R01",
     )
+    from src.llm.config import load_llm
+
+    cfg = load_llm()
+    if cfg.enabled and cfg.enrich_review:
+        from src.llm.client import enrich_review
+
+        review = guard(
+            "GrantReviewer",
+            "review_llm",
+            enrich_review,
+            state.get("text") or "",
+            review,
+        )
     state["review"] = review
     findings = list(state.get("findings") or [])
     for c in review.get("critiques") or []:

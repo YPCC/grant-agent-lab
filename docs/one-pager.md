@@ -22,7 +22,7 @@ knowledge → reviewer (GPA + SSRB) → missing essentials → intake → HITL f
 | **Catalogs** | `r01_essentials.yaml`, `ora_intake.yaml`, SF424 rules, GPA four questions, SSRB issue classes. |
 | **Budget scrutinizer** | Checks modular/detailed norms. Does **not** invent a budget. |
 | **HITL + RBAC** | PI / Navigator / Office / Admin. PI can submit to the **office** database only. |
-| **UIs** | Python workbench (Review, Intake, Harness, Langfuse chip) and CopilotKit Next.js. |
+| **UIs** | Python workbench, CopilotKit, **desktop** (`python -m src.desktop`). Settings tab: Vertex / Gemini / OpenAI / xAI. |
 
 ## What success looks like
 

@@ -23,7 +23,7 @@ Grant Agent Lab  (catalogs + graph + policies + eval cage)
 |-------|-----|-------------------|------------------|----------|
 | **1. Grok / Copilot / Claude plugin** | PI who already lives in Grok, Copilot, Cursor | Skill + MCP config | Their machine (stdio) or your Cloud Run URL | “Teach my assistant the ORA rules” |
 | **2. CLI / pipx (the `npx` analog)** | Developers, Navigators | `pipx install grant-agent-lab` → `grant-harness` | Local process | Scripted review, eval cage, MCP |
-| **3. Workbench PWA / desktop** | PI who wants the Review + Intake UI | Browser bookmark or thin desktop wrapper | Local or Cloud Run | Demo and office intake |
+| **3. Workbench PWA / desktop** | PI who wants the Review + Intake UI | `python -m src.desktop` (pywebview) | Local Vertex/Gemini or Cloud Run | Demo and office intake |
 | **4. Cloud Run (central)** | Institution | Nothing — SSO URL | Your VPC | Production governance, audit, SSO |
 
 Do **not** ship the LangGraph, Cloud SQL, and production profile inside a SKILL.md. A Grok skill is a *prompt + tool handle*. This lab is a *system*.

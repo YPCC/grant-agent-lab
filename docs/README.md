@@ -17,6 +17,7 @@
 | [Control plane](control-plane-integration.md) | AGT-style guard |
 | [Governance profiles](governance.md) | Local vs production (fail-closed) |
 | [Packaging and deploy](packaging-and-deploy.md) | Grok plugin / pipx / PWA vs Cloud Run |
+| [Desktop app and LLM](desktop-and-llm.md) | pywebview workbench · Vertex Gemini / OpenAI / xAI |
 | [Observability (Langfuse)](observability.md) | Per-agent traces; optional keys |
 | [Budget & package](budget-and-package-agent.md) | Scrutinizer (not planner) |
 | [Eval harness](harness.md) | In-lab cases, graders, MCP/CLI |

@@ -15,10 +15,13 @@ dependencies = [
 adk = ["google-adk>=2.0"]
 observability = ["langfuse>=2.0", "opentelemetry-api", "opentelemetry-sdk"]
 redteam = ["deepteam"]
+vertex = ["google-genai", "google-auth"]
+desktop = ["pywebview>=5.0"]
 dev = ["pytest", "ruff"]
 
 [project.scripts]
 grant-harness = "src.harness.cli:main"
+grant-desktop = "src.desktop.app:main"
 
 [build-system]
 requires = ["setuptools>=61"]

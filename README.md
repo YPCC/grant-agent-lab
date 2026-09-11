@@ -179,6 +179,7 @@ Used in [draw.io](docs/architecture-considerations/) files:
 | [Architecture (Mermaid)](docs/architecture.md) | System context (C4), one pipeline, RBAC |
 | [C4 infographics](docs/architecture-considerations/c4-infographics/README.md) | SVG context + containers + JPG posters |
 | [Eval harness](docs/harness.md) | Cases, MCP/CLI, CI eval-cage |
+| [Harness vs Omnigent](docs/harness-vs-omnigent.md) | Our eval cage vs Omni meta-harness |
 | [Control plane](docs/control-plane-integration.md) | ALLOW / DENY / ASK guard |
 | [Omnigent adapter](docs/omnigent-adoption.md) | Optional outer driver |
 | [Architecture considerations](docs/architecture-considerations/README.md) | EA packet, Cloud SQL, Cloud Run, draw.io C4 |

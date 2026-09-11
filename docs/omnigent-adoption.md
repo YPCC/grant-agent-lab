@@ -1,5 +1,7 @@
 # Omnigent vs Grant Agent Lab — adopt, adapt, or ignore
 
+**What the lab harness *is* (pieces, cases, invariants) vs Omnigent’s meta-harness:** [harness-vs-omnigent.md](harness-vs-omnigent.md). This page is the adopt / ignore list.
+
 Source: [omnigent-ai/omnigent](https://github.com/omnigent-ai/omnigent) (Apache-2.0, Databricks OSS, 2026).
 Date: 2026-09-10.
 

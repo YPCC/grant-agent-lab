@@ -1,6 +1,7 @@
 # Eval harness (in-lab feature)
 
-The eval cage lives **in this repo**, not in a sibling package.
+Call-out (what this harness is, vs Omnigent’s meta-harness): [harness-vs-omnigent.md](harness-vs-omnigent.md).
+
 
 Harness cases invoke **the same Part B `GrantGraph`** as the workbench. There is one pipeline:
 

@@ -22,3 +22,4 @@
 | [DeepTeam in the harness](deepteam-adoption.md) | Optional red-team lane; does not replace YAML graders |
 | [Omnigent adapter](omnigent-adoption.md) | Optional outer driver; not a rewrite |
 | [Datasets](datasets-and-validation.md) | Public NIH samples / RePORTER |
+| [Archive: original harness design](archive/harness-design-note-2026-09-10.md) | 2026-09-10 note (superseded by in-repo cage) |
